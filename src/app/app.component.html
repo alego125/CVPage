@@ -1,0 +1,17 @@
+<app-header></app-header>
+
+<app-portada (abrirAccion)="abrir($event)"></app-portada>
+
+<app-personal-information (cerrarEmit)="cerrar($event)" *ngIf="valor" ></app-personal-information>
+
+<app-presentacion></app-presentacion>
+
+<app-experiencia></app-experiencia>
+
+<app-educacion></app-educacion>
+
+<app-skills></app-skills>
+
+<app-proyectos></app-proyectos>
+
+<app-cursos></app-cursos>

@@ -1,0 +1,173 @@
+.dark {
+    background-color: black;
+  }
+  
+  .anchoCompletoVw {
+    width: 100vw;
+  }
+  
+  .anchoCompletoPorc {
+    width: 100%;
+  }
+  
+  .altoCompletovh{
+    height: 100vh;
+  }
+  
+  /* Separaciones borde en porcentaje (top, right, left, bottom) */
+  
+  .left10 {
+    left: 10%;
+  }
+  
+  .right2 {
+    right: 2%;
+  }
+  
+  .right5 {
+    right: 5%;
+  }
+  
+  .right10 {
+    right: 10%;
+  }
+  
+  .right30 {
+    right: 30%;
+  }
+  
+  .top5 {
+    top: 2%;
+  }
+  
+  .top10 {
+    top: 10%;
+  }
+  
+  .top30 {
+    top: 33%;
+  }
+  
+  .top40 {
+    top: 40%;
+  }
+  
+  .top50 {
+    top: 50%;
+  }
+  
+  .top55 {
+    top: 53%;
+  }
+  
+  .top60 {
+    top: 60%;
+  }
+  
+  .top70 {
+    top: 70%;
+  }
+  
+  .top80 {
+    top: 80%;
+  }
+  
+  .top90 {
+    top: 90%;
+  }
+  
+  /* Medidas (ancho,alto) en rem */
+  .alto10rem {
+    height: 14rem;
+  }
+  
+  .alto15rem {
+    height: 15rem;
+  }
+  
+  .ancho10rem {
+    width: 10rem;
+  }
+  
+  .ancho15rem {
+    width: 15rem;
+  }
+  
+  .alto15rem {
+    height: 15rem;
+  }
+  
+  .alto25rem {
+    height: 25rem;
+  }
+  
+  /* Medidas porcentuales (alto, ancho) */
+  .altoPorc100 {
+    height: 100%;
+  }
+  
+  /* Tamaños de texto */
+  .txt2rem{
+      font-size: 2rem;
+  }
+  
+  /* Fordos con imagenes */
+  .img_fondo1 {
+    background-size: cover;
+    background-position: center;
+  }
+  
+//   .img_fondo2 {
+//     background-image: url(./assets/perfil.jpg);
+//     background-size: cover;
+//     background-position: center;
+//   }
+  
+  /* Acciones hover */
+  .pointerHover:hover {
+    cursor: pointer;
+  }
+  
+  .textHoverColorBlue:hover {
+    color: blue !important;
+  }
+  
+  /* Colores */
+  .color-light {
+    background-color: rgb(212, 212, 212);
+  }
+  
+  .color-white {
+    background-color: rgb(255, 255, 255);
+  }
+  
+  /* Margenes */
+  /* Margin right */
+  .mr10p {
+    margin-right: 50px;
+  }
+  
+  /* Modificaciones elemento (borde, sombre) */
+  .borderSoft {
+    border-radius: 1rem;
+  }
+  
+  .borderMiddle {
+    border-radius: 3rem;
+  }
+  
+  .softShadow {
+    filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.37));
+  }
+  
+  .centrar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  
+  
+  
+  

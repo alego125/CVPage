@@ -1,0 +1,28 @@
+<!-- EXPERIENCIA -->
+
+<section class="anchoCompletoVw altoPorc100 mb-5">
+    <div class="position-relative container p-3 color-white borderSoft softShadow">
+        <p class="position-absolute top5 right2"> <i class="fa-solid fa-pen pointerHover text-end "> </i></p>
+        <h3 class="text-center">Experiencia</h3>
+        <div class="container" *ngFor="let experiencia of datos.experience">
+            <hr>
+            <div class="anchoCompletoPorc text-end"><i class="fas fa-pen-nib pointerHover"></i>  /  <i class="fas fa-trash pointerHover"></i></div>
+            <div class="row">
+                <div class="col-md-2">
+                    <img class="ancho10rem" [src]="experiencia.img" alt="arcor">
+                </div>
+                <div class="col">
+                    <h2>Empresa</h2>
+                    <p> <b>{{experiencia.company}}</b> </p>
+                    <h4>Descripcion Tareas realizadas</h4>
+                    <p>{{ experiencia.descripcion}}</p>
+                    <b class="text-secondary">Desde {{experiencia.start}} - Hasta {{experiencia.end}}</b>
+                    <h4>Tareas Realizadas</h4>
+                    <ul>
+                        <li *ngFor="let tarea of experiencia.tareas"> {{tarea}} </li>                        
+                    </ul>
+                </div>
+            </div>
+        </div>       
+    </div>
+  </section>
