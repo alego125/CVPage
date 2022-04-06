@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { tap } from 'rxjs';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 
 @Component({
@@ -17,15 +18,21 @@ export class PersonalInformationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.porfolioService.obtenerDatos().subscribe(
-      data => {
-        this.datos = data;
-      }
-    );
+    this.getInfo()
   }
 
   cerrar(){
     this.cerrarEmit.emit(false);
+  }
+
+  private getInfo():void{
+    this.porfolioService.getInformation().pipe(
+      tap(
+        data => {
+          this.datos = data;
+        }
+      )
+    ).subscribe()
   }
 
 }

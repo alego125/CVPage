@@ -1,0 +1,38 @@
+<div class="caja">
+    <form>
+        <div class="container text-center cajita">
+
+            <div class="cerrar" (click)="cerrar()"> X </div>
+    
+            <div class="subirImg p-2">
+                <label class="mb-1">Imagen de portada</label>
+                <img [src]="archivoPort" alt="" class="imgPrev">
+                <input type="file" class="selector mb-1" alife-file-to-base64 (onFileChanged)="subirImagePort($event)">
+            </div>
+            
+            <div class="subirImg p-2">
+                <label class="mb-1">Imagen de perfil</label>
+                <img [src]="archivoProf" alt="" class="imgPrev rounded-circle">
+                <input type="file" class="selector mb-1" alife-file-to-base64 (onFileChanged)="subirImageProf($event)">
+            </div>
+    
+            <label class="">Nombre</label>
+            <input type="text" name="name" [value]="nombre" class="name">
+    
+            <label class="">Titulo</label>
+            <input type="text" name="title" [value]="titulo" class="name">
+    
+            <label class="">Direccion</label>
+            <input type="text" name="direction" [value]="direccion" class="name">
+    
+            <label class="">Telefono</label>
+            <input type="text" name="phone" [value]="telefono" class="name">
+    
+            <label class="">Pagina web</label>
+            <input type="text" name="website" [value]="web" class="name">
+    
+            <button class="btn btn-primary mt-2" > Aceptar </button>
+    
+        </div>
+    </form>
+</div>

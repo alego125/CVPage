@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { FormulariosModule } from './formularios/formularios.module';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { PresentacionComponent } from './components/presentacion/presentacion.component';
@@ -11,8 +13,7 @@ import { EducacionComponent } from './components/educacion/educacion.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProyectosComponent } from './components/proyectos/proyectos.component';
 import { CursosComponent } from './components/cursos/cursos.component';
-import { HttpClientModule } from '@angular/common/http';
-import { PersonalInformationComponent } from './components/personal-information/personal-information.component'
+import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
 
 @NgModule({
   declarations: [
@@ -25,12 +26,13 @@ import { PersonalInformationComponent } from './components/personal-information/
     SkillsComponent,
     ProyectosComponent,
     CursosComponent,
-    PersonalInformationComponent
+    PersonalInformationComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormulariosModule
   ],
   providers: [],
   bootstrap: [AppComponent]

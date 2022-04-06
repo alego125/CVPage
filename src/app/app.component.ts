@@ -8,16 +8,25 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit{
 
   valor:boolean = false;
+  valorImage:boolean = false;
 
   ngOnInit():void {
   }
   
-  abrir(valor:boolean){
+  abrir(valor:boolean):void{
     this.valor = valor;
   }
 
-  cerrar(valor:boolean){
+  cerrar(valor:boolean):void{
     this.valor = valor;
+  }
+
+  abrirFormImage(val:boolean):void{
+    this.valorImage = val;
+  }
+  
+  cerrarFormImage(val:boolean):void{
+    this.valorImage = val;
   }
 
 }

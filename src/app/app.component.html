@@ -1,8 +1,10 @@
 <app-header></app-header>
 
-<app-portada (abrirAccion)="abrir($event)"></app-portada>
+<app-portada (abrirUploadImage)="abrirFormImage($event)" (abrirAccion)="abrir($event)"></app-portada>
 
 <app-personal-information (cerrarEmit)="cerrar($event)" *ngIf="valor" ></app-personal-information>
+
+<app-upload-images (cerrarAction)="cerrarFormImage($event)" *ngIf="valorImage" ></app-upload-images>
 
 <app-presentacion></app-presentacion>
 

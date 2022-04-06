@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 
 @Component({
@@ -8,18 +9,26 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 })
 export class ExperienciaComponent implements OnInit {
 
-  datos:any;
+  public datos!:any;
 
   constructor(
     private porfolioService : PorfolioServicesService
-  ) { }
+    ) {       
+    }
+    
+    ngOnInit(): void {
+      this.getExperience()
+  }
 
-  ngOnInit(): void {
-    this.porfolioService.obtenerDatos().subscribe(
-      data => {
-        this.datos = data;
-      }
-    );
+  private getExperience():void{
+    this.porfolioService.getExperience().pipe(
+      tap(
+        data => {
+          this.datos = data;
+          console.log(this.datos)
+        }
+      )
+    ).subscribe()
   }
 
 }

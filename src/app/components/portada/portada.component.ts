@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { tap } from 'rxjs';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 
 @Component({
@@ -10,6 +11,7 @@ export class PortadaComponent implements OnInit {
   
   datos:any; 
   @Output() abrirAccion = new EventEmitter<boolean>();
+  @Output() abrirUploadImage = new EventEmitter<boolean>();
 
   constructor(
     private porfolioService:PorfolioServicesService,    
@@ -17,17 +19,29 @@ export class PortadaComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.porfolioService.obtenerDatos().subscribe(
-      data => {
-        //Obtenemos datos del json 
-        this.datos = data;
-      }
+    this.getInfo();
+  }
+
+  private getInfo():void{
+    this.porfolioService.getInformation().pipe(
+      tap(
+        data => {
+          this.datos = data;
+        }
       )
+    ).subscribe()
   }
 
   //Emicion hacia app.component de accion del boton para abrir informacion personal
   abrir():void{
     this.abrirAccion.emit(true);
+  }
+
+  //Emitimos el evento de editar imagen
+  abrirEditar():void{
+    this.abrirUploadImage.emit(true);
+    console.log(this.datos.name);
+
   }
 
 }

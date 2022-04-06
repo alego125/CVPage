@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { tap } from 'rxjs';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 
 @Component({
@@ -15,11 +16,17 @@ export class CursosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.porfolioService.obtenerDatos().subscribe(
-      data => {
-        this.datos = data;
-      }
-    );
+    this.getInfo();
+  }
+
+  private getInfo():void{
+    this.porfolioService.getCursos().pipe(
+      tap(
+        data => {
+          this.datos = data;
+        }
+      )
+    ).subscribe()
   }
 
 }

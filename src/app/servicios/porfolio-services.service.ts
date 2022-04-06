@@ -13,7 +13,32 @@ export class PorfolioServicesService {
   ) { }
 
   //Estos metodo los definimos como observables de manera que los componentes que lo consuman puedan subscribirse para asi esperar la respuesta del metodo que obtiene sus datos del servidor
-  obtenerDatos():Observable<any>{
-    return this.http.get('./assets/data.json');
+  getInformation():Observable<any>{
+    return this.http.get('http://localhost:1000/information');
   }
+
+  getExperience():Observable<any>{
+    return this.http.get('http://localhost:1000/experience');
+  }
+
+  getProyectos():Observable<any>{
+    return this.http.get('http://localhost:1000/proyectos');
+  }
+
+  getAptitudes():Observable<any>{
+    return this.http.get('http://localhost:1000/aptitudes');
+  }
+  
+  getEducation():Observable<any>{
+    return this.http.get('http://localhost:1000/educacion');    
+  }
+  
+  getCursos():Observable<any>{
+    return this.http.get('http://localhost:1000/cursos');        
+  }
+
+  modificarDatos(dato:any){
+    return this.http.put("http://localhost:1000/",dato);
+  }
+
 }
