@@ -10,6 +10,7 @@ export class PortadaComponent implements OnInit {
   
   datos:any; 
   @Output() abrirAccion = new EventEmitter<boolean>();
+  @Output() abrirUpAccion = new EventEmitter<boolean>();
 
   constructor(
     private porfolioService:PorfolioServicesService,    
@@ -17,7 +18,7 @@ export class PortadaComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.porfolioService.obtenerDatos().subscribe(
+    this.porfolioService.getInformation().subscribe(
       data => {
         //Obtenemos datos del json 
         this.datos = data;
@@ -28,6 +29,10 @@ export class PortadaComponent implements OnInit {
   //Emicion hacia app.component de accion del boton para abrir informacion personal
   abrir():void{
     this.abrirAccion.emit(true);
+  }
+
+  abrirUpImg():void{
+    this.abrirUpAccion.emit(true);
   }
 
 }

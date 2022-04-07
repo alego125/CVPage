@@ -15,7 +15,7 @@ export class CursosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.porfolioService.obtenerDatos().subscribe(
+    this.porfolioService.getCursos().subscribe(
       data => {
         this.datos = data;
       }

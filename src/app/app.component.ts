@@ -10,12 +10,9 @@ export class AppComponent implements OnInit{
   
   title:string = "Hola mundo"
   valor:boolean = false;
-<<<<<<< HEAD
   valorImage:boolean = false;
   valorPresentacion = false;
   valorExperiencia = false;
-=======
->>>>>>> parent of 9ff35dd (Agregamos formulario para modificar portada y enlazamos servicio con json en server falso)
 
   ngOnInit():void {
   }
@@ -28,11 +25,10 @@ export class AppComponent implements OnInit{
     this.valor = valor;
   }
 
-<<<<<<< HEAD
-  abrirFormImage(val:boolean):void{
-    this.valorImage = val;
+  abrirUpImg(valor:boolean):void{
+    this.valorImage = valor;
   }
-  
+ 
   cerrarFormImage(val:boolean):void{
     this.valorImage = val;
   }
@@ -53,6 +49,4 @@ export class AppComponent implements OnInit{
     this.valorExperiencia = val;
   }
 
-=======
->>>>>>> parent of 9ff35dd (Agregamos formulario para modificar portada y enlazamos servicio con json en server falso)
 }

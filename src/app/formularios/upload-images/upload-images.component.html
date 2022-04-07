@@ -1,0 +1,67 @@
+<div class="caja">
+    <div id="form-div">
+        <div class="cerrar" (click)="cerrar()"> X </div>
+        <form class="form" id="form1">
+
+            <div class="imgs">
+                <p class="" id="src-file1">
+                    <input value="Imagen perfil" name="name" type="file" alife-file-to-base64 multiple (onFileChanged)="onFileChanges1($event)" />
+                    
+                </p>
+    
+                <p class="file-select" id="src-file2">
+                    <input class="primary" value="Imagen portada" name="name" type="file" alife-file-to-base64 multiple (onFileChanged)="onFileChanges2($event)" />
+                    
+                </p>
+            </div>
+
+            <div class="imagenes">
+                <div class="img1">
+                    <p>Imagen portada</p>
+                    <img [src]="imgPort" class="imgPrev" alt="">
+                </div>
+                <div class="img2">
+                    <p>Imagen Perfil</p>
+                    <img [src]="imgPerf" class="imgPrev" alt="">
+                </div>
+            </div>
+
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" 
+                    [value]="nombre"
+                    placeholder="Nombre"
+                     />
+            </p>
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" 
+                    [value]="telefono"
+                    placeholder="Telefono"
+                     />
+            </p>
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" 
+                    [value]="titulo"
+                    placeholder="Titulo"
+                     />
+            </p>
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" 
+                    [value]="direccion"
+                    placeholder="Direccion"
+                     />
+            </p>
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" 
+                    [value]="web"
+                    placeholder="Web"
+                     />
+            </p>
+
+        </form>
+        <input type="submit" value="Guardar" class="btn btn-light" />
+    </div>

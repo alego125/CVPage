@@ -105,6 +105,9 @@
 .altoPorc100 {
   height: 100%;
 }
+.altoPorc50 {
+  height: 50%;
+}
 
 /* Tamaños de texto */
 .txt2rem {
@@ -145,6 +148,10 @@
 /* Margin right */
 .mr10p {
   margin-right: 50px;
+}
+
+.mb10p{
+  margin-bottom: 50px;
 }
 
 /* Modificaciones elemento (borde, sombre) */
@@ -205,7 +212,7 @@
   border-radius: 0;
   line-height: 22px;
   background-color: #fbfbfb;
-  padding: 13px 13px 13px 54px;
+  padding: 5px 5px 5px 34px;
   margin-bottom: 10px;
   width: 100%;
   -webkit-box-sizing: border-box;
@@ -283,3 +290,34 @@ textarea:focus {
 }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+//Botones para subior imagenes 
+.file-select::before {
+  background-color: #5678EF;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  content: 'Seleccionar'; /* testo por defecto */
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.file-select input[type="file"] {
+  opacity: 0;
+  width: 200px;
+  height: 32px;
+  display: inline-block;
+}
+
+.file-select {
+  position: relative;
+  display: inline-block;
+}
+
+
