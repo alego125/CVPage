@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit{
-
+  
+  title:string = "Hola mundo"
   valor:boolean = false;
   valorImage:boolean = false;
+  valorPresentacion = false;
 
   ngOnInit():void {
   }
@@ -27,6 +30,14 @@ export class AppComponent implements OnInit{
   
   cerrarFormImage(val:boolean):void{
     this.valorImage = val;
+  }
+
+  abrirPresentacion(val:boolean):void{
+    this.valorPresentacion = val;
+  }
+
+  cerrarPresentacion(val:boolean):void{
+    this.valorPresentacion = val;
   }
 
 }

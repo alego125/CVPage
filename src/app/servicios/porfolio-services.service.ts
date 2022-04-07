@@ -35,7 +35,7 @@ export class PorfolioServicesService {
   
   getCursos():Observable<any>{
     return this.http.get('http://localhost:1000/cursos');        
-  }
+  }  
 
   modificarDatos(dato:any){
     return this.http.put("http://localhost:1000/",dato);

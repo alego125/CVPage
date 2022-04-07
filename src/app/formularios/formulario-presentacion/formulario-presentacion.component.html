@@ -1,0 +1,14 @@
+<div class="caja">
+    <div id="form-div">
+        <div class="cerrar" (click)="cerrar()"> X </div>
+        <form class="form" id="form1">
+
+            <p class="text">
+                <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment"
+                    placeholder="Escriba su presentacion aqui.. (maximo 600 caracteres)"
+                    [value]="info"></textarea>
+            </p>
+
+        </form>
+        <input type="submit" value="Guardar" class="btn btn-light" />
+    </div>

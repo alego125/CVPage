@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { tap } from 'rxjs';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 
@@ -10,6 +10,7 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 export class PresentacionComponent implements OnInit {
 
   datos:any;
+  @Output() abrirPresentacion = new EventEmitter<any>();
 
   constructor(
     private porfolioService:PorfolioServicesService
@@ -19,6 +20,7 @@ export class PresentacionComponent implements OnInit {
     this.getInfo();
   }
 
+  //Obtenemos la informacion del json
   private getInfo():void{
     this.porfolioService.getInformation().pipe(
       tap(
@@ -27,6 +29,10 @@ export class PresentacionComponent implements OnInit {
         }
       )
     ).subscribe()
+  }
+
+  public abrirForm():void{
+    this.abrirPresentacion.emit(true);
   }
 
 }

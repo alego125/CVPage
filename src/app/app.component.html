@@ -6,7 +6,9 @@
 
 <app-upload-images (cerrarAction)="cerrarFormImage($event)" *ngIf="valorImage" ></app-upload-images>
 
-<app-presentacion></app-presentacion>
+<app-presentacion (abrirPresentacion)="abrirPresentacion($event)"></app-presentacion>
+
+<app-formulario-presentacion (cerrarVentana)="cerrarPresentacion($event)" *ngIf="valorPresentacion"></app-formulario-presentacion>
 
 <app-experiencia></app-experiencia>
 
