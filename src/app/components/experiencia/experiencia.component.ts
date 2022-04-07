@@ -14,13 +14,11 @@ export class ExperienciaComponent implements OnInit {
 
   constructor(
     private porfolioService : PorfolioServicesService
-    ) {       
-    }
-    
-    ngOnInit(): void {
-      this.getExperience()
-  }
+  ) { }
 
+  ngOnInit(): void {
+    this.getExperience();
+  }
   abrir():void{
     this.abrirExperiencia.emit(true);
   }

@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { tap } from 'rxjs';
+=======
+import { Component, OnInit } from '@angular/core';
+>>>>>>> parent of 9ff35dd (Agregamos formulario para modificar portada y enlazamos servicio con json en server falso)
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 
 @Component({
@@ -17,6 +21,7 @@ export class PresentacionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+<<<<<<< HEAD
     this.getInfo();
   }
 
@@ -29,6 +34,13 @@ export class PresentacionComponent implements OnInit {
         }
       )
     ).subscribe()
+=======
+    this.porfolioService.obtenerDatos().subscribe(
+      data => {
+        this.datos = data;
+      }
+    );
+>>>>>>> parent of 9ff35dd (Agregamos formulario para modificar portada y enlazamos servicio con json en server falso)
   }
 
   public abrirForm():void{
