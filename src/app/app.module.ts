@@ -16,6 +16,8 @@ import { CursosComponent } from './components/cursos/cursos.component';
 import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
 import { FormularioPresentacionComponent } from './formularios/formulario-presentacion/formulario-presentacion.component';
 import { UploadImagesComponent } from './formularios/upload-images/upload-images.component';
+import { FormularioExperienciaComponent } from './formularios/formulario-experiencia/formulario-experiencia.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,13 +32,15 @@ import { UploadImagesComponent } from './formularios/upload-images/upload-images
     CursosComponent,
     PersonalInformationComponent,
     FormularioPresentacionComponent,
-    UploadImagesComponent
+    UploadImagesComponent,
+    FormularioExperienciaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

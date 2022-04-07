@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   valor:boolean = false;
   valorImage:boolean = false;
   valorPresentacion = false;
+  valorExperiencia = false;
 
   ngOnInit():void {
   }
@@ -38,6 +39,14 @@ export class AppComponent implements OnInit{
 
   cerrarPresentacion(val:boolean):void{
     this.valorPresentacion = val;
+  }
+
+  abrirExperiencia(val:boolean):void{
+    this.valorExperiencia = val;
+  }
+
+  cerrarExperiencia(val:boolean):void{
+    this.valorExperiencia = val;
   }
 
 }

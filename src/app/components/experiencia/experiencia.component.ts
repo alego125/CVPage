@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { tap } from 'rxjs';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 
@@ -10,6 +10,7 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 export class ExperienciaComponent implements OnInit {
 
   public datos!:any;
+  @Output() abrirExperiencia = new EventEmitter<boolean>();
 
   constructor(
     private porfolioService : PorfolioServicesService
@@ -18,6 +19,10 @@ export class ExperienciaComponent implements OnInit {
     
     ngOnInit(): void {
       this.getExperience()
+  }
+
+  abrir():void{
+    this.abrirExperiencia.emit(true);
   }
 
   private getExperience():void{

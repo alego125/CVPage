@@ -10,7 +10,9 @@
 
 <app-formulario-presentacion (cerrarVentana)="cerrarPresentacion($event)" *ngIf="valorPresentacion"></app-formulario-presentacion>
 
-<app-experiencia></app-experiencia>
+<app-experiencia (abrirExperiencia)="abrirExperiencia($event)"></app-experiencia>
+
+<app-formulario-experiencia (cerrarExperiencia)="cerrarExperiencia($event)" *ngIf="valorExperiencia" ></app-formulario-experiencia>
 
 <app-educacion></app-educacion>
 
