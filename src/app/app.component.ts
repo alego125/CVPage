@@ -14,7 +14,6 @@ export class AppComponent implements OnInit{
   valorPresentacion = false;
   valorExperiencia = false;
 
-
   ngOnInit():void {
   }
   
@@ -26,11 +25,10 @@ export class AppComponent implements OnInit{
     this.valor = valor;
   }
 
-
-  abrirFormImage(val:boolean):void{
-    this.valorImage = val;
+  abrirUpImg(valor:boolean):void{
+    this.valorImage = valor;
   }
-  
+ 
   cerrarFormImage(val:boolean):void{
     this.valorImage = val;
   }

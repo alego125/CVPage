@@ -1,16 +1,18 @@
 <app-header></app-header>
 
-<app-portada (abrirAccion)="abrir($event)"></app-portada>
+<app-portada (abrirUpAccion)="abrirUpImg($event)" (abrirAccion)="abrir($event)"></app-portada>
+
+<app-upload-images (cerrarUploadImage)="cerrarFormImage($event)" *ngIf="valorImage" ></app-upload-images> -->
 
 <app-personal-information (cerrarEmit)="cerrar($event)" *ngIf="valor" ></app-personal-information>
-
-<app-upload-images (cerrarAction)="cerrarFormImage($event)" *ngIf="valorImage" ></app-upload-images>
 
 <app-presentacion (abrirPresentacion)="abrirPresentacion($event)"></app-presentacion>
 
 <app-formulario-presentacion (cerrarVentana)="cerrarPresentacion($event)" *ngIf="valorPresentacion"></app-formulario-presentacion>
 
-<app-experiencia></app-experiencia>
+<app-experiencia (abrirExperiencia)="abrirExperiencia($event)"></app-experiencia>
+
+<app-formulario-experiencia (cerrarExperiencia)="cerrarExperiencia($event)" *ngIf="valorExperiencia"></app-formulario-experiencia>
 
 <app-educacion></app-educacion>
 

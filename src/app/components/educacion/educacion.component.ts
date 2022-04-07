@@ -15,7 +15,7 @@ export class EducacionComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.porfolioService.obtenerDatos().subscribe(
+    this.porfolioService.getEducation().subscribe(
       data => {
         this.datos = data;
       }
