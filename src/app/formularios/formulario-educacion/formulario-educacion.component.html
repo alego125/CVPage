@@ -1,0 +1,52 @@
+<div class="caja">
+    <div id="form-div">
+        <div class="cerrar" (click)="cerrar()"> X </div>
+        <form class="form" id="form1">
+           
+            <div class="img">
+                <p class="file-select" id="src-file">
+                    <input value="Imagen perfil" name="imagen" type="file" alife-file-to-base64 multiple (onFileChanged)="onFileChanges($event)" />                
+                </p>
+    
+                <img [src]="imgEmpresa" alt="">
+            </div>
+
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Nombre Institucion"
+                    />
+            </p>
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Nombre Facultad"
+                    />
+            </p>
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Titulo Obtenido"
+                    />
+            </p>
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Carrera Estudiada"
+                    />
+            </p>
+
+            <div class="fechas">
+                <p class="name">
+                    <label for="desde">Desde:</label> 
+                    <input name="name" type="text"
+                        class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="dd/mm/aaaa"
+                        />
+                </p>
+                <p class="name">
+                    <label for="hasta">Hasta:</label>
+                    <input name="name" type="text"
+                        class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="dd/mm/aaaa"
+                        />
+                </p>
+            </div>
+            
+        </form>
+        <input type="submit" value="Agregar" class="btn btn-light" />
+    </div>
