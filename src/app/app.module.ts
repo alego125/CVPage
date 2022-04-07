@@ -21,12 +21,15 @@ import { CursosComponent } from './components/cursos/cursos.component';
 import { PersonalInformationComponent } from './components/personal-information/personal-information.component';
 import { FormularioPresentacionComponent } from './formularios/formulario-presentacion/formulario-presentacion.component';
 import { UploadImagesComponent } from './formularios/upload-images/upload-images.component';
+<<<<<<< HEAD
 import { FormularioExperienciaComponent } from './formularios/formulario-experiencia/formulario-experiencia.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 =======
 import { HttpClientModule } from '@angular/common/http';
 import { PersonalInformationComponent } from './components/personal-information/personal-information.component'
 >>>>>>> parent of 9ff35dd (Agregamos formulario para modificar portada y enlazamos servicio con json en server falso)
+=======
+>>>>>>> parent of 3e3503b (viejo)
 
 @NgModule({
   declarations: [
@@ -42,11 +45,15 @@ import { PersonalInformationComponent } from './components/personal-information/
 <<<<<<< HEAD
     PersonalInformationComponent,
     FormularioPresentacionComponent,
+<<<<<<< HEAD
     UploadImagesComponent,
     FormularioExperienciaComponent
 =======
     PersonalInformationComponent
 >>>>>>> parent of 9ff35dd (Agregamos formulario para modificar portada y enlazamos servicio con json en server falso)
+=======
+    UploadImagesComponent
+>>>>>>> parent of 3e3503b (viejo)
   ],
   imports: [
     BrowserModule,
@@ -54,9 +61,12 @@ import { PersonalInformationComponent } from './components/personal-information/
     HttpClientModule,
 <<<<<<< HEAD
     FormsModule,
+<<<<<<< HEAD
     BrowserAnimationsModule,
 =======
 >>>>>>> parent of 9ff35dd (Agregamos formulario para modificar portada y enlazamos servicio con json en server falso)
+=======
+>>>>>>> parent of 3e3503b (viejo)
   ],
   providers: [],
   bootstrap: [AppComponent]
