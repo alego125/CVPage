@@ -14,7 +14,9 @@
 
 <app-formulario-experiencia (cerrarExperiencia)="cerrarExperiencia($event)" *ngIf="valorExperiencia"></app-formulario-experiencia>
 
-<app-educacion></app-educacion>
+<app-educacion (abrirEducaFormulario)="abrirEducaFormulario($event)"></app-educacion>
+
+<app-formulario-educacion (cerrarEducaFormulario)="cerrarEducaFormulario($event)" *ngIf="valorEducacion"></app-formulario-educacion>
 
 <app-skills></app-skills>
 

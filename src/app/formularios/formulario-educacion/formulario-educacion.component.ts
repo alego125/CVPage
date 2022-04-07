@@ -2,16 +2,16 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 
 @Component({
-  selector: 'app-formulario-experiencia',
-  templateUrl: './formulario-experiencia.component.html',
-  styleUrls: ['./formulario-experiencia.component.scss']
+  selector: 'app-formulario-educacion',
+  templateUrl: './formulario-educacion.component.html',
+  styleUrls: ['./formulario-educacion.component.scss']
 })
-export class FormularioExperienciaComponent implements OnInit {
+export class FormularioEducacionComponent implements OnInit {
 
   valor!:any;
   imgEmpresa!:string;
   
-  @Output() cerrarExperiencia = new EventEmitter<boolean>();
+  @Output() cerrarEducaFormulario = new EventEmitter<boolean>();
 
   constructor(
     private porfolioService:PorfolioServicesService
@@ -26,7 +26,7 @@ export class FormularioExperienciaComponent implements OnInit {
   }
 
   cerrar():void{
-    this.cerrarExperiencia.emit(false);
+    this.cerrarEducaFormulario.emit(false);
   }
 
 }
