@@ -1,0 +1,11 @@
+.fechas{
+    display: flex;
+    flex-wrap: wrap;    
+    justify-content: space-between;
+    label{
+        font-size: 30px;
+        font-weight: bolder;
+        color: aliceblue;
+        filter: drop-shadow(1px 1px 2px #000);
+    }
+}

@@ -1,4 +1,6 @@
-<app-header></app-header>
+<app-header (abrirRedesFormulario)="abrirRedesFormulario($event)"></app-header>
+
+<app-formulario-redes (cerrarRedesFormulario)="cerrarRedesFormulario($event)" *ngIf="valorRedes"></app-formulario-redes>
 
 <app-portada (abrirUpAccion)="abrirUpImg($event)" (abrirAccion)="abrir($event)"></app-portada>
 
@@ -18,8 +20,14 @@
 
 <app-formulario-educacion (cerrarEducaFormulario)="cerrarEducaFormulario($event)" *ngIf="valorEducacion"></app-formulario-educacion>
 
-<app-skills></app-skills>
+<app-skills (abrirSkillFormulario)="abrirSkillFormulario($event)"></app-skills>
 
-<app-proyectos></app-proyectos>
+<app-formulario-skills (cerrarSkillFormulario)="cerrarSkillFormulario($event)" *ngIf="valorSkill"></app-formulario-skills>
 
-<app-cursos></app-cursos>
+<app-proyectos (abrirProyecFormulario)="abrirProyecFormulario($event)"></app-proyectos>
+
+<app-formulario-proyectos (cerrarProyecFormulario)="cerrarProyecFormulario($event)" *ngIf="valorProyecto"></app-formulario-proyectos>
+
+<app-cursos (abrirCursoFormulario)="abrirCursoFormulario($event)"></app-cursos>
+
+<app-formulario-cursos (cerrarCursoFormulario)="cerrarCursoFormulario($event)" *ngIf="valorCursos"></app-formulario-cursos>

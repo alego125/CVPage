@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 export class HeaderComponent implements OnInit {
 
   datos:any;
+  @Output() abrirRedesFormulario = new EventEmitter<boolean>();
 
   constructor(
     private datosPorfolio:PorfolioServicesService
@@ -20,6 +21,10 @@ export class HeaderComponent implements OnInit {
         this.datos = data;
       }
     )
+  }
+
+  abrir():void{
+    this.abrirRedesFormulario.emit(true);
   }
 
 }

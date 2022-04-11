@@ -1,0 +1,32 @@
+<div class="caja">
+    <div id="form-div">
+        <div class="cerrar" (click)="cerrar()"> X </div>
+        <form class="form" id="form1">
+           
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Link Instagram"
+                    />
+            </p>
+
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Link Facebook"
+                    />
+            </p>
+
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Link Linkedin"
+                    />
+            </p>
+
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Link Github"
+                    />
+            </p>
+                                                            
+        </form>
+        <input type="submit" value="Agregar" class="btn btn-light" />
+    </div>

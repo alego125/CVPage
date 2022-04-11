@@ -1,0 +1,40 @@
+<div class="caja">
+    <div id="form-div">
+        <div class="cerrar" (click)="cerrar()"> X </div>
+        <form class="form" id="form1">
+           
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Nombre Proyecto"
+                    />
+            </p>
+
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Nombre Lugar"
+                    />
+            </p>
+            
+            <div class="fechas">
+                <p class="name">
+                    <label for="desde">Desde:</label> 
+                    <input name="name" type="text"
+                        class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="dd/mm/aaaa"
+                        />
+                </p>
+                <p class="name">
+                    <label for="hasta">Hasta:</label>
+                    <input name="name" type="text"
+                        class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="dd/mm/aaaa"
+                        />
+                </p>
+            </div>            
+            
+            <p class="text">
+                <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment"
+                    placeholder="Escriba la descripcion aqui.. (maximo 600 caracteres)"></textarea>
+            </p>
+
+        </form>
+        <input type="submit" value="Agregar" class="btn btn-light" />
+    </div>

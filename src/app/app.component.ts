@@ -14,6 +14,10 @@ export class AppComponent implements OnInit{
   valorPresentacion = false;
   valorExperiencia = false;
   valorEducacion = false;
+  valorSkill = false;
+  valorProyecto = false;
+  valorCursos = false;
+  valorRedes = false;
 
   ngOnInit():void {
   }
@@ -24,6 +28,14 @@ export class AppComponent implements OnInit{
 
   cerrar(valor:boolean){
     this.valor = valor;
+  }
+
+  abrirRedesFormulario(val:boolean):void{
+    this.valorRedes = val;
+  }
+
+  cerrarRedesFormulario(val:boolean):void{
+    this.valorRedes = val;
   }
 
   abrirUpImg(valor:boolean):void{
@@ -56,6 +68,30 @@ export class AppComponent implements OnInit{
 
   cerrarEducaFormulario(val:boolean):void{
     this.valorEducacion = val;
+  }
+
+  abrirSkillFormulario(val:boolean):void{
+    this.valorSkill = val;
+  }
+
+  cerrarSkillFormulario(val:boolean):void{
+    this.valorSkill = val;
+  }
+
+  cerrarProyecFormulario(val:boolean):void{
+    this.valorProyecto = val;
+  }
+
+  abrirProyecFormulario(val:boolean):void{
+    this.valorProyecto = val;
+  }
+
+  abrirCursoFormulario(val:boolean):void{
+    this.valorCursos = val;
+  }
+
+  cerrarCursoFormulario(val:boolean):void{
+    this.valorCursos = val;
   }
 
 }
