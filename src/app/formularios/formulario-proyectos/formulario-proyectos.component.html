@@ -1,0 +1,38 @@
+<div class="caja">
+    <form class="form container" id="form1">
+        <div class="cerrar" (click)="cerrar()"> X </div>
+
+        <div class="form-group">
+            <label class="form-label">Titulo</label>
+            <input class="form-control" type="text" placeholder="Titulo Proyecto">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Descripcion</label>
+            <textarea class="form-control" type="text" placeholder="Realice una brebe descripcion de las actividades realizadas... (Maximo 450 caracteres)"></textarea>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="form-label">Fecha Inicio</label>
+                    <input class="form-control" type="date" required>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="form-label">Fecha Fin</label>
+                    <input class="form-control" type="date" required>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-btn text-center">
+            <button class="btn btn-dark m-5">Book Now</button>
+        </div>
+
+    </form>
+</div>

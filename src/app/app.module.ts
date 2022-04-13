@@ -20,6 +20,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormularioExperienciaComponent } from './formularios/formulario-experiencia/formulario-experiencia.component';
 import { UploadImagesComponent } from './formularios/upload-images/upload-images.component';
 import { FormularioEducacionComponent } from './formularios/formulario-educacion/formulario-educacion.component';
+import { FormularioSkillsComponent } from './formularios/formulario-skills/formulario-skills.component';
+import { FormularioProyectosComponent } from './formularios/formulario-proyectos/formulario-proyectos.component';
+import { FormularioCursosComponent } from './formularios/formulario-cursos/formulario-cursos.component';
+import { FormularioRedesComponent } from './formularios/formulario-redes/formulario-redes.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,11 @@ import { FormularioEducacionComponent } from './formularios/formulario-educacion
     UploadImagesComponent,
     FormularioExperienciaComponent,
     UploadImagesComponent,
-    FormularioEducacionComponent
+    FormularioEducacionComponent,
+    FormularioSkillsComponent,
+    FormularioProyectosComponent,
+    FormularioCursosComponent,
+    FormularioRedesComponent
   ],
   imports: [
     BrowserModule,

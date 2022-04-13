@@ -1,0 +1,19 @@
+<div class="caja">
+    <div id="form-div">
+        <div class="cerrar" (click)="cerrar()"> X </div>
+        <form class="form" id="form1">
+
+            <p class="name">
+                <input name="name" type="text"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
+                    placeholder="Nombre Habilidad" />
+            </p>
+            <p class="name">
+                <input name="name" type="number"    
+                class="feedback-input"                
+                    placeholder="Porcentaje que se sabe" />
+            </p>
+
+        </form>
+        <input type="submit" value="Agregar" class="btn btn-light" />
+    </div>
