@@ -249,6 +249,7 @@
   color: white;
   border-radius: 50%;
   box-shadow: 1px 1px 5px #000;
+  z-index: 1000;
 }
 
 .cerrar:hover{
@@ -321,3 +322,28 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 
+//Estilos de formularios nuevos
+//Etiquetas
+label {
+  font-size: 30px;
+  font-weight: bolder;
+  color: aliceblue;
+  filter: drop-shadow(1px 1px 2px #000);
+}
+
+
+#form1 {
+  position: relative;
+  background: rgba(0, 0, 0, 0.34);
+  border-radius: 30px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.7px);
+  padding: 20px;
+}
+
+//Estilo del mensaje de error
+.txt{
+  color: red;
+  font-weight: bolder;
+  text-shadow: 1px 1px 3px white;
+}

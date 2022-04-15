@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-formulario-skills',
@@ -8,20 +8,48 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 })
 export class FormularioSkillsComponent implements OnInit {
 
+  formu!:FormGroup;
+
   valor!:any;
   
   @Output() cerrarSkillFormulario = new EventEmitter<boolean>();
 
   constructor(
-    private porfolioService:PorfolioServicesService
-  ) {}
+    private formBuilder:FormBuilder
+  ) {
+    this.formu = this.formBuilder.group({
+      habilidad:['',[Validators.required,Validators.minLength(4)]],
+      porcentaje:['',[Validators.required]]
+    })
+  }
   
   ngOnInit(): void {
     
   }
+
+  onSubmit(evento:Event){
+
+    evento.preventDefault()
+
+    if(this.formu.valid){
+      alert('Infomracion Guardada Exitosamente');
+      location.reload();
+    }else{
+      this.formu.markAllAsTouched();
+    }
+
+  }
   
   cerrar():void{
     this.cerrarSkillFormulario.emit(false);
+  }
+
+  get Habilidad(){
+    return this.formu.get('habilidad')
+  }
+
+  get Porcentaje(){
+    return this.formu.get('porcentaje')
   }
 
 }

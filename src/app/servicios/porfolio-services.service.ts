@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 //Los observables son una coleccion de futuros eventos a los cuales me voy a subscribir y luego nos llegaran de manera asincrona
 import { Observable } from 'rxjs';
+import { Universidad } from '../modelos/porfolio-service.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +40,14 @@ export class PorfolioServicesService {
 
   modificarDatos(dato:any){
     return this.http.put("http://localhost:3000/",dato);
+  }
+
+  getCarreras(){
+    return this.http.get("http://localhost:3000/carrera");    
+  }
+
+  getUniversidades():Observable<any>{
+    return this.http.get('http://localhost:3000/universidades');
   }
 
 }

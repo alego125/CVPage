@@ -1,40 +1,38 @@
 {
     "information":{
-        "name":"Alejandro Gomez",
+        "name":"Sandra Martin",
         "backImage":"http://drive.google.com/uc?export=view&id=15henbxcOiIXDMfIuTKqf3iDc27niREHg",    
-        "image":"http://drive.google.com/uc?export=view&id=1hafG3QT6yjzP50Gm2GUTPi25pO4SLSX9",
+        "image":"https://previews.123rf.com/images/rawpixel/rawpixel1704/rawpixel170441704/76561515-retrato-de-personas-estudio-disparar-con-expresi%C3%B3n-de-cara-sonriente.jpg",
         "logoImage":"http://drive.google.com/uc?export=view&id=1mW6bOKYkdlU2Kn9gjlXttS0i161o48rZ",
-        "titulo":"Ingeniero Quimico",
-        "ubicacion":"9 de julio 48, San Rafael, Mendoza",
-        "telefono":"2604538424",
-        "web":"alewebdev.00webhostapp.com",
+        "titulo":"Ingeniera Informatica",
+        "ubicacion":"san martin 34, San Martin, Mendoza",
+        "telefono":"261374839",
+        "web":"www.web.com",
         "about":"Lorem ipsum dolor sit amet consectetur adipisicing elit Placeat rem corrupti assumenda cumque quidem namfds asdfasd eokfkdam dkfokslkf alkfokkoksk alkfoklad kfokñalk fñlsokfokalkod añlkfkalkd opaklkd kañlk dokd sñlkaokdkfa kokfoaklkd añlkfokdla, ñldsaik, flasjfijald asldkjfiasjdf"
     },
     "experience":[{
         "descripcion":"Lorem ipsum dolor sit amet consectetur adipisicing elit Placeat rem corrupti assumenda cumque quidem namfds asdfasd eokfkdam dkfokslkf alkfokkoksk alkfoklad kfokñalk fñlsokfokalkod añlkfkalkd opaklkd kañlk dokd sñlkaokdkfa kokfoaklkd añlkfokdla, ñldsaik, flasjfijald asldkjfiasjdf",
-        "company":"Arcor",
-        "img":"http://drive.google.com/uc?export=view&id=1QIpkPSHDoiqSx8Cpw9sQZ6bE18qlwIVd",
+        "company":"InfraTech",
+        "img":"https://img.freepik.com/vector-gratis/logo-abstracto-empresa-tecnologica-degradado_52683-9703.jpg?w=2000",
         "mode":"",
         "start":"2019",
         "end":"2021",
-        "timeElapsed":"2",
-        "tareas":["item 1", "item 2", "item 3", "item 4", "item 5"]
+        "timeElapsed":"2"
     },
     {
         "descripcion":"Lorem ipsum dolor sit amet consectetur adipisicing elit Placeat rem corrupti assumenda cumque quidem namfds asdfasd eokfkdam dkfokslkf alkfokkoksk alkfoklad kfokñalk fñlsokfokalkod añlkfkalkd opaklkd kañlk dokd sñlkaokdkfa kokfoaklkd añlkfokdla, ñldsaik, flasjfijald asldkjfiasjdf",
-        "company":"Arcor",
-        "img":"http://drive.google.com/uc?export=view&id=1QIpkPSHDoiqSx8Cpw9sQZ6bE18qlwIVd",
+        "company":"MarcandoMundos",
+        "img":"https://img.freepik.com/vector-gratis/logo-abstracto-empresa-tecnologica-degradado_52683-9703.jpg?w=2000",
         "mode":"",
         "start":"2019",
         "end":"2021",
-        "timeElapsed":"2",
-        "tareas":["item 1", "item 2", "item 3", "item 4", "item 5"]
+        "timeElapsed":"2"
     }
     ],
     "educacion":[{
         "school":"Universidad Nacional de Cuyo",
         "divicion":"Facultad de ciencias aplicadas a la industria",
-        "carrera":"Ingeniero Quimico con orientación en petroquímica",
+        "carrera":"Ingeniera Quimica con orientación en petroquímica",
         "img":"http://drive.google.com/uc?export=view&id=1NLzYi2KBnoGaDGyElIs00qDPVLGWOqpN",
         "title":"Ingenieria Quimica",
         "score":"7.2",
@@ -88,5 +86,63 @@
         "institucion":"UTN",
         "start":"2021",
         "end":"2021"
-    }]
+    }],
+    "universidades":[
+        {
+            "id":1,
+            "nombre":"uncuyo"
+        },
+        {
+            "id":2,
+            "nombre":"unc"
+        },
+        {
+            "id":3,
+            "nombre":"fesat"
+        },
+        {
+            "id":4,
+            "nombre":"utn"
+        },
+        {
+            "id":5,
+            "nombre":"uba"
+        },
+        {
+            "id":6,
+            "nombre":"unfu"
+        }
+    ],
+    "carrera":[
+        {
+            "id":1,
+            "id_uni":2,
+            "nombre":"ciencias del ambiente"
+        },
+        {
+            "id":2,
+            "id_uni":4,
+            "nombre":"Filosofi"
+        },
+        {
+            "id":3,
+            "id_uni":2,
+            "nombre":"MArketing"
+        },
+        {
+            "id":4,
+            "id_uni":1,
+            "nombre":"biologia"
+        },
+        {
+            "id":5,
+            "id_uni":4,
+            "nombre":"matematicas"
+        },
+        {
+            "id":6,
+            "id_uni":2,
+            "nombre":"formacion ciudadana"
+        }
+    ]
 }

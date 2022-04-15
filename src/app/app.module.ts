@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 
 import { AppComponent } from './app.component';
@@ -54,7 +54,8 @@ import { FormularioRedesComponent } from './formularios/formulario-redes/formula
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    AlifeFileToBase64Module
+    AlifeFileToBase64Module,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

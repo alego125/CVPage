@@ -1,44 +1,66 @@
-
-.imgs{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.imgs {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.imagenes{
-    display: flex;
-    flex-wrap: wrap;    
-    justify-content: center;
-    align-items: center;
-}
-.img1{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
-}
-.img2{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
+.imagenes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
 
-.imgPrev{
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.img1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.img2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.imgPrev {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 
 }
 
 
-  #src-file1::before {
-    content: 'Seleccionar Imagen Portada';
-  }
-  
-  #src-file2::before {
-    content: 'Seleccionar Imagen Perfil';
-  }
+#src-file1::before {
+  content: 'Seleccionar Imagen Portada';
+}
+
+#src-file2::before {
+  content: 'Seleccionar Imagen Perfil';
+}
+
+.infoFormu::-webkit-scrollbar {
+  width: 8px;
+  /* Tamaño del scroll en vertical */
+  height: 8px;
+  /* Tamaño del scroll en horizontal */
+  display: none;
+  /* Ocultar scroll */
+}
+
+
+.infoFormu {
+  position: relative;
+  height: 80vh;
+  overflow: auto;
+
+}
+
+.formu {
+  position: relative;
+}

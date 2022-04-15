@@ -1,14 +1,24 @@
 <div class="caja">
-    <div id="form-div">
+    <form class="form container" [formGroup]="formu" (ngSubmit)="onSubmit($event)" id="form1">
         <div class="cerrar" (click)="cerrar()"> X </div>
-        <form class="form" id="form1">
 
-            <p class="text">
-                <textarea name="text" class="validate[required,length[6,300]] feedback-input" id="comment"
-                    placeholder="Escriba su presentacion aqui.. (maximo 600 caracteres)"
-                    [value]="info"></textarea>
-            </p>
+        <p class="text">
+            <label class="form-label">Presentacion</label>
+            <textarea class="form-control" formControlName="presentacion" type="text" placeholder="Realice una brebe descripcion de las actividades realizadas... (Maximo 450 caracteres)"></textarea>
+        </p>
+        <div *ngIf="Presentacion?.errors && Presentacion?.touched">
+            <span *ngIf="Presentacion?.hasError('required')" class="txt">
+                <p>Descripcion requerida</p>
+            </span>
+            <span *ngIf="Presentacion?.errors?.['maxlength']" class="txt">
+                <p>El titulo debe tener un maximo de 500 caracteres</p>
+            </span>
+        </div>
 
-        </form>
-        <input type="submit" value="Guardar" class="btn btn-light" />
-    </div>
+        <div class="form-btn text-center">
+            <button type="submit" [disabled]="formu.invalid" class="btn btn-dark m-5">Guardar</button>
+        </div>
+
+    </form>
+    
+</div>
