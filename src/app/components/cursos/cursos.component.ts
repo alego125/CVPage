@@ -17,11 +17,12 @@ export class CursosComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.porfolioService.getCursos().subscribe(
+    this.porfolioService.getEducation().subscribe(
       data => {
         this.datos = data;
       }
     );
+    console.log("educacion" + this.datos);
   }
 
   abrir():void{

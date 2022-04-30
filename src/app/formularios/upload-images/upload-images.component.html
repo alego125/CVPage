@@ -1,44 +1,38 @@
 <div class="caja">
-    <form class="form container formu" [formGroup]="formu" (ngSubmit)="onSubmit($event)" id="form1">
+    <div class="form container formu" id="form1">
         <div class="cerrar" (click)="cerrar()"> X </div>
 
-        <div class="infoFormu">
+        <form class="infoFormu"[formGroup]="formu" (ngSubmit)="onSubmit($event)">
 
             <div class="imgs">
-                <p class="file-select" id="src-file1">
-                    <input value="Imagen perfil" formControlName="imagen1" name="name" type="file" alife-file-to-base64
-                        multiple (onFileChanged)="onFileChanges1($event)" />
-                </p>
-                <!-- <div *ngIf="Imagen1?.errors && Imagen1?.touched">
-                    <span *ngIf="Imagen1?.hasError('required')" class="txt">
-                        <p>Campo requerido</p>
-                    </span>
-                </div> -->
-                <p class="file-select" id="src-file2">
-                    <input class="primary" value="Imagen portada" formControlName="imagen2" name="name" type="file"
-                    alife-file-to-base64 multiple (onFileChanged)="onFileChanges1($event)" />
-                </p>
-                <!-- <div *ngIf="Imagen2?.errors && Imagen2?.touched">
-                    <span *ngIf="Imagen2?.hasError('required')" class="txt">
-                        <p>Campo requerido</p>
-                    </span>
-                </div> -->
+
+                    <input value="Imagen perfil" formControlName="urlPerfil" name="img1" type="file" (change)="onFileChanges1($event)" id="img1"/>
+                <label for="img1" class="img_1">Subir imagen de perfil</label>
+               
+                
+                    <input class="primary" value="Imagen portada" formControlName="urlPortada" name="img2" type="file" (change)="onFileChanges2($event)" id="img2"/>
+                <label for="img2" class="img_2">Subir imagen de portada</label>
+               
+                
             </div>
+            
 
             <div class="imagenes">
                 <div class="img1">
                     <p>Imagen portada</p>
-                    <img [src]="imgPort" class="imgPrev" alt="">
+                    <img [src]="datos.urlPortada" class="imgPrev" alt="">
                 </div>
                 <div class="img2">
                     <p>Imagen Perfil</p>
-                    <img [src]="imgPerf" class="imgPrev" alt="">
+                    <img [src]="datos.urlPerfil" class="imgPrev" alt="">
                 </div>
             </div>
 
             <div class="form-group">
-                <label class="form-label">Nombre</label>
+
+                <label class="form-label">Nombre </label>
                 <input class="form-control" formControlName="nombre" type="text" placeholder="Nombre">
+
                 <div *ngIf="Nombre?.errors && Nombre?.touched">
                     <span *ngIf="Nombre?.hasError('required')" class="txt">
                         <p>Campo requerido</p>
@@ -47,11 +41,16 @@
                         <p>El nombre debe tener como minimo 5 caracteres</p>
                     </span>
                 </div>
+
             </div>
+
+
             <div class="form-group">
+
                 <label class="form-label">Telefono</label>
                 <input class="form-control" formControlName="telefono" type="text" placeholder="Telefono">
-                <div *ngIf="Telefono?.errors && Telefono?.touched">
+
+                <div *ngIf="Telefono?.errors && Telefono?.touched">                    
                     <span *ngIf="Telefono?.hasError('required')" class="txt">
                         <p>Campo requerido</p>
                     </span>
@@ -59,35 +58,100 @@
                         <p>El telefono debe contener al menos 6 caracteres</p>
                     </span>
                 </div>
-            </div>
+            </div>            
+
             <div class="form-group">
-                <label class="form-label">Titulo</label>
-                <input class="form-control" formControlName="titulo" type="text" placeholder="Titulo">
-                <div *ngIf="Titulo?.errors && Titulo?.touched">
+
+                <label class="form-label">Fecha Nacimiento</label>
+                <input class="form-control" [ngModel]='datos.fechaNacimiento | date:"yyyy-MM-dd"' formControlName="fechaNacimiento" type="date" placeholder="Fecha Nacimiento">
+
+                <div *ngIf="FechaNacimeinto?.errors && FechaNacimeinto?.touched">
                     <span *ngIf="Titulo?.hasError('required')" class="txt">
                         <p>Campo requerido</p>
-                    </span>
-                    <span *ngIf="Titulo?.errors?.['minlength']" class="txt">
-                        <p>El titulo debe tener como minimo 5 caracteres</p>
-                    </span>
+                    </span>                    
                 </div>
+
             </div>
+
             <div class="form-group">
-                <label class="form-label">Direccion</label>
-                <input class="form-control" formControlName="direccion" type="text" placeholder="Direccion">
-                <div *ngIf="Direccion?.errors && Direccion?.touched">
-                    <span *ngIf="Direccion?.hasError('required')" class="txt">
-                        <p>Campo requerido</p>
-                    </span>
-                    <span *ngIf="Direccion?.errors?.['minlength']" class="txt">
-                        <p>La direccion debe tener como minimo 5 caracteres</p>
-                    </span>
+
+                <div class="row">
+                    <div class="col">
+                        
+                        <label class="form-label">Pais: </label>
+
+                        <select class="form-control" (change)="obtenerValorPais()" formControlName="pais" type="select">
+
+                        <option *ngFor="let pais of paises|async" [value]="pais['idPais']">
+                            {{pais.nombrePais}}
+                        </option>
+
+                        </select>
+
+                    </div>
+                    <div class="col">
+                        
+                        <label class="form-label">Provincia: </label>
+
+                        <select class="form-control" (change)="obtenerValorProvincia()" formControlName="provincia" type="select">
+
+                        <option *ngFor="let provincia of provincias|async" [value]="provincia['idProvincia']">
+                            <span *ngIf="provincia.pais.idPais === idPais">
+                                {{provincia.nombreProvincia}}
+                            </span>
+                        </option>
+
+                        </select>
+
+                    </div>
+                    <div class="col">
+                        
+                        <label class="form-label">Localidad: </label>
+
+                        <select class="form-control" (click)="iniciarCiudad()" (change)="obtenerValorLocalidad()" formControlName="ciudad" type="select">
+
+                        <option *ngFor="let ciudad of ciudades|async" [value]="ciudad['idCiudad']">
+                            {{ciudad.nombreCiudad}}
+                        </option>
+
+                        </select>
+
+                    </div>
                 </div>
+                <div class="row">
+                    <label class="form-label">Domicilio</label>
+                    
+                    <div class="col">
+                        <label class="form-label">Calle: </label>
+
+                        <input type="text" formControlName="calle" class="form-control">    
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Numero: </label>
+
+                        <input type="number" formControlName="numero" class="form-control">    
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Piso: </label>
+
+                        <input type="number" formControlName="piso" class="form-control">    
+                    </div>
+                    <div class="col">
+                        <label class="form-label">Departamento: </label>
+
+                        <input type="number" formControlName="departamento" class="form-control">    
+                    </div>
+
+                </div>
+                
             </div>
+
             <div class="form-group">
-                <label class="form-label">Direccion</label>
-                <input class="form-control" formControlName="direccion" type="email" placeholder="Email">
-                <div *ngIf="Email?.errors && Email?.touched">
+
+                <label class="form-label">Email</label>
+                <input class="form-control" formControlName="email" type="email" placeholder="Email">
+
+                <div *ngIf="Email?.errors && Email?.touched">                    
                     <span *ngIf="Email?.hasError('required')" class="txt">
                         <p>Campo requerido</p>
                     </span>
@@ -95,10 +159,14 @@
                         <p>Direccion de Email no valida</p>
                     </span>
                 </div>
+
             </div>
+
             <div class="form-group">
+
                 <label class="form-label">Web</label>
                 <input class="form-control" formControlName="web" type="text" placeholder="Web">
+
                 <div *ngIf="Web?.errors && Web?.touched">
                     <span *ngIf="Web?.hasError('required')" class="txt">
                         <p>Campo requerido</p>
@@ -107,10 +175,13 @@
                         <p>La direccion web debe tener como minimo 5 caracteres</p>
                     </span>
                 </div>
+
             </div>
+
             <div class="form-btn text-center">
-                <button type="submit" [disabled]="formu.invalid" class="btn btn-dark m-5">Guardar</button>
+                <button type="submit"  class="btn btn-dark m-5">Guardar</button>
             </div>
-        </div>
-    </form>
+
+        </form>
+    </div>
 </div>

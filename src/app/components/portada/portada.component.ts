@@ -8,7 +8,8 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 })
 export class PortadaComponent implements OnInit {
   
-  datos:any; 
+  datos!:any; 
+
   @Output() abrirAccion = new EventEmitter<boolean>();
   @Output() abrirUpAccion = new EventEmitter<boolean>();
 
@@ -18,10 +19,10 @@ export class PortadaComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    this.porfolioService.getInformation().subscribe(
+    this.porfolioService.getUsuario().subscribe(
       data => {
         //Obtenemos datos del json 
-        this.datos = data;
+        this.datos = data[0];       
       }
       )
   }

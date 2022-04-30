@@ -22,7 +22,7 @@ export class PresentacionComponent implements OnInit {
 
   //Obtenemos la informacion del json
   private getInfo():void{
-    this.porfolioService.getInformation().pipe(
+    this.porfolioService.getUsuario().pipe(
       tap(
         data => {
           this.datos = data;

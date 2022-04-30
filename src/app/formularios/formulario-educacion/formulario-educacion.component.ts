@@ -17,8 +17,8 @@ export class FormularioEducacionComponent implements OnInit {
   modelo!:any;
   //Recibimos las universidades como un observable ya que en el template estamos usando async lo que hace es traer automaticamente la informacion de nuestro service
   universidades!:Observable<any>;
-  carreras!:any;
-  carreres:Carrera[] = [];
+  // carreras!:any;
+  // carreres:Carrera[] = [];
   idUni!:number;
 
   @Output() cerrarEducaFormulario = new EventEmitter<boolean>();
@@ -51,11 +51,11 @@ export class FormularioEducacionComponent implements OnInit {
     ).subscribe() */
 
     //Traemos todas las carreras dela base de datos
-    this.carreras = this.porfolioService.getCarreras().pipe(
-      tap(
-            carr => this.carreras = carr
-        )
-    ).subscribe();
+    // this.carreras = this.porfolioService.getCarreras().pipe(
+    //   tap(
+    //         carr => this.carreras = carr
+    //     )
+    // ).subscribe();
 
     
   }
@@ -66,14 +66,14 @@ export class FormularioEducacionComponent implements OnInit {
     //Mediante el get dedl optionUni le pasamos el elemento de control en este caso universidad que es con el nombre que lo declaramos en el formGroup, este debe ir entre corchetes y comillas para poder usarlo luego con value extraemos el valor que contiene es decir el valor que hayamos seleccionado en el select
     this.idUni = parseInt(this.optionUni['universidad'].value);
     //Limpio el array para que cada vez que vuelva a presionar el mismo se vuelva a cargar desde cero
-    this.carreres = []
+    // this.carreres = []
     //Recorro las carreras y cada elemento de tipo carrera si con
-    this.carreras.forEach((element: Carrera) => {
-      if(element.id_uni === this.idUni){
-        //Metemos el elemento que coincida con la seleccion al array carreres que usaremos para mostrar en el segundo select
-          this.carreres.push(element)
-        }
-    });   
+    // this.carreras.forEach((element: Carrera) => {
+    //   if(element.id_uni === this.idUni){
+    //     //Metemos el elemento que coincida con la seleccion al array carreres que usaremos para mostrar en el segundo select
+    //       this.carreres.push(element)
+    //     }
+    // });   
 
   }
 

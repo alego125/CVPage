@@ -3,7 +3,7 @@
         <div class="salir" (click)="cerrar()"> X </div>
         <div class="info">
             <hr>
-            <h3><b>Titulo:</b> {{datos.titulo}}</h3>
+            <h3><b>Email:</b> {{datos.email}}</h3>
         </div>
         <div class="info">
             <hr>
@@ -11,7 +11,7 @@
         </div>
         <div class="info">
             <hr>
-            <h3><b>Direccion:</b> {{datos.ubicacion}}</h3>
+            <h3><b>Direccion:</b> {{datos.domicilio.calle + ', ' + datos.domicilio.ciudad.nombreCiudad + ', ' + datos.domicilio.ciudad.provincia.nombreProvincia + ', ' + datos.domicilio.ciudad.provincia.pais.nombrePais}}</h3>
         </div>
         <div class="info">
             <hr>

@@ -35,6 +35,25 @@
 
 }
 
+.img_1, .img_2{
+  font-size: 20px;
+  background-color: blueviolet;
+  border-radius: 30px;
+  box-shadow: 0 0 10px -2px black;
+  margin: 20px;
+  padding: 10px;
+}
+
+.img_1:hover, .img_2:hover{
+  cursor: pointer;
+  transform: scale(0.98);
+  box-shadow: 0 0 2px black;
+}
+
+#img1, #img2{
+  display: none;
+}
+
 
 #src-file1::before {
   content: 'Seleccionar Imagen Portada';

@@ -33,7 +33,7 @@
     
             <div class="row">
     
-                <div class="col-sm-6">
+                <!-- <div class="col-sm-6">
                     <div class="form-group">
                         <label class="form-label">Carrera</label>
                         <select class="form-control" formControlName="carrera" type="select" required>
@@ -49,14 +49,14 @@
                         </span>
                     </div>
     
-                </div>
+                </div> -->
     
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label class="form-label">Universidad</label>
                         <select class="form-control" formControlName="universidad"  type="select" (change)="obtenerValor()" required>
                             <!-- con value sacamos el id del la universidad seleccionada, con async extraemos la informacion del observable universidad que trae todas las universidades de la bae de datos, con esto nos evitamos hacer uso del subscribe en la parte logica -->
-                            <option *ngFor="let universidad of universidades | async" [value]="universidad['id']">
+                            <option *ngFor="let universidad of universidades|async" [value]="universidad['id']">
                                 {{universidad.nombre}}
                             </option>
                         </select>

@@ -4,7 +4,7 @@
 
         <p class="text">
             <label class="form-label">Presentacion</label>
-            <textarea class="form-control" formControlName="presentacion" type="text" placeholder="Realice una brebe descripcion de las actividades realizadas... (Maximo 450 caracteres)"></textarea>
+            <textarea class="form-control" formControlName="presentacion" type="text" placeholder="Realice una brebe descripcion de las actividades realizadas... (Maximo 450 caracteres)" [value]="info"></textarea>
         </p>
         <div *ngIf="Presentacion?.errors && Presentacion?.touched">
             <span *ngIf="Presentacion?.hasError('required')" class="txt">

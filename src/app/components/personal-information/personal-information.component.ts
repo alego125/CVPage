@@ -17,9 +17,9 @@ export class PersonalInformationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.porfolioService.getInformation().subscribe(
+    this.porfolioService.getUsuario().subscribe(
       data => {
-        this.datos = data;
+        this.datos = data[0];
       }
     );
   }

@@ -2,11 +2,11 @@
 
 <section class="anchoCompletoVw position-relative mb-5 color-white">
     <!-- Colocamos mediante un ngStyle la imagen del json interpolandola con la propiedad background image -->
-    <div class="anchoCompletoPorc alto25rem img_fondo1" [ngStyle]="{'background-image': 'url(' + datos.backImage + ')'}" >
+    <div class="anchoCompletoPorc alto25rem img_fondo1" [ngStyle]="{'background-image': 'url(' + datos.urlPortada + ')'}" >
   
     </div>
     <div class="container alto10rem position-relative">
-        <img [src]="datos.image"
+        <img [src]="datos.urlPerfil"
             class="perfil ancho15rem alto15rem rounded-circle border border-3 border-dark position-absolute top-0 start-50 translate-middle softShadow" alt="FotoPerfil">
   
         <h5 class="position-absolute top60  right30 translate-middle">
@@ -14,7 +14,7 @@
             <i class="fa-solid fa-pen pointerHover" (click)="abrirUpImg()"></i>
         </h5>
   
-        <h3 class="position-absolute top70 start-50 translate-middle"> {{ datos.name }} </h3>
+        <h3 class="position-absolute top70 start-50 translate-middle"> {{ datos.nombre + ' ' + datos.apellido }} </h3>
   
         <h4 class="position-absolute top90 start-50 translate-middle">
             <!-- Eviamos el evento click que abre la informacion personal -->

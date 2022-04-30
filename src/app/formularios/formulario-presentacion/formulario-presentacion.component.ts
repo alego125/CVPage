@@ -24,7 +24,7 @@ export class FormularioPresentacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPresentation();
+    this.getUser();
   }
 
   get Presentacion() {
@@ -44,11 +44,11 @@ export class FormularioPresentacionComponent implements OnInit {
 
   }
 
-  getPresentation(): void {
-    this.porfolioService.getInformation().pipe(
+  getUser(): void {
+    this.porfolioService.getUsuario().pipe(
       tap(
         data => {
-          this.info = data.about;
+          this.info = data.presentacion;
         }
       )
     ).subscribe()
