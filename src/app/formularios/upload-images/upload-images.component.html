@@ -44,6 +44,22 @@
 
             </div>
 
+            <div class="form-group">
+
+                <label class="form-label">Apellido </label>
+                <input class="form-control" formControlName="apellido" type="text" placeholder="Apellido">
+
+                <div *ngIf="Apellido?.errors && Apellido?.touched">
+                    <span *ngIf="Apellido?.hasError('required')" class="txt">
+                        <p>Campo requerido</p>
+                    </span>
+                    <span *ngIf="Apellido?.errors?.['minlength']" class="txt">
+                        <p>El nombre debe tener como minimo 5 caracteres</p>
+                    </span>
+                </div>
+
+            </div>
+
 
             <div class="form-group">
 
@@ -80,9 +96,9 @@
                         
                         <label class="form-label">Pais: </label>
 
-                        <select class="form-control" (change)="obtenerValorPais()" formControlName="pais" type="select">
+                        <select class="form-control" formControlName="pais" formControlName="pais" type="select">
 
-                        <option *ngFor="let pais of paises|async" [value]="pais['idPais']">
+                        <option *ngFor="let pais of paises|async" [value]="[pais['nombrePais'], pais['idPais']]">
                             {{pais.nombrePais}}
                         </option>
 
@@ -93,12 +109,12 @@
                         
                         <label class="form-label">Provincia: </label>
 
-                        <select class="form-control" (change)="obtenerValorProvincia()" formControlName="provincia" type="select">
+                        <select class="form-control" formControlName="provincia" formControlName="provincia" type="select">
 
-                        <option *ngFor="let provincia of provincias|async" [value]="provincia['idProvincia']">
-                            <span *ngIf="provincia.pais.idPais === idPais">
-                                {{provincia.nombreProvincia}}
-                            </span>
+                        <option *ngFor="let provincia of provincias|async" [value]="[provincia['nombreProvincia'], provincia['idProvincia']]">
+                            {{provincia.nombreProvincia}}
+                            <!-- <span *ngIf="provincia.pais.idPais === idPais">
+                            </span> -->
                         </option>
 
                         </select>
@@ -108,9 +124,9 @@
                         
                         <label class="form-label">Localidad: </label>
 
-                        <select class="form-control" (click)="iniciarCiudad()" (change)="obtenerValorLocalidad()" formControlName="ciudad" type="select">
+                        <select class="form-control" formControlName="localidad" (click)="iniciarCiudad()" formControlName="ciudad" type="select">
 
-                        <option *ngFor="let ciudad of ciudades|async" [value]="ciudad['idCiudad']">
+                        <option *ngFor="let ciudad of ciudades|async" [value]="[ciudad['nombreCiudad'], ciudad['idCiudad']]">
                             {{ciudad.nombreCiudad}}
                         </option>
 

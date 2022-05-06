@@ -19,6 +19,7 @@ export class ProyectosComponent implements OnInit {
     this.porfolioService.getProyectos().subscribe(
       data => {
         this.datos = data;
+        console.log(data);
       }
 
     );

@@ -1,8 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 //Los observables son una coleccion de futuros eventos a los cuales me voy a subscribir y luego nos llegaran de manera asincrona
 import { Observable } from 'rxjs';
-import { Usuario } from '../modelos/usuario.model';
+import { Adress } from '../formularios/Entidades/domicilio.entidad';
+import { Proyecto } from '../formularios/Entidades/proyecto.model';
+import { Usuario } from '../formularios/Entidades/usuario.entidad';
+import { Domicilio } from '../modelos/domicilio.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +26,11 @@ export class PorfolioServicesService {
   }
 
   getProyectos():Observable<any>{
-    return this.http.get('http://localhost:8080/proyecto');
+    return this.http.get('http://localhost:8080/proyecto/get');
+  }
+
+  createProyecto(proyecto:Proyecto):Observable<any>{
+    return this.http.post('http://localhost:8080/proyecto/create', proyecto);
   }
 
   getAptitudes():Observable<any>{
@@ -54,20 +61,40 @@ export class PorfolioServicesService {
     return this.http.get('http://localhost:8080/user/get');
   }
 
-  updateUsuario(usuario:Usuario):Observable<any>{
-    return this.http.put('http://localhost:8080/user/update',usuario)
+
+  updateUsuario(id:number, nombre:string, apellido:string, nacimiento:Date, web:string, telefono:string, email:string, urlPortada:string, urlPerfil:string, domicilio:Adress):Observable<any>{
+    const httpParams = new HttpParams();    
+    return this.http.put(`localhost:8080/user/update/${id}`,httpParams)
+  }
+
+  patchUpdate(id:number, usuario:Usuario):Observable<any>{
+    return this.http.patch(`localhost:8080/user/patchUpdate/${id}`, usuario);
   }
 
   getDomicilio():Observable<any>{
     return this.http.get('http://localhost:8080/domicilio/get');
   }
+
+  getPaisById(id:number):Observable<any>{
+    return this.http.get('http://localhost:8080/pais/get/' + id);
+  }
   
   getPais():Observable<any>{
     return this.http.get('http://localhost:8080/pais/get');
   }
+
+  getProvinciaById(id:number):Observable<any>{
+    return this.http.get('http://localhost:8080/provincia/get/' + id);
+  }
+
   getProvincia():Observable<any>{
     return this.http.get('http://localhost:8080/provincia/get');
   }
+
+  getCiudadById(id:number):Observable<any>{
+    return this.http.get('http://localhost:8080/ciudad/get/' + id);
+  }
+
   getCiudad(id:number):Observable<any>{
     return this.http.get('http://localhost:8080/ciudad/getByCiudad/' + id);
   }

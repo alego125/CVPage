@@ -2,10 +2,16 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { async } from '@firebase/util';
+import { error } from 'console';
 import { catchError, observable, Observable, throwError } from 'rxjs';
 import { Domicilio } from 'src/app/modelos/domicilio.model';
 import { FirebaseService } from 'src/app/servicios/firebase.service';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
+import { Ciudad } from '../Entidades/ciudad.entidad';
+import { Adress } from '../Entidades/domicilio.entidad';
+import { Pais } from '../Entidades/pais.entidad';
+import { Provincia } from '../Entidades/provincia.entidad';
+import { Usuario } from '../Entidades/usuario.entidad';
 
 @Component({
   selector: 'app-upload-images',
@@ -17,9 +23,12 @@ export class UploadImagesComponent implements OnInit {
 
   @Output() cerrarUploadImage = new EventEmitter<boolean>();
 
+  
   datos!: any;
+  idUsuario!: number;
+  idDomicilio!: number;
   formu!: FormGroup;
-
+  
   paises!: any;
   provincias!: any;
   ciudades!: Observable<any>;
@@ -28,7 +37,12 @@ export class UploadImagesComponent implements OnInit {
   idProvincia: number = 14;
   idCiudad!: number;
 
+  nombreProvincia!: string;
+  nombreCiudad!: string;
+  nombrePais!: string;
+
   nombre!: string;
+  pais!: string;
 
   formulario = new FormControl();
 
@@ -40,6 +54,7 @@ export class UploadImagesComponent implements OnInit {
 
     this.formu = this.formBuild.group({
       nombre: ['', [Validators.required, Validators.minLength(5)]],
+      apellido: ['', [Validators.required, Validators.minLength(5)]],
       telefono: ['', [Validators.required, Validators.minLength(6)]],
       direccion: ['', [Validators.required, Validators.minLength(5)]],
       fechaNacimiento: ['', [Validators.required]],
@@ -51,7 +66,9 @@ export class UploadImagesComponent implements OnInit {
       provincia: ['', Validators.required],
       ciudad: ['', Validators.required],
       calle: ['', Validators.required],
-      numero: ['', Validators.required]
+      numero: ['', Validators.required],
+      departamento: [''],
+      piso: ['']
     })
 
   }
@@ -61,56 +78,92 @@ export class UploadImagesComponent implements OnInit {
     this.paises = this.porfolioService.getPais();
     this.provincias = this.porfolioService.getProvincia();
 
-
     this.porfolioService.getUsuario().subscribe(
       data => {
         catchError(this.handleError);
         this.datos = data[0];
         this.formu.controls['nombre'].setValue(data[0].nombre)
+        this.formu.controls['apellido'].setValue(data[0].apellido)
         this.formu.controls['telefono'].setValue(data[0].telefono)
         this.formu.controls['web'].setValue(data[0].web)
-        this.formu.controls['email'].setValue(data[0].email)
-        this.formu.controls['urlPerfil'].setValue(data[0].urlPerfil)
-        this.formu.controls['urlPortada'].setValue(data[0].urlPortada)
-
+        this.formu.controls['email'].setValue(data[0].email)        
+        this.formu.controls['calle'].setValue(data[0].domicilio.calle)
+        this.formu.controls['numero'].setValue(data[0].domicilio.numero)        
+        this.formu.controls['pais'].setValue(data[0].domicilio.ciudad.provincia.pais.nombrePais)        
+        this.formu.controls['provincia'].setValue(data[0].domicilio.ciudad.provincia.nombreProvincia)        
+        this.formu.controls['localidad'].setValue(data[0].domicilio.ciudad.nombreCiudad)        
+        this.formu.controls['piso'].setValue(data[0].domicilio.piso)        
+        this.formu.controls['departamento'].setValue(data[0].domicilio.departamento)        
       }
-    )
+      )
 
+    
+      
   }
 
 
-  //Obtengo el id del pais seleccionado
-  obtenerValorPais() {
-
-    this.idPais = parseInt(this.Pais['pais'].value);
-
-  }
-
-  //Obtengo el id de la privincia seleccionada
-  obtenerValorProvincia() {
-    this.idProvincia = parseInt(this.Provincia['provincia'].value);
-
-  }
-
-  //Metodo para ejecutar cuando se hace click la funcion que tre las ciudades de la base de dato
+   //Metodo para ejecutar cuando se hace click la funcion que tre las ciudades de la base de dato
   iniciarCiudad() {
-    this.ciudades = this.porfolioService.getCiudad(this.idProvincia);
+    this.ciudades = this.porfolioService.getCiudad(((this.Provincia['provincia'].value).split(','))[1]);
   }
 
-  //Obtengo el id de la ciudad seleccionada
-  obtenerValorLocalidad() {
-    this.idCiudad = parseInt(this.Ciudad['ciudad'].value);
-
-  }
-
-
+  
   onSubmit(evento: Event) {
 
     evento.preventDefault();
 
-    console.log(this.formu.value)
+
+    let pais = new Pais(
+      ((this.Pais['pais'].value).split(','))[1],
+      ((this.Pais['pais'].value).split(','))[0]
+    );
+    let provincia = new Provincia(
+      ((this.Provincia['provincia'].value).split(','))[1],
+      ((this.Provincia['provincia'].value).split(','))[0],
+      pais
+    );
+    let ciudad = new Ciudad(
+      ((this.Ciudad['ciudad'].value).split(','))[1],
+      ((this.Ciudad['ciudad'].value).split(','))[0],
+      provincia
+    );
+    let domicilio = new Adress(
+      this.datos.domicilio.idDomicilio,
+      this.formu.value.calle,
+      this.formu.value.numero,
+      this.formu.value.piso,
+      this.formu.value.departamento,
+      ciudad
+    );
+    let usuario = new Usuario(
+      this.datos.id,
+      this.datos.name,
+      this.formu.value.nombre,
+      this.formu.value.apellido,
+      this.formu.value.fechaNacimiento,
+      this.formu.value.web,
+      this.formu.value.telefono,
+      this.formu.value.email,
+      this.datos.presentacion,
+      this.datos.urlPortada,
+      this.datos.urlPerfil,
+      domicilio);
+
+      console.log(usuario.usuarioObject());
+      
+      this.porfolioService.patchUpdate(this.datos.id, usuario).subscribe(
+        response => {
+          console.log(response);
+        }, error => {
+          console.log("Ocurrio el siguiente error: ", error);
+        }
+      );
+
+      
+
     if (this.formu.valid) {
       alert('Infromacion Guardada Exitosamente')
+      //   this.porfolioService.updateUsuario
       location.reload();
     } else {
       this.formu.markAllAsTouched();
@@ -130,6 +183,9 @@ export class UploadImagesComponent implements OnInit {
         this.datos.urlPortada = imagenUrl;
       });
     }
+
+    
+
   }
   onFileChanges2(event: any): void {
     let archivo = event.target.files;
@@ -140,6 +196,9 @@ export class UploadImagesComponent implements OnInit {
         this.datos.urlPerfil = imagenUrl;
       });
     }
+
+    
+
   }
 
   cerrar(): void {
@@ -163,6 +222,10 @@ export class UploadImagesComponent implements OnInit {
 
   get Nombre() {
     return this.formu.get('nombre')
+  }
+
+  get Apellido() {
+    return this.formu.get('apellido')
   }
 
   get Direccion() {
