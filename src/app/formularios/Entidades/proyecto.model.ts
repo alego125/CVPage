@@ -7,17 +7,17 @@ export class Proyecto{
     descripcion:string;
     fechaInicio:Date;
     fechaFin:Date;
-    usuario:Usuario;
+    idUser:number;
     
 
 
-    constructor(idProyecto:number, tituloProyecto:string, descripcion:string, fechaInicio:Date, fechaFin:Date, usuario:Usuario){
+    constructor(idProyecto:number, tituloProyecto:string, descripcion:string, fechaInicio:Date, fechaFin:Date, idUser:number){
         this.idProyecto = idProyecto,
         this.tituloProyecto = tituloProyecto;
         this.descripcion = descripcion;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        this.usuario = usuario;        
+        this.idUser = idUser;        
     }
 
 
@@ -26,8 +26,8 @@ export class Proyecto{
             "tituloProyecto":this.tituloProyecto,
             "descripcion":this.descripcion,
             "fechaInicio":this.fechaInicio,
-            "fechaNacimiento":this.fechaFin,
-            "usuario":this.usuario,            
+            "fechaFin":this.fechaFin,
+            "idUser":this.idUser,            
         }
         // return JSON.stringify(json);
         return json;

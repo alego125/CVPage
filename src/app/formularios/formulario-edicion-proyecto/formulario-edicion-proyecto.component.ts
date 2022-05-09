@@ -1,25 +1,27 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 import { Proyecto } from '../Entidades/proyecto.model';
 
 @Component({
-  selector: 'app-formulario-proyectos',
-  templateUrl: './formulario-proyectos.component.html',
-  styleUrls: ['./formulario-proyectos.component.scss']
+  selector: 'app-formulario-edicion-proyecto',
+  templateUrl: './formulario-edicion-proyecto.component.html',
+  styleUrls: ['./formulario-edicion-proyecto.component.scss']
 })
-export class FormularioProyectosComponent implements OnInit {
-
+export class FormularioEdicionProyectoComponent implements OnInit {
   formu: FormGroup;
   usuario!: any;
   proyectoData!: any;
 
-  @Output() cerrarProyecFormulario = new EventEmitter<boolean>();
+  @Output() cerrarEdicionProyecFormulario = new EventEmitter<boolean>();
+  @Input() infoProyecto:any;
+
 
   constructor(
     private formBuilder: FormBuilder,
     private portafolioService: PorfolioServicesService
   ) {
+    //Seteo las validaciones del formulario
     this.formu = this.formBuilder.group({
       titulo: ['', [Validators.required, Validators.minLength(4)]],
       descripcion: ['', [Validators.required, Validators.maxLength(450)]],
@@ -29,7 +31,7 @@ export class FormularioProyectosComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    //Traemos el usuario actual de la base de datos
+    //Obtengo informacion del usuario de la base de datos
     this.portafolioService.getUsuario().subscribe(
       users => {
         users.forEach((element: any) => {
@@ -40,6 +42,11 @@ export class FormularioProyectosComponent implements OnInit {
         });
       }
     );
+    //Cargamos al informacion al formulario
+    this.formu.controls["titulo"].setValue(this.infoProyecto.tituloProyecto);
+    this.formu.controls["descripcion"].setValue(this.infoProyecto.descripcion);
+    this.formu.controls["fechaInicio"].setValue(this.infoProyecto.fechaInicio);
+    this.formu.controls["fechaFin"].setValue(this.infoProyecto.fechaFin);
   }
 
   onSubmit(evento: Event) {
@@ -47,21 +54,26 @@ export class FormularioProyectosComponent implements OnInit {
     //Detenemos la propagacion del evento submit por defecto
     evento.preventDefault();
 
-    //Creamos el modelo del proyecto a crear
-    let proyecto = new Proyecto(1, this.formu.value.titulo, this.formu.value.descripcion, this.formu.value.fechaInicio, this.formu.value.fechaFin, this.usuario.id);
+    //Creamos el molde del proyecto
+    let proyecto = new Proyecto(this.infoProyecto.idProyecto, this.formu.value.titulo, this.formu.value.descripcion, this.formu.value.fechaInicio, this.formu.value.fechaFin, this.usuario.id);
 
-    //Si el formulario es valido entonces guardamos
+    console.log(proyecto.proyectoNuevo());
+
+
 
     if (this.formu.valid) {
-      //Aca ahora debemos recargar nuevamente la pagina principal para mostrar la informacion
-      this.portafolioService.createProyecto(proyecto.proyectoNuevo()).subscribe(
-        dato => {
-          console.log(dato);
-          alert('Informacion Guardada Exitosamente')
-        }, error => {
-          console.log(error);
+
+      this.portafolioService.updateProyecto(proyecto).subscribe(
+        response => {
+          console.log(response);
+          alert("Usuario Modificado Correctamente");
+        },
+        err => {
+          console.log(err);
+          alert("Error al actualizar!" + err);
         }
-      );
+      )
+      
       location.reload()
     } else {
       //Caso que no sea valido el formulario corremos todas las validaciones del formulario, esto lo hacemos con la funcion markAllAsTouched es decir es como si tocaramos o marcaramos todos los input para activar sus validaciones
@@ -71,7 +83,7 @@ export class FormularioProyectosComponent implements OnInit {
   }
 
   cerrar(): void {
-    this.cerrarProyecFormulario.emit(false);
+    this.cerrarEdicionProyecFormulario.emit(false);
   }
 
   get Titulo() {
@@ -89,4 +101,7 @@ export class FormularioProyectosComponent implements OnInit {
   get FechaFin() {
     return this.formu.get('fechaFin')
   }
+
 }
+
+

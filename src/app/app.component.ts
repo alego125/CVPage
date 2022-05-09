@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Skill } from './formularios/Entidades/skill.entidad';
 
 
 @Component({
@@ -18,6 +19,13 @@ export class AppComponent implements OnInit{
   valorProyecto = false;
   valorCursos = false;
   valorRedes = false;
+  valorEdicionProyecto = false;
+  skillEditar:any = false
+  infoSkill!:any;
+  infoProyecto!:any;
+
+  @Output() eviarProyecto = new EventEmitter<any>();
+
 
   ngOnInit():void {
   }
@@ -74,8 +82,20 @@ export class AppComponent implements OnInit{
     this.valorSkill = val;
   }
 
+  abrirEditarSkill(val:boolean):void{
+    this.skillEditar = val;
+  }
+
+  edicionSkill(skill:any):void{
+    this.infoSkill = skill;
+  }
+
   cerrarSkillFormulario(val:boolean):void{
     this.valorSkill = val;
+  }
+
+  cerrarEditarSkill(val:boolean):void{
+    this.skillEditar = val;
   }
 
   cerrarProyecFormulario(val:boolean):void{
@@ -84,6 +104,18 @@ export class AppComponent implements OnInit{
 
   abrirProyecFormulario(val:boolean):void{
     this.valorProyecto = val;
+  }
+
+  abrirFormularioEdicionProyecto(val:boolean):void{
+    this.valorEdicionProyecto = val;
+  }
+
+  editarProyecto(infoProyecto:any):void{
+    this.infoProyecto = infoProyecto;
+  }
+
+  cerrarFormularioEdicionProyecto(val:boolean):void{
+    this.valorEdicionProyecto = val;
   }
 
   abrirCursoFormulario(val:boolean):void{

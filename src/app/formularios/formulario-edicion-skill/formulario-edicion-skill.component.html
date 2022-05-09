@@ -1,0 +1,35 @@
+<div class="caja">    
+    <form class="form container" [formGroup]="formu" (ngSubmit)="onSubmit($event)" id="form1">
+        <div class="cerrar" (click)="cerrar()"> X </div>
+
+        <div class="form-group">
+            <label class="form-label">Nombre Habilidad</label>
+            <input class="form-control" formControlName="habilidad" type="text" placeholder="Nombre de la habilidad">
+            
+            <div *ngIf="Habilidad?.errors && Habilidad?.touched">
+                <span *ngIf="Habilidad?.hasError('required')" class="txt">
+                    <p>Campo requerido</p>
+                </span>
+                <span *ngIf="Habilidad?.errors?.['minLength']" class="txt">
+                    <p>El nombre debe tener un minimo de 4 caracteres</p>
+                </span>                    
+            </div>
+        </div>        
+        
+        <div class="form-group">
+            <label class="form-label">Porcentaje de conocimiento</label>
+            <input class="form-control" formControlName="porcentaje" type="number" placeholder="Porcentaje de conocimiento">
+            <div *ngIf="Porcentaje?.errors && Porcentaje?.touched">
+                <span *ngIf="Porcentaje?.hasError('required')" class="txt">
+                    <p>Campo requerido</p>
+                </span>
+            </div>
+        </div>                
+
+        <div class="form-btn text-center">
+            <button type="submit" [disabled]="formu.invalid" class="btn btn-dark m-5">Guardar</button>
+        </div>
+
+    </form>
+    
+</div>

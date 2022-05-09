@@ -2,7 +2,7 @@ import { Adress } from "./domicilio.entidad";
 
 export class Usuario{
     
-    id:number;
+    idUser:number;
     name:string;
     nombre:string;
     apellido:string;
@@ -16,8 +16,8 @@ export class Usuario{
     domicilio:Adress;
 
 
-    constructor(id:number, name:string, nombre:string, apellido:string, fechaNacimiento:Date, web:string, telefono:string, email:string, presentacion:string, urlPortada:string, urlPerfil:string, domicilio:Adress){
-        this.id = id,
+    constructor(idUser:number, name:string, nombre:string, apellido:string, fechaNacimiento:Date, web:string, telefono:string, email:string, presentacion:string, urlPortada:string, urlPerfil:string, domicilio:Adress){
+        this.idUser = idUser,
         this.name = name;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -49,7 +49,7 @@ export class Usuario{
         // }`
         // return JSON.stringify(json);
         let json = {
-            "id":this.id,
+            "idUser":this.idUser,
             "name":this.name,
             "nombre":this.nombre,
             "apellido":this.apellido,

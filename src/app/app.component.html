@@ -20,13 +20,17 @@
 
 <app-formulario-educacion (cerrarEducaFormulario)="cerrarEducaFormulario($event)" *ngIf="valorEducacion"></app-formulario-educacion>
 
-<app-skills (abrirSkillFormulario)="abrirSkillFormulario($event)"></app-skills>
+<app-skills (editarSkill)="edicionSkill($event)" (abrireditarSkillFormulario)="abrirEditarSkill($event)" (abrirSkillFormulario)="abrirSkillFormulario($event)"></app-skills>
+
+<app-formulario-edicion-skill [infoSkill]="infoSkill" (cerrarEditarSkillFormulario)="cerrarEditarSkill($event)" *ngIf="skillEditar"></app-formulario-edicion-skill>
 
 <app-formulario-skills (cerrarSkillFormulario)="cerrarSkillFormulario($event)" *ngIf="valorSkill"></app-formulario-skills>
 
-<app-proyectos (abrirProyecFormulario)="abrirProyecFormulario($event)"></app-proyectos>
+<app-proyectos (editarInfoEditar)="editarProyecto($event)" (abrirInfoEditar)="abrirFormularioEdicionProyecto($event)" (abrirProyecFormulario)="abrirProyecFormulario($event)"></app-proyectos>
 
 <app-formulario-proyectos (cerrarProyecFormulario)="cerrarProyecFormulario($event)" *ngIf="valorProyecto"></app-formulario-proyectos>
+
+<app-formulario-edicion-proyecto [infoProyecto]="infoProyecto" (cerrarEdicionProyecFormulario)="cerrarFormularioEdicionProyecto($event)"  *ngIf="valorEdicionProyecto"></app-formulario-edicion-proyecto>
 
 <app-cursos (abrirCursoFormulario)="abrirCursoFormulario($event)"></app-cursos>
 

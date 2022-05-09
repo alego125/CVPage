@@ -9,30 +9,30 @@
             <div class="row text-center">
                 <div class="col-md-4 col-lg-3 col-xs-2 alto35rem" *ngFor="let skill of datos">
                     <div class="card bg-light cardStyle centrar softShadow position-relative mb-3">
-                        <i class="fas fa-pen pointerHover position-absolute top5 right10"></i>
-                        <i class="fas fa-trash pointerHover position-absolute top5 right2"></i>
-                        <h5 class="card-title text-black">{{skill.name}}</h5>
+                        <i class="fas fa-pen pointerHover position-absolute top5 right10" (click)="abrirEditar(skill)"></i>
+                        <i class="fas fa-trash pointerHover position-absolute top5 right2" (click)="deleteSkill(skill)"></i>
+                        <h5 class="card-title text-black">{{skill.nombreSkill}}</h5>
                         <div class="card-body">
                             <div class="skill">
                                 <div class="outer">
                                     <div class="inner">
                                         <div id="number">
-                                            <b>{{ skill.conocimiento }}%</b>
+                                            <b>{{ skill.porcentaje }}%</b>
                                         </div>
                                     </div>
                                 </div>
                                 <svg width="160px" height="160px">        
                                     <circle [ngClass]="{
-                                    'graduated10':skill.conocimiento<=10,
-                                    'graduated20':skill.conocimiento<=20 && skill.conocimiento>10,
-                                    'graduated30':skill.conocimiento<=30 && skill.conocimiento > 20,
-                                    'graduated40':skill.conocimiento<=40 && skill.conocimiento > 30,
-                                    'graduated50':skill.conocimiento<=50 && skill.conocimiento > 40,
-                                    'graduated60':skill.conocimiento<=60 && skill.conocimiento > 50,
-                                    'graduated70':skill.conocimiento<=70 && skill.conocimiento > 60,
-                                    'graduated80':skill.conocimiento<=80 && skill.conocimiento > 70,
-                                    'graduated90':skill.conocimiento<=90 && skill.conocimiento > 80,
-                                    'graduated100':skill.conocimiento<=100 && skill.conocimiento > 90}" cx="80" cy="80" r="70" stroke-linecap="round" />
+                                    'graduated10':skill.porcentaje<=10,
+                                    'graduated20':skill.porcentaje<=20 && skill.porcentaje>10,
+                                    'graduated30':skill.porcentaje<=30 && skill.porcentaje > 20,
+                                    'graduated40':skill.porcentaje<=40 && skill.porcentaje > 30,
+                                    'graduated50':skill.porcentaje<=50 && skill.porcentaje > 40,
+                                    'graduated60':skill.porcentaje<=60 && skill.porcentaje > 50,
+                                    'graduated70':skill.porcentaje<=70 && skill.porcentaje > 60,
+                                    'graduated80':skill.porcentaje<=80 && skill.porcentaje > 70,
+                                    'graduated90':skill.porcentaje<=90 && skill.porcentaje > 80,
+                                    'graduated100':skill.porcentaje<=100 && skill.porcentaje > 90}" cx="80" cy="80" r="70" stroke-linecap="round" />
                                 </svg>
                             </div>
                         </div>                         

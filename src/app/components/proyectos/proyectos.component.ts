@@ -1,4 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { error } from 'console';
+import { tap } from 'rxjs';
+import { Proyecto } from 'src/app/formularios/Entidades/proyecto.model';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 
 @Component({
@@ -8,11 +11,14 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 })
 export class ProyectosComponent implements OnInit {
 
-  datos:any;
+  datos: any;
+
   @Output() abrirProyecFormulario = new EventEmitter<boolean>();
+  @Output() abrirInfoEditar = new EventEmitter<boolean>();
+  @Output() editarInfoEditar = new EventEmitter<any>();
 
   constructor(
-    private porfolioService:PorfolioServicesService
+    private porfolioService: PorfolioServicesService
   ) { }
 
   ngOnInit(): void {
@@ -25,8 +31,42 @@ export class ProyectosComponent implements OnInit {
     );
   }
 
-  abrir():void{
+  eliminarProyecto(proyecto: any) {
+
+    //Preguntamos al usuario para que confirme eliminacion
+    const confirmacion = confirm("Confirmar eliminacion");
+
+    //Si confirmo ejecutamos eliminacion
+    if(confirmacion){
+
+      this.porfolioService.deleteProyecto(proyecto.idProyecto).subscribe(
+        projDel => {
+          console.log(projDel);
+          alert("Proyecto Eliminado con exito");
+        },
+        err => {
+          console.log(err);
+          alert("Error! " + err);
+        }
+      );
+
+      location.reload();
+
+    }else{
+      location.reload();
+    }
+    
+  }
+
+  abrir(): void {
     this.abrirProyecFormulario.emit(true);
+  }
+
+  editar(proyecto:any):void{
+    //Info para abrir el formulario 
+    this.abrirInfoEditar.emit(true);
+    //Envio informacion del proyecto que queremos editar
+    this.editarInfoEditar.emit(proyecto);
   }
 
 }

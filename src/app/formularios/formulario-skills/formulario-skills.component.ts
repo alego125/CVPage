@@ -1,5 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
+import { Skill } from '../Entidades/skill.entidad';
 
 @Component({
   selector: 'app-formulario-skills',
@@ -9,30 +11,56 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class FormularioSkillsComponent implements OnInit {
 
   formu!:FormGroup;
+  datos!:any;
+  usuario!:any;
 
   valor!:any;
   
   @Output() cerrarSkillFormulario = new EventEmitter<boolean>();
 
   constructor(
-    private formBuilder:FormBuilder
+    private formBuilder:FormBuilder,
+    private porfolioService:PorfolioServicesService
   ) {
     this.formu = this.formBuilder.group({
-      habilidad:['',[Validators.required,Validators.minLength(4)]],
+      habilidad:['',[Validators.required,Validators.minLength(3)]],
       porcentaje:['',[Validators.required]]
     })
   }
   
   ngOnInit(): void {
-    
+    this.porfolioService.getSkill().subscribe(
+      data => {
+        this.datos = data;        
+      }
+    );  
+    this.porfolioService.getUsuario().subscribe(
+      user => {
+        this.usuario = user[0];
+      }
+    )
   }
 
   onSubmit(evento:Event){
 
     evento.preventDefault()
 
+    
+
+    let skillNuevo = new Skill(1,this.formu.controls["habilidad"].value,this.formu.controls["porcentaje"].value,this.usuario.id)
+
+    
     if(this.formu.valid){
-      alert('Infomracion Guardada Exitosamente');
+      this.porfolioService.createSkill(skillNuevo).subscribe(
+        respuesta => {
+          console.log(respuesta);
+          alert("Skill Agregada")
+        },
+        err => {
+          console.log(err);
+          alert("Error!" + err);
+        }
+      )
       location.reload();
     }else{
       this.formu.markAllAsTouched();

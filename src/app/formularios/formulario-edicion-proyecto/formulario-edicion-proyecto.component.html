@@ -1,0 +1,62 @@
+<div class="caja">
+    <form class="form container" [formGroup]="formu" (ngSubmit)="onSubmit($event)" id="form1">
+        <div class="cerrar" (click)="cerrar()"> X </div>
+
+        <div class="form-group">
+            <label class="form-label">Titulo</label>
+            <input class="form-control" formControlName="titulo" type="text" placeholder="Titulo Proyecto">
+            <!-- Mensajes para las validaciones primero vemos que no haya errores y que el campo este tocado o cliqueado. Para poder usar estas validaciones debemos haber creado los get para cada uno de los valores de las validaciones en el componente -->
+            <div *ngIf="Titulo?.errors && Titulo?.touched">
+                <!-- Luego vemos mediante haserror si el campo es requerido y mediante errors si el campo cumple con la funcion de minima longitud la cual la validamos de la forma mostrada abajo como todas las funciones -->
+                <span *ngIf="Titulo?.hasError('required')" class="txt">
+                    <p>Titulo requerido</p>
+                </span>
+                <span *ngIf="Titulo?.errors?.['minlength']" class="txt">
+                    <p>El titulo debe tener un minimo de 4 caracteres</p>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Descripcion</label>
+            <textarea class="form-control" formControlName="descripcion" type="text" placeholder="Realice una brebe descripcion de las actividades realizadas... (Maximo 450 caracteres)"></textarea>
+            <div *ngIf="Descripcion?.errors && Descripcion?.touched">
+                <span *ngIf="Descripcion?.hasError('required')" class="txt">
+                    <p>Descripcion requerida</p>
+                </span>
+                <span *ngIf="Titulo?.errors?.['maxlength']" class="txt">
+                    <p>El titulo debe tener un maximo de 450 caracteres</p>
+                </span>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="form-label">Fecha Inicio</label>
+                    <input class="form-control" formControlName="fechaInicio" type="date" required>
+                </div>
+                <div *ngIf="FechaInicio?.errors && FechaInicio?.touched">
+                    <span *ngIf="FechaInicio?.hasError('required')" class="txt">
+                        <p>Fecha Requerida requerida</p>
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label class="form-label">Fecha Fin</label>
+                    <input class="form-control" formControlName="fechaFin" type="date" required>
+                </div>
+                
+            </div>
+
+        </div>
+
+        <div class="form-btn text-center">
+            <button type="submit" [disabled]="formu.invalid" class="btn btn-dark m-5">Guardar</button>
+        </div>
+
+    </form>
+</div>
