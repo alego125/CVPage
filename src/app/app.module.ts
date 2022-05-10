@@ -13,7 +13,6 @@ import { ExperienciaComponent } from './components/experiencia/experiencia.compo
 import { EducacionComponent } from './components/educacion/educacion.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { ProyectosComponent } from './components/proyectos/proyectos.component';
-import { CursosComponent } from './components/cursos/cursos.component';
 import { FormularioPresentacionComponent } from './formularios/formulario-presentacion/formulario-presentacion.component';
 import { PersonalInformationComponent } from './components/personal-information/personal-information.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,10 +21,10 @@ import { UploadImagesComponent } from './formularios/upload-images/upload-images
 import { FormularioEducacionComponent } from './formularios/formulario-educacion/formulario-educacion.component';
 import { FormularioSkillsComponent } from './formularios/formulario-skills/formulario-skills.component';
 import { FormularioProyectosComponent } from './formularios/formulario-proyectos/formulario-proyectos.component';
-import { FormularioCursosComponent } from './formularios/formulario-cursos/formulario-cursos.component';
 import { FormularioRedesComponent } from './formularios/formulario-redes/formulario-redes.component';
 import { FormularioEdicionProyectoComponent } from './formularios/formulario-edicion-proyecto/formulario-edicion-proyecto.component';
 import { FormularioEdicionSkillComponent } from './formularios/formulario-edicion-skill/formulario-edicion-skill.component';
+import { FormularioEdicionEducacionComponent } from './formularios/formulario-edicion-educacion/formulario-edicion-educacion.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +36,6 @@ import { FormularioEdicionSkillComponent } from './formularios/formulario-edicio
     EducacionComponent,
     SkillsComponent,
     ProyectosComponent,
-    CursosComponent,
     PersonalInformationComponent,
     FormularioPresentacionComponent,
     PersonalInformationComponent,
@@ -47,10 +45,10 @@ import { FormularioEdicionSkillComponent } from './formularios/formulario-edicio
     FormularioEducacionComponent,
     FormularioSkillsComponent,
     FormularioProyectosComponent,
-    FormularioCursosComponent,
     FormularioRedesComponent,
     FormularioEdicionProyectoComponent,
-    FormularioEdicionSkillComponent
+    FormularioEdicionSkillComponent,
+    FormularioEdicionEducacionComponent
   ],
   imports: [
     BrowserModule,

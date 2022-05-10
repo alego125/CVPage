@@ -8,19 +8,50 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 })
 export class EducacionComponent implements OnInit {
 
-  datos:any;
+  educacion:any;
   @Output() abrirEducaFormulario = new EventEmitter<boolean>();
+  @Output() abrireditarEducaFormulario = new EventEmitter<boolean>();
+  @Output() editarEducaFormulario = new EventEmitter<boolean>();
+
+
 
   constructor(
     private porfolioService:PorfolioServicesService
   ) { }
 
   ngOnInit(): void {
-    this.porfolioService.getEducation().subscribe(
-      data => {
-        this.datos = data;
+    this.porfolioService.getEducacion().subscribe(
+      eduacion => {
+        this.educacion = eduacion;
+      },
+      err => {
+        console.log(err);
       }
-    );
+    );    
+  }
+
+  eliminarEducacion(id:number){
+    
+    let respuesta = confirm("Confirma que desea eliminar educacion")
+
+    if(respuesta){
+      //Recuperamos el id lo pasamos a la funcion para eliminar la eduacion seleccionada
+      this.porfolioService.deleteEducacion(id).subscribe(
+        ()=>{
+          alert("Educacion eliminada correctamente")
+        },
+        err => {
+          console.log(err);
+          alert("Error!!" + err)
+        }
+      );
+    }
+    location.reload();
+  }
+
+  editarEducacion(educacion:any){
+    this.abrireditarEducaFormulario.emit(true);
+    this.editarEducaFormulario.emit(educacion);
   }
 
   abrir():void{

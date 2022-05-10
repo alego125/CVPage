@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { observable, Observable, tap } from 'rxjs';
 import { Carrera } from 'src/app/modelos/porfolio-service.model';
@@ -8,21 +8,20 @@ import { Educacion } from '../Entidades/educacion.entidad';
 import { Institucion } from '../Entidades/institucion.entidad';
 
 @Component({
-  selector: 'app-formulario-educacion',
-  templateUrl: './formulario-educacion.component.html',
-  styleUrls: ['./formulario-educacion.component.scss']
+  selector: 'app-formulario-edicion-educacion',
+  templateUrl: './formulario-edicion-educacion.component.html',
+  styleUrls: ['./formulario-edicion-educacion.component.scss']
 })
-export class FormularioEducacionComponent implements OnInit {
+export class FormularioEdicionEducacionComponent implements OnInit {
 
   valor!:any;
-  cargaArchivo:boolean = false;
   imgEmpresa!:string;
   formu:FormGroup;
   modelo!:any;
   //Recibimos las universidades como un observable ya que en el template estamos usando async lo que hace es traer automaticamente la informacion de nuestro service
   instituciones!:Observable<any[]>;
   educacion!:any;
-  imagenUrl:any = null;
+  imagenUrl!:string;
   // carreras!:any;
   // carreres:Carrera[] = [];
   idInstitucion!:number;
@@ -30,7 +29,8 @@ export class FormularioEducacionComponent implements OnInit {
   userId!:number;
   usuario!:any;
 
-  @Output() cerrarEducaFormulario = new EventEmitter<boolean>();
+  @Output() cerrarEditarEducaFormulario = new EventEmitter<boolean>();
+  @Input() infoEducacion:any;
 
   constructor(
     private formBuild:FormBuilder,
@@ -59,6 +59,17 @@ export class FormularioEducacionComponent implements OnInit {
       }
     );
 
+    console.log(this.infoEducacion.imagenInstitucion);
+    console.log(this.infoEducacion.fechaFin);
+
+    this.formu.controls["imagen"].setValue(this.infoEducacion.imagenInstitucion);
+    this.formu.controls["nombreTitulo"].setValue(this.infoEducacion.nombreTitulo);
+    this.formu.controls["universidad"].setValue(this.infoEducacion.institucion.nombreInstitucion);
+    this.formu.controls["initialDate"].setValue(this.infoEducacion.fechainicio);
+    this.formu.controls["finalDate"].setValue(this.infoEducacion.fechaFin);
+
+
+    console.log(this.infoEducacion);
     
   }
   
@@ -71,14 +82,11 @@ export class FormularioEducacionComponent implements OnInit {
       institution => {
         this.institucion = new Institucion(institution.idInstitucion, institution.nombreInstitucion);
       }
-    )
-     
+    )     
 
   }
     
   onFileChanges(event:any):void{    
-    //Bandera para mostrar el loader de carga
-    this.cargaArchivo = true;
     let archivo = event.target.files;
     let reader = new FileReader();
     reader.readAsDataURL(archivo[0]);
@@ -95,31 +103,31 @@ export class FormularioEducacionComponent implements OnInit {
 
     evento.preventDefault();
 
-    let nuevaEducacion = new Educacion(1, this.formu.controls["nombreTitulo"].value,this.imagenUrl, this.formu.controls["initialDate"].value, this.formu.controls["finalDate"].value, this.userId, this.institucion);
+    let nuevaEducacion = new Educacion(this.infoEducacion.idEducacion, this.formu.controls["nombreTitulo"].value, this.formu.controls["imagen"].value, this.formu.controls["initialDate"].value, this.formu.controls["finalDate"].value, this.userId, this.infoEducacion.institucion);
     
     console.log(nuevaEducacion);
 
     if(this.formu.valid){
       
-      if(this.imagenUrl != null){
-        this.porfolioService.createEducacion(nuevaEducacion).subscribe(
-          response => {
-            console.log(response);
-            alert("Educacion creada")
-          },
-          err => {
-            console.log("Error!!" + err);
-            alert("Ocurrio un error al caragar" + err);
-          }
-        );
-      }
+      this.porfolioService.updateEducacion(nuevaEducacion.actualizarEducacion()).subscribe(
+        response => {
+          console.log(response);
+          alert("Educacion creada")
+        },
+        err => {
+          console.log("Error!!" + err);
+          alert("Ocurrio un error al caragar" + err);
+        }
+      );
+
       location.reload();
+
     }else{
       this.formu.markAllAsTouched();
     }
   }
   cerrar():void{
-    this.cerrarEducaFormulario.emit(false);
+    this.cerrarEditarEducaFormulario.emit(false);
   }
   
   //Get que da control sobre los elementos del formulario declarados en el formGroup, mediante este se obtienen los valores de los elementos del formulario

@@ -95,10 +95,7 @@ export class UploadImagesComponent implements OnInit {
         this.formu.controls['piso'].setValue(data[0].domicilio.piso)        
         this.formu.controls['departamento'].setValue(data[0].domicilio.departamento)        
       }
-      )
-
-    
-      
+      )          
   }
 
 

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Skill } from './formularios/Entidades/skill.entidad';
+import { Educacion } from './formularios/Entidades/educacion.entidad';
 
 
 @Component({
@@ -17,12 +17,13 @@ export class AppComponent implements OnInit{
   valorEducacion = false;
   valorSkill = false;
   valorProyecto = false;
-  valorCursos = false;
   valorRedes = false;
   valorEdicionProyecto = false;
+  valorEditarEducacion = false;
   skillEditar:any = false
   infoSkill!:any;
   infoProyecto!:any;
+  infoEducacion!:any;
 
   @Output() eviarProyecto = new EventEmitter<any>();
 
@@ -78,6 +79,18 @@ export class AppComponent implements OnInit{
     this.valorEducacion = val;
   }
 
+  cerrarEditarEducacion(val:boolean):void{
+    this.valorEditarEducacion = val;
+  }
+
+  abrirEditarFormularioEducacion(val:boolean):void{
+    this.valorEditarEducacion = val;
+  }
+
+  editarEducacion(educacion:any):void{
+    this.infoEducacion = educacion;
+  }
+
   abrirSkillFormulario(val:boolean):void{
     this.valorSkill = val;
   }
@@ -116,14 +129,6 @@ export class AppComponent implements OnInit{
 
   cerrarFormularioEdicionProyecto(val:boolean):void{
     this.valorEdicionProyecto = val;
-  }
-
-  abrirCursoFormulario(val:boolean):void{
-    this.valorCursos = val;
-  }
-
-  cerrarCursoFormulario(val:boolean):void{
-    this.valorCursos = val;
   }
 
 }

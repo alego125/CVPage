@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Observer } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Adress } from '../formularios/Entidades/domicilio.entidad';
+import { Educacion } from '../formularios/Entidades/educacion.entidad';
 import { Proyecto } from '../formularios/Entidades/proyecto.model';
 import { Skill } from '../formularios/Entidades/skill.entidad';
 import { Usuario } from '../formularios/Entidades/usuario.entidad';
@@ -71,8 +72,28 @@ export class PorfolioServicesService {
     return this.http.get('http://localhost:8080/skill');
   }
   
-  getEducation():Observable<any>{
-    return this.http.get('http://localhost:8080/educacion');    
+  getEducacion():Observable<any>{
+    return this.http.get(environment.urlServer + "educacion/get");    
+  }
+
+  createEducacion(educacion:Educacion):Observable<any>{
+    return this.http.post(environment.urlServer + "educacion/create",educacion);
+  }
+
+  deleteEducacion(id:number):Observable<any>{
+    return this.http.delete(environment.urlServer + "educacion/delete/" + id);
+  }
+
+  updateEducacion(educacion:Educacion):Observable<any>{
+    return this.http.put(environment.urlServer + "educacion/update",educacion)
+  }
+
+  getInstitucion():Observable<any>{
+    return this.http.get(environment.urlServer + "institucion/get");    
+  }
+
+  getInstitucionById(id:number):Observable<any>{
+    return this.http.get(environment.urlServer + "institucion/searchById/" + id);
   }
   
   getRedes():Observable<any>{
