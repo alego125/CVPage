@@ -4,13 +4,13 @@
     <div class="container">
         <div class="row justify-content-between">
             <div class="col">
-                <a href="#"><img class="img-fluid" width="100px" [src]="datos.logoImage" alt="icono Portafolio"></a>
+                <a href="#"><img class="img-fluid" width="100px" src="../../../assets/icono.png" alt="icono Portafolio"></a>
             </div>
             <div class="col text-center align-self-center position-relative">
-                <a href="#"><i class="fa fa-facebook text-light txt2rem m-2 pointerHover"></i></a>
-                <a href="#"><i class="fa fa-instagram text-light txt2rem m-2 pointerHover"></i></a>
-                <a href="#"><i class="fa fa-linkedin text-light txt2rem m-2 pointerHover"></i></a>
-                <a href="#"><i class="fa fa-github-square text-light txt2rem m-2 pointerHover"></i></a>
+                <a [href]="facebook" target="_blank"><i class="fa fa-facebook text-light txt2rem m-2 pointerHover"></i></a>
+                <a [href]="instagram" target="_blank"><i class="fa fa-instagram text-light txt2rem m-2 pointerHover"></i></a>
+                <a [href]="linkedin" target="_blank"><i class="fa fa-linkedin text-light txt2rem m-2 pointerHover"></i></a>
+                <a [href]="github" target="_blank"><i class="fa fa-github-square text-light txt2rem m-2 pointerHover"></i></a>
                 <i class="fas fa-pen-square position-absolute translate-middle top-100 right10 text-light pointerHover" (click)="abrir()"></i>
             </div>
             <div class="col text-end align-self-center">

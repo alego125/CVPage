@@ -33,8 +33,8 @@ export class FormularioEducacionComponent implements OnInit {
   @Output() cerrarEducaFormulario = new EventEmitter<boolean>();
 
   constructor(
-    private formBuild:FormBuilder,
     private porfolioService:PorfolioServicesService,
+    private formBuild:FormBuilder,
     private fireService:FirebaseService
     ) {
       //Armamos el form group con los elementos del formulario y su validator para la validacion
@@ -45,7 +45,7 @@ export class FormularioEducacionComponent implements OnInit {
         initialDate:['',[Validators.required]],
         finalDate:['']
       });
-      
+      console.log("ImagenUrl: " + this.imagenUrl);
     }
   
   ngOnInit(): void {
@@ -81,9 +81,10 @@ export class FormularioEducacionComponent implements OnInit {
     this.cargaArchivo = true;
     let archivo = event.target.files;
     let reader = new FileReader();
+    let numeroRandom = Math.floor((Math.random() * (1000000 - 0 + 1)));
     reader.readAsDataURL(archivo[0]);
     reader.onloadend = () => {
-      this.fireService.subirImagen("Imagen_Institucion", reader.result, this.usuario.nombre).then(
+      this.fireService.subirImagen(`Imagen_Institucion ${numeroRandom}`, reader.result, this.usuario.nombre).then(
         imagenUrl => {
           //Guardamos la url de la imagen dentro de la base de datos
           this.imagenUrl = imagenUrl;
@@ -97,7 +98,7 @@ export class FormularioEducacionComponent implements OnInit {
 
     let nuevaEducacion = new Educacion(1, this.formu.controls["nombreTitulo"].value,this.imagenUrl, this.formu.controls["initialDate"].value, this.formu.controls["finalDate"].value, this.userId, this.institucion);
     
-    console.log(nuevaEducacion);
+    console.log(nuevaEducacion.educacionNueva());
 
     if(this.formu.valid){
       

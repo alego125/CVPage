@@ -25,6 +25,7 @@ import { FormularioRedesComponent } from './formularios/formulario-redes/formula
 import { FormularioEdicionProyectoComponent } from './formularios/formulario-edicion-proyecto/formulario-edicion-proyecto.component';
 import { FormularioEdicionSkillComponent } from './formularios/formulario-edicion-skill/formulario-edicion-skill.component';
 import { FormularioEdicionEducacionComponent } from './formularios/formulario-edicion-educacion/formulario-edicion-educacion.component';
+import { FormularioEdicionExperienciaComponent } from './formularios/formulario-edicion-experiencia/formulario-edicion-experiencia.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { FormularioEdicionEducacionComponent } from './formularios/formulario-ed
     FormularioRedesComponent,
     FormularioEdicionProyectoComponent,
     FormularioEdicionSkillComponent,
-    FormularioEdicionEducacionComponent
+    FormularioEdicionEducacionComponent,
+    FormularioEdicionExperienciaComponent
   ],
   imports: [
     BrowserModule,

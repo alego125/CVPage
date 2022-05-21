@@ -25,7 +25,7 @@ export class PresentacionComponent implements OnInit {
     this.porfolioService.getUsuario().pipe(
       tap(
         data => {
-          this.datos = data;
+          this.datos = data[0];
         }
       )
     ).subscribe()

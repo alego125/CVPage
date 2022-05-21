@@ -1,32 +1,79 @@
 <div class="caja">
-    <div id="form-div">
+    <form class="form" [formGroup]="formu" (ngSubmit)="onSubmit($event)" id="form1">
         <div class="cerrar" (click)="cerrar()"> X </div>
-        <form class="form" id="form1">
-           
-            <p class="name">
-                <input name="name" type="text"
-                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Link Instagram"
-                    />
-            </p>
 
-            <p class="name">
-                <input name="name" type="text"
-                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Link Facebook"
-                    />
-            </p>
 
-            <p class="name">
-                <input name="name" type="text"
-                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Link Linkedin"
-                    />
-            </p>
+        <div class="row">
+            <div class="col">
+                <label for="">Link</label>
+                <input name="name" type="text" formControlName="instagram"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
+                    placeholder="Link Instagram" />
 
-            <p class="name">
-                <input name="name" type="text"
-                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input" placeholder="Link Github"
-                    />
-            </p>
-                                                            
-        </form>
-        <input type="submit" value="Agregar" class="btn btn-light" />
-    </div>
+            </div>
+            <!-- <div class="col">
+                    <label for="">Nombre Red</label>
+                    <select class="form-control" formControlName="selectInstagram" type="select">
+                        <option *ngFor="let red of redes" [value]="red.idNombreRedes">
+                            {{red.nombreRed}}
+                        </option>
+                    </select>
+                </div> -->
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="">Link</label>
+                <input name="name" type="text" formControlName="facebook"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
+                    placeholder="Link Facebook"/>
+            </div>
+
+            <!-- <div class="col">
+                    <label for="">Nombre Red</label>
+                    <select class="form-control" formControlName="selectFacebook" type="select">
+                        <option *ngFor="let red of redes" [value]="red.idNombreRedes">
+                            {{red.nombreRed}}
+                        </option>
+                    </select>
+                </div> -->
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="">Link</label>
+                <input name="name" type="text" formControlName="linkedin"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
+                    placeholder="Link Linkedin" />
+            </div>
+            <!-- <div class="col">
+                    <label for="">Nombre Red</label>
+                    <select class="form-control" formControlName="selectlinkedin" type="select">
+                        <option *ngFor="let red of redes" [value]="red.idNombreRedes">
+                            {{red.nombreRed}}
+                        </option>
+                    </select>
+                </div> -->
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <label for="">Link</label>
+                <input name="name" type="text" formControlName="github"
+                    class="validate[required,custom[onlyLetter],length[0,100]] feedback-input"
+                    placeholder="Link Github"/>
+            </div>
+            <!-- <div class="col">
+                    <label for="">Nombre Red</label>
+                    <select class="form-control" formControlName="selectGithub" type="select">
+                        <option *ngFor="let red of redes" [value]="red.idNombreRedes">
+                            {{red.nombreRed}}
+                        </option>
+                    </select>
+                </div> -->
+        </div>
+        <div class="form-btn text-center">
+            <input type="submit" value="Agregar" class="btn btn-dark m-5" />
+        </div>
+    </form>
+</div>

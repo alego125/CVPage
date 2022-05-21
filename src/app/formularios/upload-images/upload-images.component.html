@@ -6,12 +6,12 @@
 
             <div class="imgs">
 
-                    <input value="Imagen perfil" formControlName="urlPerfil" name="img1" type="file" (change)="onFileChanges1($event)" id="img1"/>
-                <label for="img1" class="img_1">Subir imagen de perfil</label>
+                    <input value="Imagen perfil" formControlName="urlPortada" name="img1" type="file" (change)="onFileChanges1($event)" id="img1"/>
+                <label for="img1" class="img_1">Subir imagen de portada</label>
                
                 
-                    <input class="primary" value="Imagen portada" formControlName="urlPortada" name="img2" type="file" (change)="onFileChanges2($event)" id="img2"/>
-                <label for="img2" class="img_2">Subir imagen de portada</label>
+                    <input class="primary" value="Imagen portada" formControlName="urlPerfil" name="img2" type="file" (change)="onFileChanges2($event)" id="img2"/>
+                <label for="img2" class="img_2">Subir imagen de perfil</label>
                
                 
             </div>
@@ -19,19 +19,19 @@
 
             <div class="imagenes">
                 <div class="img1">
-                    <p>Imagen portada</p>
-                    <img [src]="datos.urlPortada" class="imgPrev" alt="">
+                    <p>Imagen perfil</p>
+                    <img [src]="datos.urlPerfil" class="imgPrev" alt="">
                 </div>
                 <div class="img2">
-                    <p>Imagen Perfil</p>
-                    <img [src]="datos.urlPerfil" class="imgPrev" alt="">
+                    <p>Imagen portada</p>
+                    <img [src]="datos.urlPortada" class="imgPrev" alt="">
                 </div>
             </div>
 
             <div class="form-group">
 
                 <label class="form-label">Nombre </label>
-                <input class="form-control" formControlName="nombre" type="text" placeholder="Nombre">
+                <input class="form-control" formControlName="nombre" type="text" placeholder="Nombre" required>
 
                 <div *ngIf="Nombre?.errors && Nombre?.touched">
                     <span *ngIf="Nombre?.hasError('required')" class="txt">
@@ -47,7 +47,7 @@
             <div class="form-group">
 
                 <label class="form-label">Apellido </label>
-                <input class="form-control" formControlName="apellido" type="text" placeholder="Apellido">
+                <input class="form-control" formControlName="apellido" type="text" placeholder="Apellido" required>
 
                 <div *ngIf="Apellido?.errors && Apellido?.touched">
                     <span *ngIf="Apellido?.hasError('required')" class="txt">
@@ -64,7 +64,7 @@
             <div class="form-group">
 
                 <label class="form-label">Telefono</label>
-                <input class="form-control" formControlName="telefono" type="text" placeholder="Telefono">
+                <input class="form-control" formControlName="telefono" type="text" placeholder="Telefono" required>
 
                 <div *ngIf="Telefono?.errors && Telefono?.touched">                    
                     <span *ngIf="Telefono?.hasError('required')" class="txt">
@@ -79,7 +79,7 @@
             <div class="form-group">
 
                 <label class="form-label">Fecha Nacimiento</label>
-                <input class="form-control" [ngModel]='datos.fechaNacimiento | date:"yyyy-MM-dd"' formControlName="fechaNacimiento" type="date" placeholder="Fecha Nacimiento">
+                <input class="form-control" [ngModel]='datos.fechaNacimiento | date:"yyyy-MM-dd"' formControlName="fechaNacimiento" type="date" placeholder="Fecha Nacimiento" required>
 
                 <div *ngIf="FechaNacimeinto?.errors && FechaNacimeinto?.touched">
                     <span *ngIf="Titulo?.hasError('required')" class="txt">
@@ -96,9 +96,10 @@
                         
                         <label class="form-label">Pais: </label>
 
-                        <select class="form-control" formControlName="pais" formControlName="pais" type="select">
+                        <select class="form-control" formControlName="pais" type="select">
 
-                        <option *ngFor="let pais of paises|async" [value]="[pais['nombrePais'], pais['idPais']]">
+                            <!-- Mediante ngValue lo que hacemos es devolver como valor el objeto completo pais para luego ser trabajado en el componente -->
+                        <option *ngFor="let pais of paises|async" [ngValue]="pais">
                             {{pais.nombrePais}}
                         </option>
 
@@ -109,9 +110,9 @@
                         
                         <label class="form-label">Provincia: </label>
 
-                        <select class="form-control" formControlName="provincia" formControlName="provincia" type="select">
+                        <select class="form-control" formControlName="provincia" type="select">
 
-                        <option *ngFor="let provincia of provincias|async" [value]="[provincia['nombreProvincia'], provincia['idProvincia']]">
+                        <option *ngFor="let provincia of provincias|async" [ngValue]="provincia">
                             {{provincia.nombreProvincia}}
                             <!-- <span *ngIf="provincia.pais.idPais === idPais">
                             </span> -->
@@ -124,9 +125,9 @@
                         
                         <label class="form-label">Localidad: </label>
 
-                        <select class="form-control" formControlName="localidad" (click)="iniciarCiudad()" formControlName="ciudad" type="select">
+                        <select class="form-control" formControlName="ciudad" (click)="iniciarCiudad()" type="select">
 
-                        <option *ngFor="let ciudad of ciudades|async" [value]="[ciudad['nombreCiudad'], ciudad['idCiudad']]">
+                        <option *ngFor="let ciudad of ciudades|async" [ngValue]="ciudad">
                             {{ciudad.nombreCiudad}}
                         </option>
 
@@ -140,22 +141,35 @@
                     <div class="col">
                         <label class="form-label">Calle: </label>
 
-                        <input type="text" formControlName="calle" class="form-control">    
+                        <input type="text" formControlName="calle" class="form-control" required>    
+
+                        <div *ngIf="Calle?.errors && Calle?.touched">                    
+                            <span *ngIf="Calle?.hasError('required')" class="txt">
+                                <p>Campo requerido</p>
+                            </span>                            
+                        </div>
                     </div>
                     <div class="col">
                         <label class="form-label">Numero: </label>
 
-                        <input type="number" formControlName="numero" class="form-control">    
+                        <input type="number" formControlName="numero" class="form-control" required>    
+                        
+                        <div *ngIf="Numero?.errors && Numero?.touched">                    
+                            <span *ngIf="Numero?.hasError('required')" class="txt">
+                                <p>Campo requerido</p>
+                            </span>                            
+                        </div>
                     </div>
                     <div class="col">
                         <label class="form-label">Piso: </label>
 
-                        <input type="number" formControlName="piso" class="form-control">    
+                        <input type="number" formControlName="piso" class="form-control" required>    
+                        
                     </div>
                     <div class="col">
                         <label class="form-label">Departamento: </label>
 
-                        <input type="number" formControlName="departamento" class="form-control">    
+                        <input type="number" formControlName="departamento" class="form-control" required>    
                     </div>
 
                 </div>
@@ -165,7 +179,7 @@
             <div class="form-group">
 
                 <label class="form-label">Email</label>
-                <input class="form-control" formControlName="email" type="email" placeholder="Email">
+                <input class="form-control" formControlName="email" type="email" placeholder="Email" required>
 
                 <div *ngIf="Email?.errors && Email?.touched">                    
                     <span *ngIf="Email?.hasError('required')" class="txt">
@@ -195,7 +209,7 @@
             </div>
 
             <div class="form-btn text-center">
-                <button type="submit"  class="btn btn-dark m-5">Guardar</button>
+                <button type="submit" [disabled]="formu.invalid" class="btn btn-dark m-5">Guardar</button>
             </div>
 
         </form>

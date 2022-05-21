@@ -20,10 +20,12 @@ export class AppComponent implements OnInit{
   valorRedes = false;
   valorEdicionProyecto = false;
   valorEditarEducacion = false;
+  valorEditarExperiencia = false;
   skillEditar:any = false
   infoSkill!:any;
   infoProyecto!:any;
   infoEducacion!:any;
+  infoExperiencia!:any;
 
   @Output() eviarProyecto = new EventEmitter<any>();
 
@@ -67,8 +69,20 @@ export class AppComponent implements OnInit{
     this.valorExperiencia = val;
   }
 
+  abrirEditarExperiencia(val:boolean):void{
+    this.valorEditarExperiencia = val;
+  }
+
   cerrarExperiencia(val:boolean):void{
     this.valorExperiencia = val;
+  }
+
+  cerrarEditarExperiencia(val:boolean):void{
+    this.valorEditarExperiencia = val;
+  }
+
+  editarExperiencia(experiencia:any):void{
+    this.infoExperiencia = experiencia;
   }
 
   abrirEducaFormulario(val:boolean):void{

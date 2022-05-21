@@ -10,7 +10,7 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 })
 export class FormularioPresentacionComponent implements OnInit {
 
-  public info!: string;
+  public datos!: any;
   public formu: FormGroup;
   @Output() cerrarVentana = new EventEmitter<any>();
 
@@ -18,40 +18,39 @@ export class FormularioPresentacionComponent implements OnInit {
     private porfolioService: PorfolioServicesService,
     private formBuilder: FormBuilder
   ) {
-    this.formu = formBuilder.group({
+    this.formu = this.formBuilder.group({
       presentacion: ['', [Validators.required, Validators.maxLength(500)]]
     })
   }
 
   ngOnInit(): void {
-    this.getUser();
-  }
-
-  get Presentacion() {
-    return this.formu.get('presentacion')
-  }
-
-  onSubmit(evento: Event) {
-  
-    evento.preventDefault();
     
-    if(this.formu.valid){
-      alert('Informacion Guardada Correctamente')
+    this.porfolioService.getUsuario().subscribe(
+      data => {
+        this.datos = data[0];
+      }
+    );
+    setTimeout(()=>{
+      this.formu.controls['presentacion'].setValue(this.datos.presentacion);
+    }, 1000)
+  }
+  
+  
+  onSubmit(evento: Event) {
+    
+    evento.preventDefault();
+
+    if (this.formu.valid) {
+      this.porfolioService.actualizarGuardarPresentacion(this.datos.id,this.formu.controls['presentacion'].value).subscribe(
+        () => {
+          alert("Informacion Guardada")
+        }
+      );
       location.reload();
-    }else{
+    } else {
       this.formu.markAllAsTouched();
     }
 
-  }
-
-  getUser(): void {
-    this.porfolioService.getUsuario().pipe(
-      tap(
-        data => {
-          this.info = data.presentacion;
-        }
-      )
-    ).subscribe()
   }
 
   cerrar(): void {
@@ -59,4 +58,7 @@ export class FormularioPresentacionComponent implements OnInit {
   }
 
 
+  get Presentacion() {
+    return this.formu.get('presentacion')
+  }
 }

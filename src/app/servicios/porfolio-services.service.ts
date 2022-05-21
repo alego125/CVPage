@@ -5,7 +5,9 @@ import { Observable, Observer } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Adress } from '../formularios/Entidades/domicilio.entidad';
 import { Educacion } from '../formularios/Entidades/educacion.entidad';
+import { Experiencia } from '../formularios/Entidades/experiencia.entidad';
 import { Proyecto } from '../formularios/Entidades/proyecto.model';
+import { Red } from '../formularios/Entidades/red.entidad';
 import { Skill } from '../formularios/Entidades/skill.entidad';
 import { Usuario } from '../formularios/Entidades/usuario.entidad';
 import { Domicilio } from '../modelos/domicilio.model';
@@ -22,11 +24,26 @@ export class PorfolioServicesService {
    }
 
   //Estos metodo los definimos como observables de manera que los componentes que lo consuman puedan subscribirse para asi esperar la respuesta del metodo que obtiene sus datos del servidor
- 
+
+  actualizarGuardarPresentacion(id:number,informacion:string):Observable<any>{
+    return this.http.put(environment.urlServer + `user/updatePresentacion/${id}`, informacion);
+  }
 
   getExperience():Observable<any>{
-    return this.http.get('http://localhost:8080/experiencia');
+    return this.http.get(environment.urlServer + "experiencia/get");
   }
+
+  createExperiencia(experiencia:Experiencia):Observable<any>{
+    return this.http.post(environment.urlServer + "experiencia/create", experiencia)
+  }
+
+  deleteExperiencia(id:number):Observable<any>{
+    return this.http.delete(environment.urlServer + "experiencia/delete/" + id);
+  }
+
+  updateExperiencia(experiencia:Experiencia):Observable<any>{
+    return this.http.put(environment.urlServer + "experiencia/update",experiencia);
+  }  
 
   getSkill():Observable<any>{
     return this.http.get(environment.urlServer + "skill/get");
@@ -97,7 +114,23 @@ export class PorfolioServicesService {
   }
   
   getRedes():Observable<any>{
-    return this.http.get('http://localhost:8080/red');
+    return this.http.get(environment.urlServer + 'red/get');
+  }
+
+  getNombreRed():Observable<any>{
+    return this.http.get(environment.urlServer + 'nombreRedes/get');
+  }
+
+  getNombreRedPorId(id:number):Observable<any>{
+    return this.http.get(environment.urlServer + 'nombreRedes/get/' + id);
+  }
+
+  createRed(red:any):Observable<any>{
+    return this.http.post(environment.urlServer + 'red/create', red);
+  }
+
+  updateRed(red:any):Observable<any>{
+    return this.http.put(environment.urlServer + 'red/update', red);
   }
 
   modificarPersona(persona:any){
@@ -117,13 +150,8 @@ export class PorfolioServicesService {
   }
 
 
-  updateUsuario(id:number, nombre:string, apellido:string, nacimiento:Date, web:string, telefono:string, email:string, urlPortada:string, urlPerfil:string, domicilio:Adress):Observable<any>{
-    const httpParams = new HttpParams();    
-    return this.http.put(`localhost:8080/user/update/${id}`,httpParams)
-  }
-
-  patchUpdate(id:number, usuario:Usuario):Observable<any>{
-    return this.http.patch(`localhost:8080/user/patchUpdate/${id}`, usuario);
+  updateUsuario(informacion:any,id:number){
+    return this.http.put(environment.urlServer +'user/updateUser/' + id, informacion);
   }
 
   getDomicilio():Observable<any>{

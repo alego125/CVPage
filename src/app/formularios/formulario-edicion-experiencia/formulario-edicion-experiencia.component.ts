@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { tap } from 'rxjs';
 import { FirebaseService } from 'src/app/servicios/firebase.service';
@@ -6,11 +6,11 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 import { Experiencia } from '../Entidades/experiencia.entidad';
 
 @Component({
-  selector: 'app-formulario-experiencia',
-  templateUrl: './formulario-experiencia.component.html',
-  styleUrls: ['./formulario-experiencia.component.scss']
+  selector: 'app-formulario-edicion-experiencia',
+  templateUrl: './formulario-edicion-experiencia.component.html',
+  styleUrls: ['./formulario-edicion-experiencia.component.scss']
 })
-export class FormularioExperienciaComponent implements OnInit {
+export class FormularioEdicionExperienciaComponent implements OnInit {
 
   valor!:any;
   imgEmpresa!:string;
@@ -20,8 +20,8 @@ export class FormularioExperienciaComponent implements OnInit {
   userId!:number;
   usuario!:any;
   
-  @Output() cerrarExperiencia = new EventEmitter<boolean>();
-  
+  @Output() cerrarEditarExperiencia = new EventEmitter<boolean>();
+  @Input() infoExperiencia!:any;
 
   constructor(
     private formBuild:FormBuilder,
@@ -47,6 +47,14 @@ export class FormularioExperienciaComponent implements OnInit {
         }
       )
     ).subscribe();
+
+    console.log(this.infoExperiencia);
+
+    this.formu.controls["nombreEmpresa"].setValue(this.infoExperiencia.nombreEmpresa);
+    this.formu.controls["imagen"].setValue(this.infoExperiencia.urlImagen);
+    this.formu.controls["description"].setValue(this.infoExperiencia.descripcionTareas);
+    this.formu.controls["initialDate"].setValue(this.infoExperiencia.fechaInicio);
+    this.formu.controls["finalDate"].setValue(this.infoExperiencia.fechaFin);
     
 
     console.log(this.imagenUrl);
@@ -64,7 +72,8 @@ export class FormularioExperienciaComponent implements OnInit {
     reader.onloadend = () => {
       this.fireService.subirImagen(`Imagen_empresa ${numeroRandom} `, reader.result, this.usuario.nombre).then(
         imagenUrl => {
-          this.imagenUrl = imagenUrl;
+          this.imagenUrl = imagenUrl;          
+          this.formu.controls["imagen"].setValue(imagenUrl);
         });
       }
     }
@@ -73,16 +82,15 @@ export class FormularioExperienciaComponent implements OnInit {
 
       evento.preventDefault();
   
-      let nuevaExperiencia = new Experiencia(1,this.formu.controls["nombreEmpresa"].value,this.formu.controls["description"].value,this.formu.controls["initialDate"].value,this.formu.controls["finalDate"].value,this.imagenUrl,this.userId);    
+      let updateExperiencia = new Experiencia(this.infoExperiencia.idExperiencia,this.formu.controls["nombreEmpresa"].value,this.formu.controls["description"].value,this.formu.controls["initialDate"].value,this.formu.controls["finalDate"].value,this.formu.controls["imagen"].value,this.infoExperiencia.idUser);    
       
-      console.log(nuevaExperiencia.crearExperiencia());
+      console.log(updateExperiencia.editarExperiencia());
       console.log(this.formu.valid);
 
       if(this.formu.valid){
-        console.log("Entrooooo!!!!");
-        this.porfolioService.createExperiencia(nuevaExperiencia.crearExperiencia()).subscribe(
+        this.porfolioService.updateExperiencia(updateExperiencia.editarExperiencia()).subscribe(
             response => {
-              alert('Informacion Guardada Exitosamente');
+              alert('Informacion Actualizada Exitosamente');
               console.log(response);
             },err => {
               console.log(err);
@@ -95,7 +103,7 @@ export class FormularioExperienciaComponent implements OnInit {
     }
     
   cerrar():void{
-    this.cerrarExperiencia.emit(false);
+    this.cerrarEditarExperiencia.emit(false);
   }
 
   get Imagen(){

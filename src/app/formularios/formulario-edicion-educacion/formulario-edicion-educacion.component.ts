@@ -16,6 +16,7 @@ export class FormularioEdicionEducacionComponent implements OnInit {
 
   valor!:any;
   imgEmpresa!:string;
+  cargaArchivo:boolean = false;
   formu:FormGroup;
   modelo!:any;
   //Recibimos las universidades como un observable ya que en el template estamos usando async lo que hace es traer automaticamente la informacion de nuestro service
@@ -51,7 +52,8 @@ export class FormularioEdicionEducacionComponent implements OnInit {
   ngOnInit(): void {
     //Una forma de traer la info del server o de la api es traer todo mediante la funcion y luego con un async en el template traducir todo 
     this.instituciones = this.porfolioService.getInstitucion()      
-    
+    this.institucion = this.infoEducacion.institucion;
+
     this.porfolioService.getUsuario().subscribe(
       user => {
         this.userId = user[0].id;
@@ -69,6 +71,7 @@ export class FormularioEdicionEducacionComponent implements OnInit {
     this.formu.controls["finalDate"].setValue(this.infoEducacion.fechaFin);
 
 
+    console.log("ImagenUrl: " + this.imagenUrl);
     console.log(this.infoEducacion);
     
   }
@@ -87,14 +90,17 @@ export class FormularioEdicionEducacionComponent implements OnInit {
   }
     
   onFileChanges(event:any):void{    
+    this.cargaArchivo = true;
     let archivo = event.target.files;
     let reader = new FileReader();
+    let numeroRandom = Math.floor((Math.random() * (1000000 - 0 + 1)));
     reader.readAsDataURL(archivo[0]);
     reader.onloadend = () => {
-      this.fireService.subirImagen("Imagen_Institucion", reader.result, this.usuario.nombre).then(
+      this.fireService.subirImagen(`Imagen_Institucion ${numeroRandom}`, reader.result, this.usuario.nombre).then(
         imagenUrl => {
           //Guardamos la url de la imagen dentro de la base de datos
           this.imagenUrl = imagenUrl;
+          this.formu.controls["imagen"].setValue(imagenUrl);
         });
     }
   }
@@ -103,7 +109,7 @@ export class FormularioEdicionEducacionComponent implements OnInit {
 
     evento.preventDefault();
 
-    let nuevaEducacion = new Educacion(this.infoEducacion.idEducacion, this.formu.controls["nombreTitulo"].value, this.formu.controls["imagen"].value, this.formu.controls["initialDate"].value, this.formu.controls["finalDate"].value, this.userId, this.infoEducacion.institucion);
+    let nuevaEducacion = new Educacion(this.infoEducacion.idEducacion, this.formu.controls["nombreTitulo"].value, this.formu.controls["imagen"].value, this.formu.controls["initialDate"].value, this.formu.controls["finalDate"].value, this.userId, this.institucion);
     
     console.log(nuevaEducacion);
 

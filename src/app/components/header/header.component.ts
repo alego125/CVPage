@@ -9,6 +9,10 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 export class HeaderComponent implements OnInit {
 
   datos:any;
+  linkedin!:string;
+  facebook!:string;
+  instagram!:string;
+  github!:string;
   @Output() abrirRedesFormulario = new EventEmitter<boolean>();
 
   constructor(
@@ -16,9 +20,19 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.datosPorfolio.getUsuario().subscribe(
-      data => {
-        this.datos = data;
+    this.datosPorfolio.getRedes().subscribe(
+      redes => {
+        redes.forEach((red:any)=>{
+          if(red.nombreRed.idNombreRedes == 1){
+            this.linkedin = red.link;
+          }else if(red.nombreRed.idNombreRedes == 2){
+            this.facebook = red.link;
+          }else if(red.nombreRed.idNombreRedes == 3){
+            this.instagram = red.link;
+          }else if(red.nombreRed.idNombreRedes == 4){
+            this.github = red.link;
+          }
+        })
       }
     )
   }
