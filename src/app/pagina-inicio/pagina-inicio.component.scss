@@ -1,0 +1,14 @@
+label{
+    all: unset;
+    font-size: 15px;
+    font-weight: bolder;
+}
+
+.contenedor{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}

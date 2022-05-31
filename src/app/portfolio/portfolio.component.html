@@ -1,0 +1,38 @@
+<app-header (abrirRedesFormulario)="abrirRedesFormulario($event)"></app-header>
+
+<app-formulario-redes (cerrarRedesFormulario)="cerrarRedesFormulario($event)" *ngIf="valorRedes"></app-formulario-redes>
+
+<app-portada (abrirUpAccion)="abrirUpImg($event)" (abrirAccion)="abrir($event)"></app-portada>
+
+<app-upload-images (cerrarUploadImage)="cerrarFormImage($event)" *ngIf="valorImage" ></app-upload-images> -->
+
+<app-personal-information (cerrarEmit)="cerrar($event)" *ngIf="valor" ></app-personal-information>
+
+<app-presentacion (abrirPresentacion)="abrirPresentacion($event)"></app-presentacion>
+
+<app-formulario-presentacion (cerrarVentana)="cerrarPresentacion($event)" *ngIf="valorPresentacion"></app-formulario-presentacion>
+
+<app-experiencia (informacionExperiencia)="editarExperiencia($event)" (abrirEditarExperiencia)="abrirEditarExperiencia($event)" (abrirExperiencia)="abrirExperiencia($event)"></app-experiencia>
+
+<app-formulario-experiencia (cerrarExperiencia)="cerrarExperiencia($event)" *ngIf="valorExperiencia"></app-formulario-experiencia>
+
+<app-formulario-edicion-experiencia (cerrarEditarExperiencia)="cerrarEditarExperiencia($event)" *ngIf="valorEditarExperiencia" [infoExperiencia]="infoExperiencia"></app-formulario-edicion-experiencia>
+
+<app-educacion (editarEducaFormulario)="editarEducacion($event)" (abrireditarEducaFormulario)="abrirEditarFormularioEducacion($event)" (abrirEducaFormulario)="abrirEducaFormulario($event)"></app-educacion>
+
+<app-formulario-edicion-educacion (cerrarEditarEducaFormulario)="cerrarEditarEducacion($event)" [infoEducacion]="infoEducacion" *ngIf="valorEditarEducacion"></app-formulario-edicion-educacion>
+
+<app-formulario-educacion (cerrarEducaFormulario)="cerrarEducaFormulario($event)" *ngIf="valorEducacion"></app-formulario-educacion>
+
+<app-skills (editarSkill)="edicionSkill($event)" (abrireditarSkillFormulario)="abrirEditarSkill($event)" (abrirSkillFormulario)="abrirSkillFormulario($event)"></app-skills>
+
+<app-formulario-edicion-skill [infoSkill]="infoSkill" (cerrarEditarSkillFormulario)="cerrarEditarSkill($event)" *ngIf="skillEditar"></app-formulario-edicion-skill>
+
+<app-formulario-skills (cerrarSkillFormulario)="cerrarSkillFormulario($event)" *ngIf="valorSkill"></app-formulario-skills>
+
+<app-proyectos (editarInfoEditar)="editarProyecto($event)" (abrirInfoEditar)="abrirFormularioEdicionProyecto($event)" (abrirProyecFormulario)="abrirProyecFormulario($event)"></app-proyectos>
+
+<app-formulario-proyectos (cerrarProyecFormulario)="cerrarProyecFormulario($event)" *ngIf="valorProyecto"></app-formulario-proyectos>
+
+<app-formulario-edicion-proyecto [infoProyecto]="infoProyecto" (cerrarEdicionProyecFormulario)="cerrarFormularioEdicionProyecto($event)"  *ngIf="valorEdicionProyecto"></app-formulario-edicion-proyecto>
+

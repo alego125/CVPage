@@ -3,13 +3,10 @@ import { Injectable } from '@angular/core';
 //Los observables son una coleccion de futuros eventos a los cuales me voy a subscribir y luego nos llegaran de manera asincrona
 import { Observable, Observer } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Adress } from '../formularios/Entidades/domicilio.entidad';
-import { Educacion } from '../formularios/Entidades/educacion.entidad';
-import { Experiencia } from '../formularios/Entidades/experiencia.entidad';
-import { Proyecto } from '../formularios/Entidades/proyecto.model';
-import { Red } from '../formularios/Entidades/red.entidad';
-import { Skill } from '../formularios/Entidades/skill.entidad';
-import { Usuario } from '../formularios/Entidades/usuario.entidad';
+import { Educacion } from '../inicio/formularios/Entidades/educacion.entidad';
+import { Experiencia } from '../inicio/formularios/Entidades/experiencia.entidad';
+import { Proyecto } from '../inicio/formularios/Entidades/proyecto.model';
+import { Skill } from '../inicio/formularios/Entidades/skill.entidad';
 import { Domicilio } from '../modelos/domicilio.model';
 
 @Injectable({
@@ -146,9 +143,12 @@ export class PorfolioServicesService {
   }
 
   getUsuario():Observable<any>{
-    return this.http.get('http://localhost:8080/user/get');
+    return this.http.get(environment.urlServer + 'user/get');
   }
 
+  getUsuarioPorNombreUsuario(nombreUsuario:String):Observable<any>{
+    return this.http.get(environment.urlServer + 'user/buscarPorUserName/' + nombreUsuario);
+  }
 
   updateUsuario(informacion:any,id:number){
     return this.http.put(environment.urlServer +'user/updateUser/' + id, informacion);

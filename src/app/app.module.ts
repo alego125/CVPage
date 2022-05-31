@@ -1,31 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './components/header/header.component';
-import { PresentacionComponent } from './components/presentacion/presentacion.component';
-import { PortadaComponent } from './components/portada/portada.component';
-import { ExperienciaComponent } from './components/experiencia/experiencia.component';
-import { EducacionComponent } from './components/educacion/educacion.component';
-import { SkillsComponent } from './components/skills/skills.component';
-import { ProyectosComponent } from './components/proyectos/proyectos.component';
-import { FormularioPresentacionComponent } from './formularios/formulario-presentacion/formulario-presentacion.component';
-import { PersonalInformationComponent } from './components/personal-information/personal-information.component'
+import { HeaderComponent } from './inicio/components/header/header.component';
+import { PresentacionComponent } from './inicio/components/presentacion/presentacion.component';
+import { PortadaComponent } from './inicio/components/portada/portada.component';
+import { ExperienciaComponent } from './inicio/components/experiencia/experiencia.component';
+import { EducacionComponent } from './inicio/components/educacion/educacion.component';
+import { SkillsComponent } from './inicio/components/skills/skills.component';
+import { ProyectosComponent } from './inicio/components/proyectos/proyectos.component';
+import { PersonalInformationComponent } from './inicio/components/personal-information/personal-information.component'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormularioExperienciaComponent } from './formularios/formulario-experiencia/formulario-experiencia.component';
-import { UploadImagesComponent } from './formularios/upload-images/upload-images.component';
-import { FormularioEducacionComponent } from './formularios/formulario-educacion/formulario-educacion.component';
-import { FormularioSkillsComponent } from './formularios/formulario-skills/formulario-skills.component';
-import { FormularioProyectosComponent } from './formularios/formulario-proyectos/formulario-proyectos.component';
-import { FormularioRedesComponent } from './formularios/formulario-redes/formulario-redes.component';
-import { FormularioEdicionProyectoComponent } from './formularios/formulario-edicion-proyecto/formulario-edicion-proyecto.component';
-import { FormularioEdicionSkillComponent } from './formularios/formulario-edicion-skill/formulario-edicion-skill.component';
-import { FormularioEdicionEducacionComponent } from './formularios/formulario-edicion-educacion/formulario-edicion-educacion.component';
-import { FormularioEdicionExperienciaComponent } from './formularios/formulario-edicion-experiencia/formulario-edicion-experiencia.component';
+import { FormularioEdicionEducacionComponent } from './inicio/formularios/formulario-edicion-educacion/formulario-edicion-educacion.component';
+import { FormularioEdicionExperienciaComponent } from './inicio/formularios/formulario-edicion-experiencia/formulario-edicion-experiencia.component';
+import { FormularioEdicionProyectoComponent } from './inicio/formularios/formulario-edicion-proyecto/formulario-edicion-proyecto.component';
+import { FormularioEdicionSkillComponent } from './inicio/formularios/formulario-edicion-skill/formulario-edicion-skill.component';
+import { FormularioEducacionComponent } from './inicio/formularios/formulario-educacion/formulario-educacion.component';
+import { FormularioExperienciaComponent } from './inicio/formularios/formulario-experiencia/formulario-experiencia.component';
+import { FormularioPresentacionComponent } from './inicio/formularios/formulario-presentacion/formulario-presentacion.component';
+import { FormularioProyectosComponent } from './inicio/formularios/formulario-proyectos/formulario-proyectos.component';
+import { FormularioRedesComponent } from './inicio/formularios/formulario-redes/formulario-redes.component';
+import { FormularioSkillsComponent } from './inicio/formularios/formulario-skills/formulario-skills.component';
+import { UploadImagesComponent } from './inicio/formularios/upload-images/upload-images.component';
+import { PortfolioComponent } from './portfolio/portfolio.component';
+import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
+import { PorfolioServicesService } from './servicios/porfolio-services.service';
+import { InterceptorService } from './servicios/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,9 @@ import { FormularioEdicionExperienciaComponent } from './formularios/formulario-
     FormularioEdicionProyectoComponent,
     FormularioEdicionSkillComponent,
     FormularioEdicionEducacionComponent,
-    FormularioEdicionExperienciaComponent
+    FormularioEdicionExperienciaComponent,
+    PortfolioComponent,
+    PaginaInicioComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +67,7 @@ import { FormularioEdicionExperienciaComponent } from './formularios/formulario-
     AlifeFileToBase64Module,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [PorfolioServicesService,{provide:HTTP_INTERCEPTORS, useClass:InterceptorService, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
