@@ -7,12 +7,12 @@ export class Educacion{
     imagenInstitucion!:string;
     fechainicio!:Date;
     fechaFin!:Date;
-    idUser!:number;
+    idUser!:any;
     institucion!:Institucion;
     
 
 
-    constructor(idEducacion:number, nombreTitulo:string, imagenInstitucion:string, fechainicio:Date, fechaFin:Date, idUser:number, institucion:Institucion){
+    constructor(idEducacion:number, nombreTitulo:string, imagenInstitucion:string, fechainicio:Date, fechaFin:Date, idUser:any, institucion:Institucion){
         this.idEducacion = idEducacion,
         this.nombreTitulo = nombreTitulo,
         this.imagenInstitucion = imagenInstitucion,
@@ -28,7 +28,7 @@ export class Educacion{
             "imagenInstitucion":this.imagenInstitucion,
             "fechainicio":this.fechainicio,
             "fechaFin":this.fechaFin,
-            "idUser":this.idUser,
+            "usuario":this.idUser,
             "institucion":this.institucion
         }
         // return JSON.stringify(json);
@@ -42,7 +42,7 @@ export class Educacion{
             "imagenInstitucion":this.imagenInstitucion,
             "fechainicio":this.fechainicio,
             "fechaFin":this.fechaFin,
-            "idUser":this.idUser,
+            "usuario":this.idUser,
             "institucion":this.institucion
         }
         // return JSON.stringify(json);

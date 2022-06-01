@@ -42,6 +42,11 @@ export class AutenticacionService {
     )
    }
 
+   logOut(){
+    sessionStorage['currentUser'] = '';
+    
+   }
+
 
    get UsuarioAutenticado(){
     //El behaviorsubject almacena la informacion del ultimo observable que en este caso es la del usuario por lo que entonces aca lo que hacemos es devolver el behaviorSubject que contendra la informacion del usuario

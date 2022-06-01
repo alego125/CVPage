@@ -105,7 +105,7 @@ export class UploadImagesComponent implements OnInit {
 
       console.log(this.formu.valid);
 
-    }, 1000);
+    }, 2000);
   }
 
 

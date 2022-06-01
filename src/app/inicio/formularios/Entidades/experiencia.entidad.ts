@@ -8,9 +8,9 @@ export class Experiencia{
     fechaInicio:Date;
     fechaFin:Date;
     urlImagen:string;
-    idUser:number;
+    idUser:any;
 
-    constructor(idExperiencia:number, nombreEmpresa:string, descripcionTareas:string, fechaInicio:Date, fechaFin:Date, urlImagen:string, idUser:number){
+    constructor(idExperiencia:number, nombreEmpresa:string, descripcionTareas:string, fechaInicio:Date, fechaFin:Date, urlImagen:string, idUser:any){
         this.idExperiencia = idExperiencia;
         this.nombreEmpresa = nombreEmpresa;
         this.descripcionTareas = descripcionTareas;
@@ -27,7 +27,7 @@ export class Experiencia{
             "fechaInicio":this.fechaInicio,
             "fechaFin":this.fechaFin,
             "urlImagen":this.urlImagen,
-            "idUser":this.idUser
+            "usuario":this.idUser
         }
         return json;
     }
@@ -40,7 +40,7 @@ export class Experiencia{
             "fechaInicio":this.fechaInicio,
             "fechaFin":this.fechaFin,
             "urlImagen":this.urlImagen,
-            "idUser":this.idUser
+            "usuario":this.idUser
         }
         return json;
     }

@@ -12,6 +12,7 @@ export class ExperienciaComponent implements OnInit {
 
   public datos!:any;
   public usuario!:any;
+  info = JSON.parse(sessionStorage['currentUser']);
   @Output() abrirExperiencia = new EventEmitter<boolean>();
   @Output() abrirEditarExperiencia = new EventEmitter<boolean>();
   @Output() informacionExperiencia = new EventEmitter<Experiencia>();
@@ -46,11 +47,11 @@ export class ExperienciaComponent implements OnInit {
     this.informacionExperiencia.emit(experiencia);
   }
 
-  private getUser():void{
-    this.porfolioService.getUsuario().pipe(
+  private getUser():void{    
+    this.porfolioService.getUsuarioPorNombreUsuario(this.info.nombreUsuario).pipe(
       tap(
         user => {
-          this.usuario = user[0];
+          this.usuario = user;
           console.log(this.datos)
         }
       )

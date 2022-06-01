@@ -6,6 +6,7 @@ import { FirebaseService } from 'src/app/servicios/firebase.service';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 import { Educacion } from '../Entidades/educacion.entidad';
 import { Institucion } from '../Entidades/institucion.entidad';
+import { Usuario } from '../Entidades/usuario.entidad';
 
 @Component({
   selector: 'app-formulario-edicion-educacion',
@@ -96,7 +97,7 @@ export class FormularioEdicionEducacionComponent implements OnInit {
     let numeroRandom = Math.floor((Math.random() * (1000000 - 0 + 1)));
     reader.readAsDataURL(archivo[0]);
     reader.onloadend = () => {
-      this.fireService.subirImagen(`Imagen_Institucion ${numeroRandom}`, reader.result, this.usuario.nombre).then(
+      this.fireService.subirImagen(`Imagen_Institucion ${numeroRandom}`, reader.result, this.usuario.name).then(
         imagenUrl => {
           //Guardamos la url de la imagen dentro de la base de datos
           this.imagenUrl = imagenUrl;
@@ -109,9 +110,11 @@ export class FormularioEdicionEducacionComponent implements OnInit {
 
     evento.preventDefault();
 
-    let nuevaEducacion = new Educacion(this.infoEducacion.idEducacion, this.formu.controls["nombreTitulo"].value, this.formu.controls["imagen"].value, this.formu.controls["initialDate"].value, this.formu.controls["finalDate"].value, this.userId, this.institucion);
+    let nuevoUsuario = new Usuario(this.usuario.id, this.usuario.name, this.usuario.nombre, this.usuario.apellido, this.usuario.fechaNacimiento, this.usuario.web, this.usuario.telefono, this.usuario.email, this.usuario.presentacion, this.usuario.urlPortada, this.usuario.urlPerfil, this.usuario.domicilio);
+
+    let nuevaEducacion = new Educacion(this.infoEducacion.idEducacion, this.formu.controls["nombreTitulo"].value, this.formu.controls["imagen"].value, this.formu.controls["initialDate"].value, this.formu.controls["finalDate"].value, nuevoUsuario.usuarioObject(), this.institucion);
     
-    console.log(nuevaEducacion);
+    console.log(nuevaEducacion.actualizarEducacion());
 
     if(this.formu.valid){
       

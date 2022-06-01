@@ -4,6 +4,7 @@ import { tap } from 'rxjs';
 import { FirebaseService } from 'src/app/servicios/firebase.service';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 import { Experiencia } from '../Entidades/experiencia.entidad';
+import { Usuario } from '../Entidades/usuario.entidad';
 
 @Component({
   selector: 'app-formulario-edicion-experiencia',
@@ -82,7 +83,9 @@ export class FormularioEdicionExperienciaComponent implements OnInit {
 
       evento.preventDefault();
   
-      let updateExperiencia = new Experiencia(this.infoExperiencia.idExperiencia,this.formu.controls["nombreEmpresa"].value,this.formu.controls["description"].value,this.formu.controls["initialDate"].value,this.formu.controls["finalDate"].value,this.formu.controls["imagen"].value,this.infoExperiencia.idUser);    
+      let nuevoUsuario = new Usuario(this.usuario.id, this.usuario.name, this.usuario.nombre, this.usuario.apellido, this.usuario.fechaNacimiento, this.usuario.web, this.usuario.telefono, this.usuario.email, this.usuario.presentacion, this.usuario.urlPortada, this.usuario.urlPerfil, this.usuario.domicilio);
+
+      let updateExperiencia = new Experiencia(this.infoExperiencia.idExperiencia,this.formu.controls["nombreEmpresa"].value,this.formu.controls["description"].value,this.formu.controls["initialDate"].value,this.formu.controls["finalDate"].value,this.formu.controls["imagen"].value,nuevoUsuario.usuarioObject());    
       
       console.log(updateExperiencia.editarExperiencia());
       console.log(this.formu.valid);

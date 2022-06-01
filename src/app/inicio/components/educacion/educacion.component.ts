@@ -9,6 +9,7 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 export class EducacionComponent implements OnInit {
 
   educacion:any;
+  session = JSON.parse(sessionStorage['currentUser']);
   @Output() abrirEducaFormulario = new EventEmitter<boolean>();
   @Output() abrireditarEducaFormulario = new EventEmitter<boolean>();
   @Output() editarEducaFormulario = new EventEmitter<boolean>();

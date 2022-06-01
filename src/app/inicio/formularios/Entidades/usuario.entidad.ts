@@ -32,7 +32,7 @@ export class Usuario{
     }
 
 
-    public usuarioObject():Object{
+    public usuarioObject(){
         // let json = `{
         //     "id":${this.id},
         //     "name":${this.name},
@@ -62,6 +62,7 @@ export class Usuario{
             "urlPerfil":this.urlPerfil,
             "domicilio":this.domicilio
         }
-        return JSON.stringify(json);
+        // return JSON.stringify(json);
+        return json;
     }
 }

@@ -28,6 +28,7 @@ import { FormularioSkillsComponent } from './inicio/formularios/formulario-skill
 import { UploadImagesComponent } from './inicio/formularios/upload-images/upload-images.component';
 import { PortfolioComponent } from './portfolio/portfolio.component';
 import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
+import { LoginRegisterComponent } from './login-register/login-register.component';
 import { PorfolioServicesService } from './servicios/porfolio-services.service';
 import { InterceptorService } from './servicios/interceptor.service';
 
@@ -56,7 +57,8 @@ import { InterceptorService } from './servicios/interceptor.service';
     FormularioEdicionEducacionComponent,
     FormularioEdicionExperienciaComponent,
     PortfolioComponent,
-    PaginaInicioComponent
+    PaginaInicioComponent,
+    LoginRegisterComponent,
   ],
   imports: [
     BrowserModule,

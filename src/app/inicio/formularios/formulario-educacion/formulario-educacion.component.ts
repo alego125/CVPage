@@ -6,6 +6,7 @@ import { FirebaseService } from 'src/app/servicios/firebase.service';
 import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.service';
 import { Educacion } from '../Entidades/educacion.entidad';
 import { Institucion } from '../Entidades/institucion.entidad';
+import { Usuario } from '../Entidades/usuario.entidad';
 
 @Component({
   selector: 'app-formulario-educacion',
@@ -52,10 +53,11 @@ export class FormularioEducacionComponent implements OnInit {
     //Una forma de traer la info del server o de la api es traer todo mediante la funcion y luego con un async en el template traducir todo 
     this.instituciones = this.porfolioService.getInstitucion()      
     
-    this.porfolioService.getUsuario().subscribe(
+    let info = JSON.parse(sessionStorage['currentUser']);
+    this.porfolioService.getUsuarioPorNombreUsuario(info.nombreUsuario).subscribe(
       user => {
-        this.userId = user[0].id;
-        this.usuario = user[0]
+        this.userId = user.id;
+        this.usuario = user;
       }
     );
 
@@ -84,7 +86,7 @@ export class FormularioEducacionComponent implements OnInit {
     let numeroRandom = Math.floor((Math.random() * (1000000 - 0 + 1)));
     reader.readAsDataURL(archivo[0]);
     reader.onloadend = () => {
-      this.fireService.subirImagen(`Imagen_Institucion ${numeroRandom}`, reader.result, this.usuario.nombre).then(
+      this.fireService.subirImagen(`Imagen_Institucion ${numeroRandom}`, reader.result, this.usuario.name).then(
         imagenUrl => {
           //Guardamos la url de la imagen dentro de la base de datos
           this.imagenUrl = imagenUrl;
@@ -96,14 +98,16 @@ export class FormularioEducacionComponent implements OnInit {
 
     evento.preventDefault();
 
-    let nuevaEducacion = new Educacion(1, this.formu.controls["nombreTitulo"].value,this.imagenUrl, this.formu.controls["initialDate"].value, this.formu.controls["finalDate"].value, this.userId, this.institucion);
+    let nuevoUsuario = new Usuario(this.usuario.id, this.usuario.name, this.usuario.nombre, this.usuario.apellido, this.usuario.fechaNacimiento, this.usuario.web, this.usuario.telefono, this.usuario.email, this.usuario.presentacion, this.usuario.urlPortada, this.usuario.urlPerfil, this.usuario.domicilio);
+
+    let nuevaEducacion = new Educacion(1, this.formu.controls["nombreTitulo"].value,this.imagenUrl, this.formu.controls["initialDate"].value, this.formu.controls["finalDate"].value, nuevoUsuario.usuarioObject(), this.institucion);
     
     console.log(nuevaEducacion.educacionNueva());
 
     if(this.formu.valid){
       
       if(this.imagenUrl != null){
-        this.porfolioService.createEducacion(nuevaEducacion).subscribe(
+        this.porfolioService.createEducacion(nuevaEducacion.educacionNueva()).subscribe(
           response => {
             console.log(response);
             alert("Educacion creada")

@@ -10,69 +10,47 @@ import { Red } from '../Entidades/red.entidad';
 })
 export class FormularioRedesComponent implements OnInit {
 
-  formu!:FormGroup;
-  nombreRedes!:any;
-  idUser!:number;
-  datos!:any;
-  redes!:any;
-  usuario!:any;
-  linkedin!:any;
-  facebook!:any;
-  instagram!:any;
-  github!:any;
+  formu!: FormGroup;
+  nombreRedes!: any;
+  idUser!: number;
+  datosRed!: any;
+  redes!: any;
+  usuario!: any;
+  linkedin!: any;
+  facebook!: any;
+  instagram!: any;
+  github!: any;
 
   @Output() cerrarRedesFormulario = new EventEmitter<boolean>();
 
   constructor(
-    private porfolioService:PorfolioServicesService,
+    private porfolioService: PorfolioServicesService,
     private formBuilder: FormBuilder
-  ) { 
+  ) {
     this.formu = this.formBuilder.group({
       instagram: [''],
-      linkedin:[''],
-      facebook:[''],
-      github:[''],
+      linkedin: [''],
+      facebook: [''],
+      github: [''],
     })
-   }
 
-  ngOnInit(): void {
-
-    let info = JSON.parse(sessionStorage['currentUser']);
-    this.porfolioService.getUsuarioPorNombreUsuario(info.nombreUsuario).subscribe(
-      user => {
-        this.usuario = user;
-      }
-    );
-    
-    this.porfolioService.getRedes().subscribe(
-      redes => {
-        this.datos = redes;
-        console.log(redes);
-        //Recorremos las redes y verificamos el usuario coincida con el usuario actual, luego corroboramos el tipo de red para colocar cada una en su correspondiente casillero
-        redes.forEach((el:any)=>{
-          if(el.idUser === this.usuario.id){
-            if(el.nombreRed.idNombreRedes == 1){
-              this.linkedin = el;
-            }else if(el.nombreRed.idNombreRedes == 2){
-              this.facebook = el;
-            }else if(el.nombreRed.idNombreRedes == 3){
-              this.instagram = el;
-            }else if(el.nombreRed.idNombreRedes == 4){
-              this.github = el;
-            }
+    setTimeout(() => {
+      //Recorremos las redes y verificamos el usuario coincida con el usuario actual, luego corroboramos el tipo de red para colocar cada una en su correspondiente casillero
+      this.datosRed.forEach((el: any) => {
+        if (el.idUser === this.usuario.id) {
+          if (el.nombreRed.idNombreRedes == 1) {
+            this.linkedin = el;
+          } else if (el.nombreRed.idNombreRedes == 2) {
+            this.facebook = el;
+          } else if (el.nombreRed.idNombreRedes == 3) {
+            this.instagram = el;
+          } else if (el.nombreRed.idNombreRedes == 4) {
+            this.github = el;
           }
-        })
+        }
+      });
 
-      }
-    );    
-    this.porfolioService.getNombreRed().subscribe(
-      red => {
-        this.redes = red;
-      }
-    );
-
-    setTimeout(()=>{
-      this.datos.forEach((element:any) => {
+      this.datosRed.forEach((element: any) => {
         console.log(element.nombreRed.nombreRed);
       });
       console.log(this.redes);
@@ -82,109 +60,135 @@ export class FormularioRedesComponent implements OnInit {
       this.formu.controls['facebook'].setValue(this.facebook.link);
       this.formu.controls['linkedin'].setValue(this.linkedin.link);
       this.formu.controls['github'].setValue(this.github.link);
-    },2000)
-    
+
+    }, 2000)
   }
 
-  onSubmit(event:Event){
+  ngOnInit(): void {
+
+    let info = JSON.parse(sessionStorage['currentUser']);
+    this.porfolioService.getUsuarioPorNombreUsuario(info.nombreUsuario).subscribe(
+      user => {
+        this.usuario = user;
+        this.porfolioService.getRedByUser(user.id).subscribe(
+          redes => {
+            this.datosRed = redes;
+            console.log(redes);
     
+    
+          }
+        );
+      }
+    );
+
+
+    this.porfolioService.getNombreRed().subscribe(
+      red => {
+        this.redes = red;
+      }
+    );
+
+  }
+
+  onSubmit(event: Event) {
+
     event.preventDefault();
 
-    let redInstagram!:Red;
-    let redFacebook!:Red;
-    let redLinkedin!:Red;
-    let redGithub!:Red;
+    let redInstagram!: Red;
+    let redFacebook!: Red;
+    let redLinkedin!: Red;
+    let redGithub!: Red;
 
     //Verificamos que el casillero de input este vacio o no para segun sea se haga un update o un create sobre la base de datos
 
-    if(this.instagram.link == undefined){
-      redInstagram = new Red(1,this.formu.controls['instagram'].value,this.usuario.id,this.redes[2]);
+    if (this.instagram.link == undefined) {
+      redInstagram = new Red(1, this.formu.controls['instagram'].value, this.usuario.id, this.redes[2]);
       this.porfolioService.createRed(redInstagram.crearNombreRed()).subscribe(
-        response=>{
+        response => {
           console.log(response);
           alert("Ingreso exitoso");
-        },err=>{
+        }, err => {
           console.log(err);
         }
       );
-    }else{
-      redInstagram = new Red(this.instagram.idRed,this.formu.controls['instagram'].value,this.usuario.id,this.redes[2]);      
+    } else {
+      redInstagram = new Red(this.instagram.idRed, this.formu.controls['instagram'].value, this.usuario.id, this.redes[2]);
       this.porfolioService.updateRed(redInstagram.actualizarNombreRed()).subscribe(
-        response=>{
+        response => {
           console.log(response);
-          alert("Ingreso fallido vuelva a intentar");
-        },err=>{
+        }, err => {
           console.log(err);
+          alert("Ingreso fallido vuelva a intentar");
         }
       );
     }
-    if(this.facebook.link == undefined){
-      redFacebook = new Red(1,this.formu.controls['facebook'].value,this.usuario.id,this.redes[1]);
+    if (this.facebook.link == undefined) {
+      redFacebook = new Red(1, this.formu.controls['facebook'].value, this.usuario.id, this.redes[1]);
       this.porfolioService.createRed(redFacebook.crearNombreRed()).subscribe(
-        response=>{
+        response => {
           console.log(response);
           alert("Ingreso exitoso");
-        },err=>{
+        }, err => {
           console.log(err);
         }
       );
-    }else{
-      redFacebook = new Red(this.facebook.idRed,this.formu.controls['facebook'].value,this.usuario.id,this.redes[1]);      
+    } else {
+      redFacebook = new Red(this.facebook.idRed, this.formu.controls['facebook'].value, this.usuario.id, this.redes[1]);
       this.porfolioService.updateRed(redFacebook.actualizarNombreRed()).subscribe(
-        response=>{
-          console.log(response);
-          alert("Ingreso fallido vuelva a intentar");
-        },err=>{
+        response => {
+          console.log(response);          
+        }, err => {
           console.log(err);
+          alert("Ingreso fallido vuelva a intentar");
         }
       );
     }
-    if(this.linkedin.link == undefined){
-      redLinkedin = new Red(1,this.formu.controls['linkedin'].value,this.usuario.id,this.redes[0]);
+    if (this.linkedin.link == undefined) {
+      redLinkedin = new Red(1, this.formu.controls['linkedin'].value, this.usuario.id, this.redes[0]);
       this.porfolioService.createRed(redLinkedin.crearNombreRed()).subscribe(
-        response=>{
+        response => {
           console.log(response);
           alert("Ingreso exitoso");
-        },err=>{
+        }, err => {
           console.log(err);
         }
       );
-    }else{
-      redLinkedin = new Red(this.linkedin.idRed,this.formu.controls['linkedin'].value,this.usuario.id,this.redes[0]);      
+    } else {
+      redLinkedin = new Red(this.linkedin.idRed, this.formu.controls['linkedin'].value, this.usuario.id, this.redes[0]);
       this.porfolioService.updateRed(redLinkedin.actualizarNombreRed()).subscribe(
-        response=>{
+        response => {
           console.log(response);
-          alert("Ingreso fallido vuelva a intentar");
-        },err=>{
+        }, err => {
           console.log(err);
+          alert("Ingreso fallido vuelva a intentar");
         }
       );
     }
-    if(this.github.link == undefined){
-      redGithub = new Red(1,this.formu.controls['github'].value,this.usuario.id,this.redes[3]);
+    if (this.github.link == undefined) {
+      redGithub = new Red(1, this.formu.controls['github'].value, this.usuario.id, this.redes[3]);
       this.porfolioService.createRed(redGithub.crearNombreRed()).subscribe(
-        response=>{
+        response => {
           console.log(response);
           alert("Ingreso exitoso");
-        },err=>{
+        }, err => {
           console.log(err);
         }
       );
-    }else{
-      redGithub = new Red(this.github.idRed,this.formu.controls['github'].value,this.usuario.id,this.redes[3]);      
+    } else {
+      redGithub = new Red(this.github.idRed, this.formu.controls['github'].value, this.usuario.id, this.redes[3]);
       this.porfolioService.updateRed(redGithub.actualizarNombreRed()).subscribe(
-        response=>{
+        response => {
           console.log(response);
-          alert("Ingreso fallido vuelva a intentar");
-        },err=>{
+        }, err => {
           console.log(err);
+          alert("Ingreso fallido vuelva a intentar");
         }
       );
-    }    
-
+    }
+    location.reload();
   }
 
-  cerrar():void{
+  cerrar(): void {
     this.cerrarRedesFormulario.emit(false);
   }
 

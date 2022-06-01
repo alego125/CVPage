@@ -5,8 +5,10 @@ import { Observable, Observer } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Educacion } from '../inicio/formularios/Entidades/educacion.entidad';
 import { Experiencia } from '../inicio/formularios/Entidades/experiencia.entidad';
+import { NuevoUsuario } from '../inicio/formularios/Entidades/nuevoUsuario.entidad';
 import { Proyecto } from '../inicio/formularios/Entidades/proyecto.model';
 import { Skill } from '../inicio/formularios/Entidades/skill.entidad';
+import { Usuario } from '../inicio/formularios/Entidades/usuario.entidad';
 import { Domicilio } from '../modelos/domicilio.model';
 
 @Injectable({
@@ -114,6 +116,10 @@ export class PorfolioServicesService {
     return this.http.get(environment.urlServer + 'red/get');
   }
 
+  getRedByUser(id:BigInteger):Observable<any>{
+    return this.http.get(environment.urlServer + 'red/getByUser/' + id);
+  }
+
   getNombreRed():Observable<any>{
     return this.http.get(environment.urlServer + 'nombreRedes/get');
   }
@@ -144,6 +150,10 @@ export class PorfolioServicesService {
 
   getUsuario():Observable<any>{
     return this.http.get(environment.urlServer + 'user/get');
+  }
+
+  createUsuario(nuevoUsuario:any):Observable<any>{
+    return this.http.post(environment.urlServer + "auth/nuevo", nuevoUsuario);
   }
 
   getUsuarioPorNombreUsuario(nombreUsuario:String):Observable<any>{
@@ -180,6 +190,6 @@ export class PorfolioServicesService {
 
   getCiudad(id:number):Observable<any>{
     return this.http.get('http://localhost:8080/ciudad/getByCiudad/' + id);
-  }
+  }  
 
 }

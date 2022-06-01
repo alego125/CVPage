@@ -17,8 +17,8 @@ export class Red {
     crearNombreRed(){
         let json = {
             "link": this.link,
-            "idUser": this.idUser,
-            "nombreRed": this.nombreRed
+            "nombreRed": this.nombreRed,
+            "idUser": this.idUser
         }
         return json;
     }
@@ -27,8 +27,8 @@ export class Red {
         let json = {
             "idRed": this.idRed,
             "link": this.link,
-            "idUser": this.idUser,
-            "nombreRed": this.nombreRed
+            "nombreRed": this.nombreRed,
+            "idUser": this.idUser
         }
         return json;
     }
