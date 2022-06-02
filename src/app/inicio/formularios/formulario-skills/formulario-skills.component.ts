@@ -52,7 +52,7 @@ export class FormularioSkillsComponent implements OnInit {
 
     
     if(this.formu.valid){
-      this.porfolioService.createSkill(skillNuevo).subscribe(
+      this.porfolioService.createSkill(skillNuevo.skillNuevo()).subscribe(
         respuesta => {
           console.log(respuesta);
           alert("Skill Agregada")

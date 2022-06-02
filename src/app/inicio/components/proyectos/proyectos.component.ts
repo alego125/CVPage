@@ -8,7 +8,9 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 })
 export class ProyectosComponent implements OnInit {
 
-  datos: any;
+  datos: any = [];
+  usuario:any;
+  info = JSON.parse(sessionStorage['currentUser']);
 
   @Output() abrirProyecFormulario = new EventEmitter<boolean>();
   @Output() abrirInfoEditar = new EventEmitter<boolean>();
@@ -19,10 +21,24 @@ export class ProyectosComponent implements OnInit {
   ) {  }
 
   ngOnInit(): void {
+    let info = JSON.parse(sessionStorage['currentUser']);
+    this.porfolioService.getUsuarioPorNombreUsuario(info.nombreUsuario).subscribe(
+      data => {
+        this.usuario = data;
+      }
+    );
     this.porfolioService.getProyectos().subscribe(
       data => {
-        this.datos = data;
-        console.log(data);
+        // this.datos = data;
+        setTimeout(()=>{
+          data.forEach((el:any)=>{
+            // console.log(el['idUser']);
+            // console.log(this.usuario['id']);
+            if(el['idUser'] === this.usuario['id']){
+              this.datos.push(el);
+            }
+          })
+        },2000)
       }
 
     );

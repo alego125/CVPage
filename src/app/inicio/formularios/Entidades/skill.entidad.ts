@@ -14,7 +14,7 @@ export class Skill{
         this.idUser = idUser
     }
 
-    public skillNuevo():any{        
+    skillNuevo():any{        
         let json = {            
             "nombreSkill":this.nombreSkill,
             "porcentaje":this.porcentaje,

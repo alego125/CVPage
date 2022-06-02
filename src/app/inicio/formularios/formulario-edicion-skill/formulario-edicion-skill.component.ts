@@ -44,12 +44,12 @@ export class FormularioEdicionSkillComponent implements OnInit {
 
     evento.preventDefault()
 
-    let skillNuevo = new Skill(this.skillObtenido.idSkill,this.formu.controls["habilidad"].value,this.formu.controls["porcentaje"].value,this.skillObtenido.idUser)    
+    let skill = new Skill(this.skillObtenido.idSkill,this.formu.controls["habilidad"].value,this.formu.controls["porcentaje"].value,this.skillObtenido.idUser)    
 
     
     if(this.formu.valid){
       
-      this.porfolioService.updateSkill(skillNuevo).subscribe(
+      this.porfolioService.updateSkill(skill).subscribe(
         respuesta => {
           console.log(respuesta);
           alert("Skill actualizado")          
@@ -59,7 +59,7 @@ export class FormularioEdicionSkillComponent implements OnInit {
           alert("Error!" + err)
         }
       );
-      // location.reload();
+      location.reload();
 
     }else{
       this.formu.markAllAsTouched();
