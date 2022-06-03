@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { response } from 'express';
-import { copyFileSync } from 'fs';
-import { ConnectableObservable } from 'rxjs';
 import { NuevoUsuario } from '../inicio/formularios/Entidades/nuevoUsuario.entidad';
-import { AutenticacionService } from '../servicios/autenticacion.service';
 import { PorfolioServicesService } from '../servicios/porfolio-services.service';
 import { ValidacionesPropias } from '../validaciones/validaciones-propias';
 
@@ -18,6 +14,7 @@ export class LoginRegisterComponent implements OnInit {
 
   formu:FormGroup;
   checkBox:any;
+  iniciando:boolean = false;
 
   constructor(
     private formBuild:FormBuilder,
@@ -57,47 +54,51 @@ export class LoginRegisterComponent implements OnInit {
 
       let nuevoUsuario = new NuevoUsuario(this.formu.controls['nombre'].value, this.formu.controls['nombreUsuario'].value, this.formu.controls['email'].value, this.formu.controls['password'].value,this.formu.controls['apellido'].value)
 
-      if(!this.checkBox){
-        this.porfolioService.createUsuario(nuevoUsuario.usuario()).subscribe(
-          response => {
-            console.log(response);
-            alert(response.mensaje);
-            this.ruta.navigate(['/inicio-sesion']);
-          },
-          err=>{
-            console.log(err);
-            alert('Error al crear usuario');
-          }
-        );
-      }
-      else {
-        this.porfolioService.createUsuario(nuevoUsuario.usuarioAdmin()).subscribe(
-          response => {
-            console.log(response);
-            alert(response.mensaje);
-            this.ruta.navigate(['/inicio-sesion']);
+      this.porfolioService.createUsuario(nuevoUsuario.usuario()).subscribe(
+        response => {
+          this.iniciando = true;
+          console.log(response);
+          alert(response.mensaje);
+          this.ruta.navigate(['/inicio-sesion']);
+        },
+        err=>{
+          console.log(err);
+          alert('Error al crear usuario');
+        }
+      );
 
-          },
-          err=>{
-            console.log(err);
-            alert('Error al crear usuario');
-          });
-      }
+      //Logica para crear usuario con privilegios de administrador
+      // if(!this.checkBox){
+      //   this.porfolioService.createUsuario(nuevoUsuario.usuario()).subscribe(
+      //     response => {
+      //       console.log(response);
+      //       alert(response.mensaje);
+      //       this.ruta.navigate(['/inicio-sesion']);
+      //     },
+      //     err=>{
+      //       console.log(err);
+      //       alert('Error al crear usuario');
+      //     }
+      //   );
+      // }
+      // else {
+      //   this.porfolioService.createUsuario(nuevoUsuario.usuarioAdmin()).subscribe(
+      //     response => {
+      //       console.log(response);
+      //       alert(response.mensaje);
+      //       this.ruta.navigate(['/inicio-sesion']);
+
+      //     },
+      //     err=>{
+      //       console.log(err);
+      //       alert('Error al crear usuario');
+      //     });
+      // }
 
     }else{
       this.formu.markAllAsTouched;
     }
-    //Nos subscribimos a continuacion al servicio de autenticacion, a este le debemos sar los values del form que serian las credenciales necesarias para iniciar sesion
-    // this.autenticacionService.iniciarSesion(this.formu.value).subscribe(
-    //     data=>{
-    //       //Mostramos por consola los datos devueltos por el servicio
-    //       console.log("Data: " + JSON.stringify(data));
-
-    //       //Si la autenticacion es correcta redirigimos al usuario a la ruta de portfolio para mostrar el contenido
-    //       this.ruta.navigate(['/portfolio']);
-    //     }
-      
-    //   )
+    
   }
 
   get Usuario(){

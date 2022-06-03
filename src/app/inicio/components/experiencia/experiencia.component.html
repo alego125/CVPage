@@ -2,12 +2,22 @@
 
 <section class="anchoCompletoVw mb-5">
     <div class="position-relative container p-3 color-white borderSoft softShadow">
-        <p class="position-absolute top5 right2"> <i class="fa-solid fa-pen pointerHover text-end" (click)="abrir()"> </i></p>
+        <p class="position-absolute top5 right2"> <i *ngIf="role === 'ROLE_ADMIN'" class="fa-solid fa-pen pointerHover text-end" (click)="abrir()"> </i></p>
         <h3 class="text-center">Experiencia</h3>
         <div class="container" *ngFor="let experiencia of datos">
-            <hr *ngIf="experiencia.usuario.name == info.nombreUsuario">
-            <div *ngIf="experiencia.usuario.name == info.nombreUsuario" class="anchoCompletoPorc text-end"><i class="fas fa-pen-nib pointerHover" (click)="editarExperiencia(experiencia)"></i>  /  <i class="fas fa-trash pointerHover" (click)="eliminarElimento(experiencia.idExperiencia)"></i></div>
-            <div class="row" *ngIf="experiencia.usuario.name == info.nombreUsuario">
+            <hr >
+            <div 
+                *ngIf="role === 'ROLE_ADMIN'" 
+                class="anchoCompletoPorc text-end">
+                <i 
+                    class="fas fa-pen-nib pointerHover" (click)="editarExperiencia(experiencia)">
+                </i>  /  
+                <i 
+                    class="fas fa-trash pointerHover" 
+                    (click)="eliminarElimento(experiencia.idExperiencia)">
+                </i>
+            </div>
+            <div class="row" >
                 <div class="col-md-2">
                     <img class="ancho10rem" [src]="experiencia.urlImagen" [alt]="experiencia.nombreEmpresa">
                 </div>

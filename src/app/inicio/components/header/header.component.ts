@@ -18,6 +18,8 @@ export class HeaderComponent implements OnInit {
   facebook!: string;
   instagram!: string;
   github!: string;
+  role!:string;
+  info = JSON.parse(sessionStorage['currentUser']);
 
   @Output() abrirRedesFormulario = new EventEmitter<boolean>();
 
@@ -26,36 +28,33 @@ export class HeaderComponent implements OnInit {
     private servicioAuth: AutenticacionService,
     private ruter: Router
   ) {
-
-    setTimeout(() => {
-      console.log(this.redes);
-      this.redes.forEach((red: any) => {
-        if (red.nombreRed.idNombreRedes == 1) {
-          this.instagram = red.link;
-        } else if (red.nombreRed.idNombreRedes == 2) {
-          this.facebook = red.link;
-        } else if (red.nombreRed.idNombreRedes == 3) {
-          this.linkedin = red.link;
-        } else if (red.nombreRed.idNombreRedes == 4) {
-          this.github = red.link;
-        }
+    this.info['authorities'].forEach((element:any)=>{
+      if(element.authority === 'ROLE_ADMIN'){
+        this.role = element.authority
       }
-      )
-    }, 2000)
+    });
 
   }
 
   ngOnInit(): void {
-
-    let info = JSON.parse(sessionStorage['currentUser']);
-    this.datosPorfolio.getUsuarioPorNombreUsuario(info.nombreUsuario).subscribe(
-      data => {        
-        this.datosPorfolio.getRedByUser(data.id).subscribe(
-          response => {
-            this.redes = response;
+    
+    this.datosPorfolio.getRedes().subscribe(
+      response => {
+        this.redes = response;
+        response.forEach((red: any) => {
+          if (red.nombreRed.idNombreRedes == 1) {
+            this.instagram = red.link;
+          } else if (red.nombreRed.idNombreRedes == 2) {
+            this.facebook = red.link;
+          } else if (red.nombreRed.idNombreRedes == 3) {
+            this.linkedin = red.link;
+          } else if (red.nombreRed.idNombreRedes == 4) {
+            this.github = red.link;
           }
-        );        
-      });   
+        }
+        )
+      }
+    );        
   }
 
   logOut(){

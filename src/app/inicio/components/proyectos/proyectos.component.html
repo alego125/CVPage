@@ -2,13 +2,13 @@
 
 <section class="anchoCompletoVw mb-5">
     <div class="position-relative container p-3 color-white borderSoft softShadow">
-        <p class="position-absolute top5 right2"> <i class="fa-solid fa-pen pointerHover text-end" (click)="abrir()"> </i></p>
+        <p class="position-absolute top5 right2"> <i *ngIf="role === 'ROLE_ADMIN'" class="fa-solid fa-pen pointerHover text-end" (click)="abrir()"> </i></p>
         <h3 class="text-center">Proyectos Realizados</h3>
         <div class="container">
             <div class="row">                    
                 <div class="col-md-6" *ngFor="let proyecto of datos">     
                     <hr>                   
-                    <div class="anchoCompletoPorc text-end"><i class="fas fa-pen-nib pointerHover" (click)="editar(proyecto)"></i>  /  <i class="fas fa-trash pointerHover" (click)="eliminarProyecto(proyecto)"></i></div>
+                    <div *ngIf="role === 'ROLE_ADMIN'" class="anchoCompletoPorc text-end"><i class="fas fa-pen-nib pointerHover" (click)="editar(proyecto)"></i>  /  <i class="fas fa-trash pointerHover" (click)="eliminarProyecto(proyecto)"></i></div>
                     <h4 class="text-decoration-underline">{{ proyecto.tituloProyecto}}</h4>
                     <h5>{{ proyecto.lugar}}</h5>
                     <h6 class="d-inline"><b>Duracion del proyecto: </b> </h6><b class="text-secondary">Desde: {{ proyecto.fechaInicio }} - Hasta: {{ proyecto.fechaFin }}</b>

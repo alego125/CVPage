@@ -11,6 +11,8 @@ import { AutenticacionService } from '../servicios/autenticacion.service';
 export class PaginaInicioComponent implements OnInit {
 
   formu:FormGroup;
+  authorization:boolean = true;
+  iniciando:boolean = false;
 
   constructor(
     private formBuild:FormBuilder,
@@ -34,10 +36,16 @@ export class PaginaInicioComponent implements OnInit {
     this.autenticacionService.iniciarSesion(this.formu.value).subscribe(
         data=>{
           //Mostramos por consola los datos devueltos por el servicio
+          this.iniciando = true;
           console.log("Data: " + JSON.stringify(data));
-
+          this.authorization = true;
           //Si la autenticacion es correcta redirigimos al usuario a la ruta de portfolio para mostrar el contenido
           this.ruta.navigate(['/portfolio']);
+        },err=>{
+          if(err.error.error === "Unauthorized"){
+            this.authorization = false;
+          }
+          
         }
       
       )

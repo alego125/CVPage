@@ -31,6 +31,7 @@ import { PaginaInicioComponent } from './pagina-inicio/pagina-inicio.component';
 import { LoginRegisterComponent } from './login-register/login-register.component';
 import { PorfolioServicesService } from './servicios/porfolio-services.service';
 import { InterceptorService } from './servicios/interceptor.service';
+import { InitialPageComponent } from './initial-page/initial-page.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { InterceptorService } from './servicios/interceptor.service';
     PortfolioComponent,
     PaginaInicioComponent,
     LoginRegisterComponent,
+    InitialPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ export class EducacionComponent implements OnInit {
 
   educacion:any;
   session = JSON.parse(sessionStorage['currentUser']);
+  role!:string;
   @Output() abrirEducaFormulario = new EventEmitter<boolean>();
   @Output() abrireditarEducaFormulario = new EventEmitter<boolean>();
   @Output() editarEducaFormulario = new EventEmitter<boolean>();
@@ -18,7 +19,13 @@ export class EducacionComponent implements OnInit {
 
   constructor(
     private porfolioService:PorfolioServicesService
-  ) { }
+  ) {
+    this.session['authorities'].forEach((element:any)=>{
+      if(element.authority === 'ROLE_ADMIN'){
+        this.role = element.authority
+      }
+    });
+   }
 
   ngOnInit(): void {
     this.porfolioService.getEducacion().subscribe(
@@ -28,7 +35,7 @@ export class EducacionComponent implements OnInit {
       err => {
         console.log(err);
       }
-    );    
+    );        
   }
 
   eliminarEducacion(id:number){

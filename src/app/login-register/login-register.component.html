@@ -1,6 +1,6 @@
-<a [href]="['/inicio-sesion']">Volver a Inicio de Sesion</a>
 <div class="contenedor">
-    <h2>Crear Usuario</h2>
+    <a class="btn-volver" [href]="['/inicio-sesion']">Volver</a>
+    <h2 class="title">Crear Usuario</h2>
     <form [formGroup]="formu" class="m-3" (ngSubmit)="onSubmit($event)">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Nombre</label>
@@ -83,12 +83,13 @@
                 Las Contraseñas no coinciden
             </label>
         </div>
-        <div class="mb-3 form-check">
+        <!-- <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1" (change)="onChange($event)">
             <label class="form-check-label" formControlName="administrador" for="exampleCheck1">Crear como administrador</label>
-        </div>
+        </div> -->
         <div class="text-center">
-            <button type="submit" [disabled]="formu.invalid" class="btn btn-primary">Crear</button>
+            <button *ngIf="!iniciando" type="submit" [disabled]="formu.invalid" class="btn btn-primary">Crear</button>
+            <div *ngIf="iniciando" class="lds-ring"><div></div><div></div><div></div><div></div></div>
         </div>
     </form>
 </div>

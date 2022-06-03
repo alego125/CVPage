@@ -9,6 +9,8 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 export class PortadaComponent implements OnInit {
   
   datos!:any; 
+  info = JSON.parse(sessionStorage['currentUser']);
+  role!:string;
 
   @Output() abrirAccion = new EventEmitter<boolean>();
   @Output() abrirUpAccion = new EventEmitter<boolean>();
@@ -16,17 +18,24 @@ export class PortadaComponent implements OnInit {
   constructor(
     private porfolioService:PorfolioServicesService,    
   ) { 
+    this.info['authorities'].forEach((element:any)=>{
+      if(element.authority === 'ROLE_ADMIN'){
+        this.role = element.authority
+      }
+    });
   }
   
   ngOnInit(): void {
-    let info = JSON.parse(sessionStorage['currentUser']);
-    this.porfolioService.getUsuarioPorNombreUsuario(info.nombreUsuario).subscribe(
-      data => {
-        console.log(data);
-        //Obtenemos datos del json 
-        this.datos = data;       
+    this.porfolioService.getUsuario().subscribe(
+      response => {
+        response.forEach((element:any) => {
+          if(element.rol === 'admin'){
+            this.datos = element
+          }
+        });
       }
-      )
+    )
+    
   }
 
   //Emicion hacia app.component de accion del boton para abrir informacion personal

@@ -12,6 +12,7 @@ export class ExperienciaComponent implements OnInit {
 
   public datos!:any;
   public usuario!:any;
+  role!:string;
   info = JSON.parse(sessionStorage['currentUser']);
   @Output() abrirExperiencia = new EventEmitter<boolean>();
   @Output() abrirEditarExperiencia = new EventEmitter<boolean>();
@@ -19,7 +20,13 @@ export class ExperienciaComponent implements OnInit {
 
   constructor(
     private porfolioService : PorfolioServicesService
-  ) {  }
+  ) { 
+    this.info['authorities'].forEach((element:any)=>{
+      if(element.authority === 'ROLE_ADMIN'){
+        this.role = element.authority
+      }
+    });
+   }
 
   ngOnInit(): void {
     this.getExperience();

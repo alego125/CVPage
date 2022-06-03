@@ -17,12 +17,15 @@ export class PersonalInformationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let info = JSON.parse(sessionStorage['currentUser']);
-    this.porfolioService.getUsuarioPorNombreUsuario(info.nombreUsuario).subscribe(
-      data => {
-        this.datos = data;
+    this.porfolioService.getUsuario().subscribe(
+      response => {
+        response.forEach((element:any) => {
+          if(element.rol === 'admin'){
+            this.datos = element
+          }
+        });
       }
-    );
+    )
   }
 
   cerrar(){

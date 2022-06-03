@@ -9,7 +9,7 @@
         <img [src]="datos.urlPerfil"
             class="perfil ancho15rem alto15rem rounded-circle border border-3 border-dark position-absolute top-0 start-50 translate-middle softShadow" alt="FotoPerfil">
   
-        <h5 class="position-absolute top60  right30 translate-middle">
+        <h5 *ngIf="role === 'ROLE_ADMIN'" class="position-absolute top60  right30 translate-middle">
             Editar
             <i class="fa-solid fa-pen pointerHover" (click)="abrirUpImg()"></i>
         </h5>

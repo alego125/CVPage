@@ -10,11 +10,19 @@ import { PorfolioServicesService } from 'src/app/servicios/porfolio-services.ser
 export class PresentacionComponent implements OnInit {
 
   datos:any;
+  info = JSON.parse(sessionStorage['currentUser']);
+  role!:string;
   @Output() abrirPresentacion = new EventEmitter<any>();
 
   constructor(
     private porfolioService:PorfolioServicesService
-  ) { }
+  ) { 
+    this.info['authorities'].forEach((element:any)=>{
+      if(element.authority === 'ROLE_ADMIN'){
+        this.role = element.authority
+      }
+    });
+   }
 
   ngOnInit(): void {
     this.getInfo();
@@ -22,15 +30,15 @@ export class PresentacionComponent implements OnInit {
 
   //Obtenemos la informacion del json
   private getInfo():void{
-    let info = JSON.parse(sessionStorage['currentUser']);
-    this.porfolioService.getUsuarioPorNombreUsuario(info.nombreUsuario).pipe(
-      tap(
-        data => {
-          console.log(data);
-          this.datos = data;
-        }
-      )
-    ).subscribe()
+    this.porfolioService.getUsuario().subscribe(
+      response => {
+        response.forEach((element:any) => {
+          if(element.rol === 'admin'){
+            this.datos = element
+          }
+        });
+      }
+    )
   }
 
   public abrirForm():void{

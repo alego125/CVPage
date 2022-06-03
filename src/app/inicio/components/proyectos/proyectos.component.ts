@@ -11,6 +11,7 @@ export class ProyectosComponent implements OnInit {
   datos: any = [];
   usuario:any;
   info = JSON.parse(sessionStorage['currentUser']);
+  role!:string;
 
   @Output() abrirProyecFormulario = new EventEmitter<boolean>();
   @Output() abrirInfoEditar = new EventEmitter<boolean>();
@@ -18,27 +19,25 @@ export class ProyectosComponent implements OnInit {
 
   constructor(
     private porfolioService: PorfolioServicesService
-  ) {  }
+  ) { 
+    this.info['authorities'].forEach((element:any)=>{
+      if(element.authority === 'ROLE_ADMIN'){
+        this.role = element.authority
+      }
+    });
+   }
 
   ngOnInit(): void {
-    let info = JSON.parse(sessionStorage['currentUser']);
-    this.porfolioService.getUsuarioPorNombreUsuario(info.nombreUsuario).subscribe(
+    
+    this.porfolioService.getUsuarioPorNombreUsuario(this.info.nombreUsuario).subscribe(
       data => {
         this.usuario = data;
       }
     );
+
     this.porfolioService.getProyectos().subscribe(
       data => {
-        // this.datos = data;
-        setTimeout(()=>{
-          data.forEach((el:any)=>{
-            // console.log(el['idUser']);
-            // console.log(this.usuario['id']);
-            if(el['idUser'] === this.usuario['id']){
-              this.datos.push(el);
-            }
-          })
-        },2000)
+        this.datos = data;        
       }
 
     );

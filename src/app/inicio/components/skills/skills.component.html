@@ -2,15 +2,15 @@
 
 <section class="anchoCompletoVw mb-5">
     <div class="position-relative container p-3 color-white borderSoft softShadow">
-        <p class="position-absolute top5 right2"> <i class="fa-solid fa-pen pointerHover text-end " (click)="abrir()"> </i></p>
+        <p class="position-absolute top5 right2"> <i *ngIf="role === 'ROLE_ADMIN'" class="fa-solid fa-pen pointerHover text-end " (click)="abrir()"> </i></p>
         <h3 class="text-center">Hard & Soft Skills</h3>
         <hr>
         <div class="container">
             <div class="row text-center">
                 <div class="col-md-4 col-lg-3 col-xs-2 alto35rem" *ngFor="let skill of datos">
                     <div class="card bg-light cardStyle centrar softShadow position-relative mb-3">
-                        <i class="fas fa-pen pointerHover position-absolute top5 right10" (click)="abrirEditar(skill)"></i>
-                        <i class="fas fa-trash pointerHover position-absolute top5 right2" (click)="deleteSkill(skill)"></i>
+                        <i *ngIf="role === 'ROLE_ADMIN'" class="fas fa-pen pointerHover position-absolute top5 right10" (click)="abrirEditar(skill)"></i>
+                        <i *ngIf="role === 'ROLE_ADMIN'" class="fas fa-trash pointerHover position-absolute top5 right2" (click)="deleteSkill(skill)"></i>
                         <h5 class="card-title text-black">{{skill.nombreSkill}}</h5>
                         <div class="card-body">
                             <div class="skill">
