@@ -26,7 +26,7 @@
                     <p> <b>{{experiencia.nombreEmpresa}}</b> </p>
                     <h4>Descripcion Tareas realizadas</h4>
                     <p>{{ experiencia.descripcionTareas}}</p>
-                    <b class="text-secondary">Desde {{experiencia.fechaInicio}} - Hasta {{experiencia.fechaFin}}</b>
+                    <b class="text-secondary">Desde {{experiencia.fechaInicio | date:"dd-MM-yyyy"}} - Hasta {{experiencia.fechaFin | date:"dd-MM-yyyy" || "(En curso)"}}</b>
                 </div>
             </div>
         </div>       

@@ -17,7 +17,7 @@ export class FormularioEdicionExperienciaComponent implements OnInit {
   imgEmpresa!:string;
   formu:FormGroup;
   cargaArchivo:boolean = false;
-  imagenUrl:any = null;
+  imagenUrl:any;
   userId!:number;
   usuario!:any;
   
