@@ -38,6 +38,11 @@ export class PortadaComponent implements OnInit {
     
   }
 
+  //Funcion para hacer capitalize de una palabra
+  capitalizeFirstLetter(palabra:String) {
+    return palabra.charAt(0).toUpperCase() + palabra.slice(1);
+  }
+
   //Emicion hacia app.component de accion del boton para abrir informacion personal
   abrir():void{
     this.abrirAccion.emit(true);

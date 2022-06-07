@@ -14,7 +14,7 @@
             <i class="fa-solid fa-pen pointerHover" (click)="abrirUpImg()"></i>
         </h5>
   
-        <h3 class="position-absolute top70 start-50 translate-middle"> {{ datos.nombre + ' ' + datos.apellido }} </h3>
+        <h3 class="position-absolute top70 start-50 translate-middle"> {{ capitalizeFirstLetter(datos.nombre) + ' ' + capitalizeFirstLetter(datos.apellido) }} </h3>
   
         <h4 class="position-absolute top90 start-50 translate-middle">
             <!-- Eviamos el evento click que abre la informacion personal -->

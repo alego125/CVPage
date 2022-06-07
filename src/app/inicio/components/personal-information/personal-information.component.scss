@@ -60,3 +60,19 @@ hr{
     cursor: pointer;
     box-shadow: none;
 }
+
+
+@media screen and(max-width: 650px) {
+    h3{
+        display: flex;
+        flex-direction: column;
+        font-size: 100%;
+        b{
+            font-size: 70%;
+        }
+    }
+
+    .cajita{
+        height: 40%;
+    }
+}

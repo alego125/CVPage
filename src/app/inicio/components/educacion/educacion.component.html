@@ -19,10 +19,10 @@
                 </i>
             </div>
             <div class="row" >
-                <div class="col-md-2">
-                    <img class="ancho10rem" [src]="logro.imagenInstitucion" alt="arcor">
+                <div class="col-md-2 info">
+                    <img class="imgEmpresa" [src]="logro.imagenInstitucion" alt="arcor">
                 </div>
-                <div class="col">
+                <div class="col info">
                     <h2> {{ logro.institucion.nombreInstitucion }} </h2>
                     <p>{{ logro.nombreTitulo }}</p>
                     <b class="text-secondary">Desde {{logro.fechainicio | date:"dd-MM-yyyy"}} - Hasta {{logro.fechaFin | date:"dd-MM-yyyy" || "(En curso)"}}</b>

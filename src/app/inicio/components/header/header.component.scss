@@ -1,0 +1,38 @@
+.imgLogo {
+    a {
+        color: white;
+        font-weight: bold;
+
+        img {
+            width: 40%;
+        }
+    }
+}
+
+
+@media screen and (max-width: 760px) {
+    .redes {
+        i {
+            font-size: 20px;
+        }
+    }
+
+    .imgLogo {
+        a {
+            color: white;
+            font-weight: bold;
+
+            img {
+                width: 60%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 462px) {
+    .redes {
+        i {
+            font-size: 15px;
+        }
+    }
+}

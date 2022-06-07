@@ -1,0 +1,16 @@
+.imgEmpresa{
+    width: 100%;
+}
+
+@media screen and (max-width: 760px) {
+    .imgEmpresa{
+        width: 50%;    
+    }
+
+    .info{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
