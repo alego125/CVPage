@@ -62,7 +62,9 @@ export class FormularioSkillsComponent implements OnInit {
           alert("Error!" + err);
         }
       )
-      location.reload();
+      setTimeout(()=>{
+        location.reload()
+      },2000)
     }else{
       this.formu.markAllAsTouched();
     }

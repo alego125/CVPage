@@ -65,27 +65,27 @@ export class PorfolioServicesService {
   }
 
   getProyectos():Observable<any>{
-    return this.http.get('http://localhost:8080/proyecto/get');
+    return this.http.get(environment.urlServer + 'proyecto/get');
   }
 
   getProyectoById(id:number):Observable<any>{
-    return this.http.get("http://localhost:8080/proyecto/get/" + id);
+    return this.http.get(environment.urlServer + "proyecto/get/" + id);
   }
 
   deleteProyecto(id:number):Observable<any>{
-    return this.http.delete("http://localhost:8080/proyecto/delete/"+id);
+    return this.http.delete(environment.urlServer + "proyecto/delete/"+id);
   }
 
   createProyecto(proyecto:Proyecto):Observable<any>{
-    return this.http.post('http://localhost:8080/proyecto/create', proyecto);
+    return this.http.post(environment.urlServer + 'proyecto/create', proyecto);
   }
 
   updateProyecto(proyecto:Proyecto):Observable<any>{
-    return this.http.put('http://localhost:8080/proyecto/update', proyecto);
+    return this.http.put(environment.urlServer + 'proyecto/update', proyecto);
   }
 
   getAptitudes():Observable<any>{
-    return this.http.get('http://localhost:8080/skill');
+    return this.http.get(environment.urlServer + 'skill');
   }
   
   getEducacion():Observable<any>{
@@ -137,15 +137,15 @@ export class PorfolioServicesService {
   }
 
   modificarPersona(persona:any){
-    return this.http.put("http://localhost:8080/user/update",persona);
+    return this.http.put(environment.urlServer + "user/update",persona);
   }
 
   getCarreras(){
-    return this.http.get("http://localhost:3000/carrera");    
+    return this.http.get(environment.urlServer + "carrera");    
   }
 
   getUniversidades():Observable<any>{
-    return this.http.get('http://localhost:8080/institucion');    
+    return this.http.get(environment.urlServer + 'institucion');    
   }
 
   getUsuario():Observable<any>{
@@ -165,31 +165,31 @@ export class PorfolioServicesService {
   }
 
   getDomicilio():Observable<any>{
-    return this.http.get('http://localhost:8080/domicilio/get');
+    return this.http.get(environment.urlServer + 'domicilio/get');
   }
 
   getPaisById(id:number):Observable<any>{
-    return this.http.get('http://localhost:8080/pais/get/' + id);
+    return this.http.get(environment.urlServer + 'pais/get/' + id);
   }
   
   getPais():Observable<any>{
-    return this.http.get('http://localhost:8080/pais/get');
+    return this.http.get(environment.urlServer + 'pais/get');
   }
 
   getProvinciaById(id:number):Observable<any>{
-    return this.http.get('http://localhost:8080/provincia/get/' + id);
+    return this.http.get(environment.urlServer + 'provincia/get/' + id);
   }
 
   getProvincia():Observable<any>{
-    return this.http.get('http://localhost:8080/provincia/get');
+    return this.http.get(environment.urlServer + 'provincia/get');
   }
 
   getCiudadById(id:number):Observable<any>{
-    return this.http.get('http://localhost:8080/ciudad/get/' + id);
+    return this.http.get(environment.urlServer + 'ciudad/get/' + id);
   }
 
   getCiudad(id:number):Observable<any>{
-    return this.http.get('http://localhost:8080/ciudad/getByCiudad/' + id);
+    return this.http.get(environment.urlServer + 'ciudad/getByCiudad/' + id);
   }  
 
 }

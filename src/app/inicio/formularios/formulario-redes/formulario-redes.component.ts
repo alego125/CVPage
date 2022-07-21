@@ -185,7 +185,9 @@ export class FormularioRedesComponent implements OnInit {
         }
       );
     }
-    location.reload();
+    setTimeout(()=>{
+        location.reload()
+      },2000)
   }
 
   cerrar(): void {

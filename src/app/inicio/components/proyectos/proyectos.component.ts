@@ -62,7 +62,9 @@ export class ProyectosComponent implements OnInit {
         }
       );
 
-      location.reload();
+      setTimeout(()=>{
+        location.reload()
+      },2000)
 
     }else{
       location.reload();

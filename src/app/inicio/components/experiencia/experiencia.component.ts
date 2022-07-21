@@ -40,7 +40,9 @@ export class ExperienciaComponent implements OnInit {
       this.porfolioService.deleteExperiencia(id).subscribe(
         ()=>{
           alert("Experiencia eliminada")
-          location.reload();
+          setTimeout(()=>{
+            location.reload()
+          },2000)
         },err=>{
           console.log(err);
         }

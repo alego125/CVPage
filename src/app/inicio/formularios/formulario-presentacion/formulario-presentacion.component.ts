@@ -52,7 +52,9 @@ export class FormularioPresentacionComponent implements OnInit {
           alert("Informacion Guardada")
         }
       );
-      location.reload();
+      setTimeout(()=>{
+        location.reload()
+      },2000)
     } else {
       this.formu.markAllAsTouched();
     }

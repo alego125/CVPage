@@ -13,7 +13,7 @@ export const environment = {
     appId: "1:339909514913:web:0533ca9a02c10e27c742e0",
     measurementId: "G-Z2X1KCSL76"
   },
-  urlServer:"http://localhost:8080/"
+  urlServer:"https://agile-garden-14828.herokuapp.com/"
 };
 
 /*

@@ -76,7 +76,9 @@ export class FormularioEdicionProyectoComponent implements OnInit {
         }
       )
       
-      location.reload()
+      setTimeout(()=>{
+        location.reload()
+      },2000)
     } else {
       //Caso que no sea valido el formulario corremos todas las validaciones del formulario, esto lo hacemos con la funcion markAllAsTouched es decir es como si tocaramos o marcaramos todos los input para activar sus validaciones
       this.formu.markAllAsTouched();

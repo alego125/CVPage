@@ -56,7 +56,9 @@ export class SkillsComponent implements OnInit {
           alert("Error!" + err);
         }
       )
-      location.reload();
+      setTimeout(()=>{
+        location.reload()
+      },2000)
     }
 
 

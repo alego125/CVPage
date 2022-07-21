@@ -106,7 +106,7 @@ export class FormularioEdicionEducacionComponent implements OnInit {
     }
   }
   
-  onSubmit(evento:Event) {
+async onSubmit(evento:Event) {
 
     evento.preventDefault();
 
@@ -129,12 +129,15 @@ export class FormularioEdicionEducacionComponent implements OnInit {
         }
       );
 
-      location.reload();
+      setTimeout(()=>{
+        location.reload();
+      },2000)
 
     }else{
       this.formu.markAllAsTouched();
     }
   }
+
   cerrar():void{
     this.cerrarEditarEducaFormulario.emit(false);
   }
