@@ -3,7 +3,8 @@
         <nav>
             <img src="../../assets/icono.png" alt="argentina-programa">
             <div class="btns">
-                <a class="btn btn-info" [href]="['/inicio-sesion']">Inicio Sesion</a>
+                <a class="btn btn-info" [href]="['/inicio-sesion']">Inicio Sesion</a>                   
+                <a class="btn btn-info" (click)="entrarSinUsuario()">Sin Usuario</a>
             </div>
         </nav>
     </header>
@@ -11,8 +12,8 @@
     <div class="titleContainer">
         <div class="titulo">
             <h1 class="text-center">BIENVENIDOS A MI PERFIL</h1>
-            <h3>Regístrate para poder visualizarlo</h3>
-            <h3>Te llevará menos de 1 minuto</h3>
+            <h3>Si no deseas registrarte presiona en el boton sin usuario</h3>
+            <h3>Pero si lo deseas te llevará menos de 1 minuto</h3>
         </div>
         <div class="btns">
             <a class="btn btn-info" [href]="['/register']">Registrase</a>
